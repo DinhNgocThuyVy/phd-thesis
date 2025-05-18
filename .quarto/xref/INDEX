@@ -1,0 +1,32 @@
+{
+  "index.qmd": {
+    "index.html": "443a81c0"
+  },
+  "Chapters/Chapter1.qmd": {
+    "Chapter1.html": "3b5592b6"
+  },
+  "Chapters/Chapter2.qmd": {
+    "Chapter2.html": "c6ffa095"
+  },
+  "references.qmd": {
+    "references.html": "6f41a767"
+  },
+  "Appendices/AppendixA.qmd": {
+    "AppendixA.html": "267a4a6e"
+  },
+  "frontmatter/abstract-en.qmd": {
+    "abstract-en.html": "a105a410"
+  },
+  "frontmatter/abstract-fr.qmd": {
+    "abstract-fr.html": "d8e053fc"
+  },
+  "frontmatter/acknowledgements.qmd": {
+    "acknowledgements.html": "2b741cad"
+  },
+  "frontmatter/abbreviations.qmd": {
+    "abbreviations.html": "516c624f"
+  },
+  "frontmatter/dedication.qmd": {
+    "dedication.html": "ed03afec"
+  }
+}

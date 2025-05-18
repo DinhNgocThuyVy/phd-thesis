@@ -1,0 +1,5 @@
+# Abstract {.unnumbered}
+
+This thesis presents an investigation of... [Your English abstract text here]
+
+**Keywords:** keyword1, keyword2, keyword3, keyword4

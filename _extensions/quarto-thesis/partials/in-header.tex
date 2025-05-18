@@ -1,0 +1,53 @@
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+%\usepackage[T1]{fontenc} % Output font encoding for international characters; causes problems for xelatex
+
+% Logo macros
+\usepackage{hologo} % For proper LaTeX, BibTeX, etc. logos
+
+%\usepackage{mathpazo} % Use the Palatino font by default
+
+\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+\usepackage{pdfpages} % Required for including PDF files directly
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER SUMMARY ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+\definecolor{summarycolor}{RGB}{240, 242, 245}
+\definecolor{summaryframe}{RGB}{41, 128, 185}
+
+\newenvironment{chaptersummary}{%
+  \begin{mdframed}[linewidth=1pt, linecolor=summaryframe, backgroundcolor=summarycolor, 
+                  topline=true, bottomline=true, leftline=true, rightline=true,
+                  innertopmargin=8pt, innerbottommargin=8pt,  % Reduced padding
+                  innerrightmargin=10pt, innerleftmargin=10pt,
+                  skipabove=5pt, skipbelow=5pt] % Added smaller skip values
+  \begin{center}\textbf{Chapter Summary}\end{center}\vspace{-1em} % More negative space
+}{%
+  \end{mdframed}
+}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	MARGINS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	headheight=4ex,
+	includehead,
+	includefoot
+}
+
+\raggedbottom
+
+\AtBeginDocument{
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+}

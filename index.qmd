@@ -1,0 +1,13 @@
+# Introduction {.unnumbered}
+
+::: {.content-visible when-format="html"}
+::: {.thesis-cover-image}
+![Thesis Cover](images/thesis-cover.png)
+:::
+:::
+
+## Overview
+
+This is the preface for the thesis.
+
+You can add introductory content here that is not considered part of the main chapters.
