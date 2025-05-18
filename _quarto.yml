@@ -8,8 +8,7 @@ book:
   date: "17 mai 2025"
   author:
     name: "Nom Prénom"
-  downloads: [pdf]
-  # Standard chapters list (used for PDF)
+  downloads: [pdf]  # Standard chapters list (used for PDF)
   chapters:
     - index.qmd
     - Chapters/Chapter1.qmd
@@ -17,7 +16,7 @@ book:
     - references.qmd
   appendices:
     - Appendices/AppendixA.qmd
-    site-url: https://nguyentruonganlab.github.io/quarto-thesis/
+  site-url: https://nguyentruonganlab.github.io/quarto-thesis/
   search: true
   
   # Add repo URL for GitHub deployment
