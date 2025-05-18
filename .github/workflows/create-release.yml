@@ -7,6 +7,9 @@ on:
     paths:
       - 'docs/Titre-de-la-Thèse.pdf'
 
+permissions:
+  contents: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
