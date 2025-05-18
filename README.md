@@ -1,15 +1,75 @@
-[![github](https://img.shields.io/github/v/release/nmfs-opensci/quarto-thesis?color=brightgreen&label=GitHub)](https://github.com/nmfs-opensci/quarto-thesis/releases/latest)
+[![github](https://img.shields.io/github/v/release/NguyenTruongAnLab/quarto-thesis?color=brightgreen&label=GitHub)](https://github.com/NguyenTruongAnLab/quarto-thesis/releases/latest)
 
-# quarto-thesis
+# Quarto Thesis with Automated Deployment
 
 Quarto extension for a masters or PhD thesis based on Masters/Doctoral Thesis, LaTeX Template, Version 2.5 (27 Aug 2017). You can play with it on RStudio Cloud without installing anything: https://rstudio.cloud/content/4383755  Go to the Build tab (upper right panel) and click Render Book.
 
+## Automated Deployment Features
+
+This repository is set up with automated workflows for:
+
+1. **GitHub Pages Deployment**: The thesis website is automatically deployed to GitHub Pages from the `/docs` folder.
+
+2. **Automatic PDF Versioning**: When changes are pushed to the main branch, a GitHub Actions workflow:
+   - Renders the Quarto project to PDF
+   - Creates a versioned PDF with timestamp (e.g., `Thesis-v2023-05-15-10-30-45.pdf`)
+   - Creates a GitHub Release with both the standard PDF and versioned PDF
+   - Updates the GitHub Pages website
+
+3. **Manual Release Option**: You can still create manual releases using the `create-release.ps1` PowerShell script.
+
+## Automated Workflow Details
+
+### GitHub Actions Workflows
+
+This repository contains the following GitHub Actions workflows:
+
+1. **`auto-pdf-release.yml`**: Main workflow that automatically:
+   - Renders the Quarto project when changes are pushed to main
+   - Generates a PDF of the thesis
+   - Creates a versioned copy of the PDF with timestamp
+   - Creates a GitHub Release with the PDFs
+   - Deploys the website to GitHub Pages
+
+2. **`create-release.yml`**: Creates a release when the PDF file changes
+   - Triggered when `docs/Titre-de-la-Thèse.pdf` is modified
+   - Creates a GitHub Release with versioned PDF
+
+3. **`pdf-release.yml`**: Creates a release when a tag is pushed
+   - Used with manual tag creation
+
+### Manual Release Process
+
+You can still create releases manually with the PowerShell script:
+
+```powershell
+# Simple use (will generate timestamp version)
+.\create-release.ps1
+
+# With custom version and message
+.\create-release.ps1 -Version "1.0.0" -Message "Final thesis version"
+
+# Render the thesis before creating the release
+.\create-release.ps1 -Render
+```
+
+### GitHub Pages Configuration
+
+The thesis website is served from the `/docs` folder. This is configured in:
+- `_quarto.yml` with `output-dir: docs`
+- GitHub repository settings > Pages > Source set to "Deploy from a branch" with branch "/docs"
+
 ## Quick Start!
 
-* Show me how to download a zip and open in RStudio: [Video](https://youtu.be/33l8GhtUfnU)
-* Show me how to use this repo as a template and then clone to my computer with RStudio: [Video](https://youtu.be/smzNQtogSaI)
-* Show me how to render in Visual Studio Code (see previous videos for how to get the repo onto your computer): [Video](https://youtu.be/IJe3A8-Ee2E)
-* Scroll to the bottom for information on customizing the look of your thesis.
+* Make changes to your thesis content in the `Chapters` folder
+* Commit and push to the main branch
+* The workflow will automatically create a new release with versioned PDFs
+* View your thesis website at `https://nguyentruonganlab.github.io/quarto-thesis/`
+
+Original template videos:
+* How to download a zip and open in RStudio: [Video](https://youtu.be/33l8GhtUfnU)
+* How to use this repo as a template and clone to a computer with RStudio: [Video](https://youtu.be/smzNQtogSaI)
+* How to render in Visual Studio Code: [Video](https://youtu.be/IJe3A8-Ee2E)
 
 
 ## Installing the extension

@@ -1,0 +1,88 @@
+name: Automatic PDF Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allow manual triggering as well
+
+permissions:
+  contents: write  # Needed for creating releases
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: pre-release
+      
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2.0'
+      
+      - name: Install R dependencies
+        if: success()
+        run: |
+          if [ -f DESCRIPTION ]; then
+            Rscript -e 'install.packages("remotes")'
+            Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+          fi
+          if [ -f renv.lock ]; then
+            Rscript -e 'install.packages("renv")'
+            Rscript -e 'renv::restore()'
+          fi
+      
+      - name: Render Quarto PDF
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: pdf
+
+      - name: Get current date and time
+        id: datetime
+        run: echo "datetime=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
+      
+      - name: Check if PDF exists
+        id: check_pdf
+        run: |
+          if [ -f "docs/Titre-de-la-Thèse.pdf" ]; then
+            echo "pdf_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "pdf_exists=false" >> $GITHUB_OUTPUT
+            # Find what PDF was generated if any
+            find docs -name "*.pdf" -type f -printf "%f\n" || true
+          fi
+      
+      - name: Copy PDF with version in name
+        if: steps.check_pdf.outputs.pdf_exists == 'true'
+        run: |
+          mkdir -p release_assets
+          cp "docs/Titre-de-la-Thèse.pdf" "release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf"
+      
+      - name: Create Release
+        id: create_release
+        if: steps.check_pdf.outputs.pdf_exists == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.datetime.outputs.datetime }}
+          name: Thesis Version ${{ steps.datetime.outputs.datetime }}
+          body: |
+            Thesis version automatically generated on ${{ steps.datetime.outputs.datetime }}
+            
+            This release was created automatically via GitHub Actions when changes were pushed to the main branch.
+          files: |
+            docs/Titre-de-la-Thèse.pdf
+            release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf
+          draft: false
+          prerelease: false
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs
+          branch: gh-pages

@@ -1,5 +1,8 @@
 # Create a new release tag and push it to GitHub
 # This will trigger the PDF release workflow
+#
+# Note: This script is for manual use. The GitHub Actions workflow will
+# automatically create releases when changes are pushed to the main branch.
 
 param(
     [Parameter(Mandatory=$false)]
@@ -12,7 +15,10 @@ param(
     [switch]$Render = $false,
     
     [Parameter(Mandatory=$false)]
-    [switch]$CreateVersionedPDF = $true
+    [switch]$CreateVersionedPDF = $true,
+    
+    [Parameter(Mandatory=$false)]
+    [switch]$Push = $true
 )
 
 # If no version is provided, generate one from the current date and time
@@ -26,10 +32,24 @@ if (!$Message) {
     $Message = "Thesis update $Version"
 }
 
+# Check if Git is available
+try {
+    git --version | Out-Null
+} catch {
+    Write-Error "Git is not available. Please make sure Git is installed and in your PATH."
+    exit 1
+}
+
 # Render the thesis if requested
 if ($Render) {
     Write-Output "Rendering thesis with Quarto..."
     try {
+        # Check if Quarto is available
+        if (!(Get-Command quarto -ErrorAction SilentlyContinue)) {
+            Write-Error "Quarto is not available. Please make sure Quarto is installed and in your PATH."
+            exit 1
+        }
+        
         quarto render
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Quarto render failed with exit code $LASTEXITCODE"
