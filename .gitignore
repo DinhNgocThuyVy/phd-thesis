@@ -2,8 +2,10 @@
 /.quarto/
 /.luarc.json
 
-# Don't ignore _book since we're using it for GitHub Pages
-# _book/
+# Don't ignore docs since we're using it for GitHub Pages
+# docs/
+# Previously used _book folder, we can ignore it now
+_book/
 
 # R Environment files
 .Rproj.user
