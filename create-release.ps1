@@ -9,7 +9,10 @@ param(
     [string]$Message = "",
     
     [Parameter(Mandatory=$false)]
-    [switch]$Render = $false
+    [switch]$Render = $false,
+    
+    [Parameter(Mandatory=$false)]
+    [switch]$CreateVersionedPDF = $true
 )
 
 # If no version is provided, generate one from the current date and time
@@ -36,6 +39,28 @@ if ($Render) {
     } catch {
         Write-Error "Failed to render thesis: $_"
         exit 1
+    }
+}
+
+# Create a versioned copy of the PDF
+if ($CreateVersionedPDF) {
+    $pdfSourcePath = "docs/Titre-de-la-Thèse.pdf"
+    
+    # Ensure release_assets folder exists
+    if (!(Test-Path -Path "release_assets")) {
+        New-Item -ItemType Directory -Force -Path "release_assets"
+    }
+    
+    $pdfDestPath = "release_assets/Thesis-v$Version.pdf"
+    
+    if (Test-Path $pdfSourcePath) {
+        Write-Output "Creating versioned PDF: $pdfDestPath"
+        Copy-Item -Path $pdfSourcePath -Destination $pdfDestPath -Force
+        
+        # Add the versioned PDF to git
+        git add $pdfDestPath
+    } else {
+        Write-Warning "PDF not found at $pdfSourcePath. Skipping versioned PDF creation."
     }
 }
 

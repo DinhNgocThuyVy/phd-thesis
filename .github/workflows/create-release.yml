@@ -17,6 +17,11 @@ jobs:
       - name: Get current date and time
         id: datetime
         run: echo "datetime=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
+      
+      - name: Copy PDF to root with version in name
+        run: |
+          mkdir -p release_assets
+          cp "docs/Titre-de-la-Thèse.pdf" "release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf"
         
       - name: Create Release
         id: create_release
@@ -27,7 +32,7 @@ jobs:
           body: |
             Thesis version generated on ${{ steps.datetime.outputs.datetime }}
           files: |
-            docs/Titre-de-la-Thèse.pdf
+            release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf
           draft: false
           prerelease: false
         env:
