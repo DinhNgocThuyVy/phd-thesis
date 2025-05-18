@@ -17,12 +17,11 @@ book:
     - references.qmd
   appendices:
     - Appendices/AppendixA.qmd
-  
-  site-url: https://nmfs-opensci.github.io/quarto-thesis/
+    site-url: https://nguyentruonganlab.github.io/quarto-thesis/
   search: true
   
   # Add repo URL for GitHub deployment
-  repo-url: https://github.com/your-username/quarto-thesis
+  repo-url: https://github.com/NguyenTruongAnLab/quarto-thesis
   repo-actions: [edit, issue]
 
 # Basic thesis information
