@@ -69,7 +69,7 @@ committee_members: |
 
 
 execute:
-  freeze: true # Changed from auto to true for stricter freezing
+  freeze: auto # Changed from auto to true for stricter freezing
   echo: false
   warning: false   # Suppress all warning messages
   message: false   # Suppress all messages

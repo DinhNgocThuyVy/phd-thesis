@@ -181,6 +181,10 @@
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
+
+\usepackage{adjustbox} % Required for scaling and rotating tables
+\usepackage{etoolbox} % Required for patching commands
+\usepackage{makecell} % Required for wrapping lines in table cells
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -286,6 +290,22 @@ Prénom} % Your name, this is used in the title page and abstract, print it else
 
 % Prevent empty pages regardless of single/double-sided layout
 \let\cleardoublepage\clearpage
+
+% Redefine table environment to handle wide tables
+\AtBeginEnvironment{table}{
+  \begin{adjustbox}{max width=\textwidth,center}
+}
+\AtEndEnvironment{table}{
+  \end{adjustbox}
+}
+
+% Add fallback for extremely wide tables: rotate if scaling doesn't work
+\AtBeginEnvironment{table*}{
+  \begin{adjustbox}{max width=\textwidth,angle=90,center}
+}
+\AtEndEnvironment{table*}{
+  \end{adjustbox}
+}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -541,7 +561,7 @@ Symbol & Name & Unit \\
 
 \markboth{Introduction}{Introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, rightrule=.15mm, colback=white, bottomtitle=1mm, breakable, leftrule=.75mm, bottomrule=.15mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, toprule=.15mm, left=2mm, opacityback=0, coltitle=black]
 
 This introductory chapter sets the stage for the entire thesis. It
 begins by establishing the context and significance of research into
@@ -626,7 +646,7 @@ Some Authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, rightrule=.15mm, colback=white, bottomtitle=1mm, breakable, leftrule=.75mm, bottomrule=.15mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, toprule=.15mm, left=2mm, opacityback=0, coltitle=black]
 
 This chapter provides a comprehensive review of the existing literature
 pertinent to Positive Matrix Factorization (PMF) and its application in
@@ -963,7 +983,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, rightrule=.15mm, colback=white, bottomtitle=1mm, breakable, leftrule=.75mm, bottomrule=.15mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, toprule=.15mm, left=2mm, opacityback=0, coltitle=black]
 
 This chapter focuses on the methodological core of the thesis: the
 optimization and validation of Positive Matrix Factorization (PMF)
@@ -1424,7 +1444,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, rightrule=.15mm, colback=white, bottomtitle=1mm, breakable, leftrule=.75mm, bottomrule=.15mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, toprule=.15mm, left=2mm, opacityback=0, coltitle=black]
 
 This chapter bridges the gap between scientific research and practical
 application by exploring the integration of PMF source apportionment
@@ -1570,7 +1590,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, rightrule=.15mm, colback=white, bottomtitle=1mm, breakable, leftrule=.75mm, bottomrule=.15mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, toprule=.15mm, left=2mm, opacityback=0, coltitle=black]
 
 This chapter presents an in-depth analysis of the spatial and temporal
 dynamics of particulate matter (PM) source contributions across a

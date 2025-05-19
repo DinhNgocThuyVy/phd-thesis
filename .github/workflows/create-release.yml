@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'docs/Titre-de-la-Thèse.pdf'
+      - 'docs/My-Thesis.pdf'
 
 permissions:
   contents: write
@@ -17,25 +17,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
-      - name: Get current date and time
-        id: datetime
-        run: echo "datetime=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
+      - name: Get latest commit message
+        id: commit_message
+        run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
       
       - name: Copy PDF to root with version in name
         run: |
           mkdir -p release_assets
-          cp "docs/Titre-de-la-Thèse.pdf" "release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf"
+          cp "docs/My-Thesis.pdf" "release_assets/Thesis-v${{ github.run_id }}.pdf"
         
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.datetime.outputs.datetime }}
-          name: Thesis Version ${{ steps.datetime.outputs.datetime }}
+          tag_name: v${{ github.run_id }}
+          name: Thesis Release
           body: |
-            Thesis version generated on ${{ steps.datetime.outputs.datetime }}
+            ${{ steps.commit_message.outputs.message }}
           files: |
-            release_assets/Thesis-v${{ steps.datetime.outputs.datetime }}.pdf
+            release_assets/Thesis-v${{ github.run_id }}.pdf
           draft: false
           prerelease: false
         env:

@@ -5,6 +5,22 @@
 % Prevent empty pages regardless of single/double-sided layout
 \let\cleardoublepage\clearpage
 
+% Redefine table environment to handle wide tables
+\AtBeginEnvironment{table}{
+  \begin{adjustbox}{max width=\textwidth,center}
+}
+\AtEndEnvironment{table}{
+  \end{adjustbox}
+}
+
+% Add fallback for extremely wide tables: rotate if scaling doesn't work
+\AtBeginEnvironment{table*}{
+  \begin{adjustbox}{max width=\textwidth,angle=90,center}
+}
+\AtEndEnvironment{table*}{
+  \end{adjustbox}
+}
+
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
