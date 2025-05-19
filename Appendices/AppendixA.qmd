@@ -1,15 +1,17 @@
-# Frequently Asked Questions {#sec-appA}
+# Python Packages {#sec-python-pkgs}
 
-## How do I change the colors of links?
+The following Python packages were used in this thesis:
 
-Pass in `urlcolor: ` in yaml. Or set these in the include-in-header file.
+| Package | Description | Version |
+|---------|-------------|---------|
+| pandas | Data manipulation and analysis | 2.0.0+ |
+| numpy | Numerical computing | 1.24.0+ |
+| matplotlib | Visualization library | 3.7.0+ |
+| seaborn | Statistical data visualization | 0.12.0+ |
+| scikit-learn | Machine learning tools | 1.2.0+ |
 
-\noindent If you want to completely hide the links, you can use:
+: Packages used in this thesis {#tbl-pkgs}
 
-{\small\verb!\hypersetup{allcolors=.}!}, or even better: 
+For a complete list of package versions, see the `requirements.txt` file in the thesis repository.
 
-{\small\verb!\hypersetup{hidelinks}!}.
 
-\noindent If you want to have obvious links in the PDF but not the printed text, use:
-
-{\small\verb!\hypersetup{colorlinks=false}!}.

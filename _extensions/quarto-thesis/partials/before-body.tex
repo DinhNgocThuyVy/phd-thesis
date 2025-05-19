@@ -183,7 +183,7 @@ $if(thesis.abstract.english)$
 $if(thesis.abstract.english.text)$
 $thesis.abstract.english.text$
 $else$
-\input{"$thesis.abstract.english$"}
+\input{$thesis.abstract.english$}
 $endif$
 \end{abstract}
 $endif$
@@ -196,7 +196,7 @@ $if(thesis.abstract.french)$
 $if(thesis.abstract.french.text)$
 $thesis.abstract.french.text$
 $else$
-\input{"$thesis.abstract.french$"}
+\input{$thesis.abstract.french$}
 $endif$
 \end{abstract}
 \renewcommand{\abstractname}{Abstract} % Reset to English for potential later use
@@ -207,7 +207,7 @@ $if(thesis.dedication)$
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{\input{"$thesis.dedication$"}}
+\dedicatory{\input{$thesis.dedication$}}
 $endif$
 
 % LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -219,30 +219,6 @@ $endif$
 \listoftables % Prints the list of tables
 
 \endgroup
-
-$if(thesis.abbreviations)$
-%----------------------------------------------------------------------------------------
-%	ABBREVIATIONS
-%----------------------------------------------------------------------------------------
-
-\input{"$thesis.abbreviations$"}
-$endif$
-
-$if(thesis.constants)$
-%----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
-%----------------------------------------------------------------------------------------
-
-\input{"$thesis.constants$"}
-$endif$
-
-$if(thesis.symbols)$
-%----------------------------------------------------------------------------------------
-%	SYMBOLS
-%----------------------------------------------------------------------------------------
-
-\input{"$thesis.symbols$"}
-$endif$
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS

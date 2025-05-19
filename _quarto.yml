@@ -2,6 +2,16 @@ project:
   type: book
   output-dir: docs
 
+thesis:
+  # declaration: "Frontmatter/declaration.tex"
+  abstract:
+    english: "Frontmatter/abstract_en.tex"
+    french: "Frontmatter/abstract_fr.tex"
+  acknowledgements: "Frontmatter/acknowledgements.tex"
+  abbreviations: "Frontmatter/abbreviations.tex"
+  # symbols: "Frontmatter/symbols.tex"
+  dedication: "Frontmatter/dedication.tex"
+
 book:
   title: "Titre de la Thèse"
   subtitle: "Sous-titre optionnel"
@@ -13,15 +23,22 @@ book:
     - index.qmd
     - Chapters/Chapter1.qmd
     - Chapters/Chapter2.qmd
+    - Chapters/Chapter3.qmd
+    - Chapters/Chapter4.qmd
     - references.qmd
   appendices:
     - Appendices/AppendixA.qmd
+    - Appendices/AppendixB.qmd
   site-url: https://nguyentruonganlab.github.io/quarto-thesis/
   search: true
   
   # Add repo URL for GitHub deployment
   repo-url: https://github.com/NguyenTruongAnLab/quarto-thesis
   repo-actions: [edit, issue]
+
+# Bibliography style information
+bibliography: [biblio/thesisrefs.bib, biblio/quarto.bib, biblio/packages.bib, biblio/pmf_refs.bib]
+csl: biblio/american-statistical-association.csl
 
 # Basic thesis information
 degree: "Docteur de l'Université Grenoble Alpes"
@@ -57,27 +74,17 @@ committee_members: |
       Mme. & Marie Curie & \textit{Université Paris-Saclay} & Rapportrice\\
       M. & Albert Einstein & \textit{CNRS}& Examinateur\\
       Mme. & Ada Lovelace & \textit{Université Grenoble Alpes} & Présidente\\
-  \end{tabular}
+  \end{tabular
 
-thesis:
-  # declaration: "Frontmatter/declaration.tex"
-  abstract:
-    english: "Frontmatter/abstract_en.tex"
-    french: "Frontmatter/abstract_fr.tex"
-  acknowledgements: "Frontmatter/acknowledgements.tex"
-  abbreviations: "Frontmatter/abbreviations.tex"
-  symbols: "Frontmatter/symbols.tex"
-  dedication: "Frontmatter/dedication.tex"
-
-bibliography: [example.bib]
 
 execute:
+  freeze: true # True: Enable project-wide freezing of computations, auto is better
   echo: false
+  warning: false   # Suppress all warning messages
+  message: false   # Suppress all messages
   code-overflow: wrap
+  python-startup: "scripts/suppress_warnings.py"  # Load this script before running any Python code
 
-# urlcolor changes the url color in the body of the PDF
-# linkcolor changes color of internal links (like to figures)
-# toclinkcolor changes color of toc, lof and lot links
 format:
   html:
     theme: cosmo
@@ -93,27 +100,31 @@ format:
     code-fold: true
     code-tools: true
     code-link: true
-    # HTML-specific book structure
-    book:
-      chapters:
-        - index.qmd
-        - frontmatter/abstract-en.qmd
-        - frontmatter/abstract-fr.qmd
-        - frontmatter/acknowledgements.qmd
-        - frontmatter/abbreviations.qmd
-        - frontmatter/dedication.qmd
-        - Chapters/Chapter1.qmd
-        - Chapters/Chapter2.qmd
-        - references.qmd
-      appendices:
-        - Appendices/AppendixA.qmd
-
-  quarto-thesis-pdf:
+  pdf:
+    template-partials:
+      - "_extensions/quarto-thesis/partials/before-body.tex"
+      - "_extensions/quarto-thesis/partials/title.tex"
+    include-in-header: "_extensions/quarto-thesis/partials/in-header.tex"
+    documentclass: MastersDoctoralThesis
     use_custom_cover: true
-    urlcolor: red
     toclinkcolor: black
+    toc: false # Explicitly disable Quarto TOC for PDF since it's handled by the LaTeX template
     toc-depth: 2
-    # The PDF will use the default chapters list defined above
+    linkcolor: blue
+    citecolor: blue
+    urlcolor: blue
+    link-citations: true
+    
+    # Additional debugging to see issues
+    keep-tex: true
+    
+    # LaTeX compilation settings
+    quiet: false
+    progress: true
+    latex-auto-install: true
+    latex-min-runs: 3
+    latex-max-runs: 12
+    latex-clean: true
     
     # ONE-SIDED LAYOUT (for digital submission)
     classoption: ["oneside", "openany"]

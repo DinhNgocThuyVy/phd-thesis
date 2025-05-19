@@ -1,0 +1,234 @@
+# Supplementary Materials {#sec-app-b}
+
+This appendix contains supplementary materials that support the main chapters but are not essential to understanding the primary research findings. This appendix demonstrates various table formats, styles, and features available in Quarto.
+
+## Table Types and Formats {#sec-app-b-tables}
+
+### 1. Basic Markdown Table {#sec-app-b-basic}
+
+@tbl-app-b-full provides the complete descriptive statistics for all variables in the study.
+
+| Variable        | Mean    | Std. Dev. | Min     | Max     | Median  | Skewness | Kurtosis |
+|-----------------|---------|-----------|---------|---------|---------|----------|----------|
+| Height (cm)     | 175.2   | 7.8       | 155.0   | 195.0   | 174.5   | 0.12     | 2.78     |
+| Weight (kg)     | 68.4    | 12.5      | 45.0    | 110.0   | 67.2    | 0.65     | 3.21     |
+| Age (years)     | 28.7    | 5.3       | 18.0    | 65.0    | 27.5    | 1.85     | 7.42     |
+| BMI (kg/m²)     | 22.3    | 3.7       | 16.8    | 35.2    | 21.9    | 0.88     | 3.54     |
+| Systolic BP     | 125.8   | 15.2      | 90.0    | 165.0   | 122.0   | 0.45     | 2.95     |
+| Diastolic BP    | 78.6    | 8.7       | 60.0    | 100.0   | 80.0    | 0.08     | 2.68     |
+| Heart Rate      | 72.3    | 10.2      | 45.0    | 110.0   | 72.0    | 0.25     | 3.12     |
+| Cholesterol     | 192.7   | 35.4      | 120.0   | 280.0   | 190.0   | 0.32     | 2.45     |
+| Triglycerides   | 142.5   | 65.3      | 50.0    | 350.0   | 130.0   | 1.25     | 4.32     |
+| Glucose         | 92.8    | 15.7      | 70.0    | 180.0   | 90.0    | 1.78     | 6.85     |
+| HbA1c (%)       | 5.5     | 0.8       | 4.5     | 9.2     | 5.4     | 1.95     | 7.25     |
+| Vitamin D       | 28.7    | 12.3      | 10.0    | 60.0    | 26.5    | 0.68     | 2.98     |
+| Iron            | 98.5    | 18.7      | 45.0    | 150.0   | 95.0    | 0.15     | 2.85     |
+| Calcium         | 9.7     | 0.5       | 8.5     | 11.0    | 9.8     | -0.21    | 2.54     |
+
+: Complete descriptive statistics for all study variables {#tbl-app-b-full}
+
+### 2. Table with Formatting {#sec-app-b-formatting}
+
+@tbl-app-b-formatted demonstrates text formatting within a table.
+
+| Variable              | **Mean**   | *SD*   | Interpretation                    |
+|-----------------------|------------|--------|-----------------------------------|
+| **Height (cm)**       | **175.2**  | *7.8*  | Within normal range               |
+| **Weight (kg)**       | **68.4**   | *12.5* | Within normal range               |
+| *BMI (kg/m²)*         | *22.3*     | *3.7*  | Normal weight                     |
+| ***Systolic BP***     | ***125.8*** | *15.2* | **Elevated** (>120 mmHg)         |
+| ***Diastolic BP***    | ***78.6*** | *8.7*  | Normal (<80 mmHg)                 |
+| Heart Rate            | 72.3       | 10.2   | `Normal`                          |
+| [Glucose]{.underline} | [92.8]{.underline} | [15.7]{.underline} | [Normal fasting]{.smallcaps} |
+
+: Table with formatted text elements {#tbl-app-b-formatted}
+
+### 3. Table with Mathematical Equations {#sec-app-b-equations}
+
+@tbl-app-b-eq shows various statistical tests with their equations.
+
+| Test          | Equation                                              | Application             | Critical Value |
+|---------------|-------------------------------------------------------|-----------------------|--------------|
+| t-test        | $t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$             | Compare means          | $t_{crit} = 1.96$ |
+| Chi-squared   | $\chi^2 = \sum_{i=1}^{n} \frac{(O_i - E_i)^2}{E_i}$  | Test independence      | $\chi^2_{crit} = 3.84$ |
+| F-test        | $F = \frac{MS_{between}}{MS_{within}}$               | Compare variances      | $F_{crit} = 4.03$ |
+| ANOVA         | $F = \frac{\sum n_i(\bar{x}_i - \bar{x})^2/(k-1)}{\sum\sum(x_{ij} - \bar{x}_i)^2/(N-k)}$ | Compare multiple means | $F_{crit} = 3.10$ |
+| Correlation   | $r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2\sum(y_i - \bar{y})^2}}$ | Measure association | $r_{crit} = 0.30$ |
+
+: Statistical tests with mathematical equations {#tbl-app-b-eq}
+
+### 4. Table with Citations {#sec-app-b-citations}
+
+@tbl-app-b-citations presents a literature review of PMF studies with citations.
+
+| Study | Location | Year | Major Sources Identified | Significance |
+|-------|----------|------|--------------------------|--------------|
+| @Paatero1994 | Finland | 1994 | Original PMF algorithm | First introduction of PMF approach |
+| @HKSG02 | United States | 2002 | Traffic, Industrial, Secondary | Validated against emission inventories |
+| @PMF_Guide2014 | Multiple | 2014 | Multiple | EPA's guidance document |
+| @EEA2019 | Europe | 2019 | Traffic, Industrial, Biomass, Dust | Comprehensive European study |
+
+: Summary of key PMF studies in literature {#tbl-app-b-citations}
+
+### 5. Correlation Matrix {#sec-app-b-python}
+
+The following table presents a correlation matrix for key variables in our study. Strong correlations (>0.6) are indicated with "++", moderate correlations (0.3-0.6) with "+", and weak correlations (<0.3) with "0".
+
+| Variable | Height | Weight | Age | BMI | SBP | DBP | HR | Chol | Trig | Gluc |
+|----------|--------|--------|-----|-----|-----|-----|-----|------|------|------|
+| **Height**  | 1.00 | + | 0 | + | 0 | 0 | 0 | 0 | 0 | 0 |
+| **Weight**  | + | 1.00 | 0 | ++ | + | 0 | 0 | + | + | 0 |
+| **Age**     | 0 | 0 | 1.00 | 0 | + | + | 0 | + | 0 | + |
+| **BMI**     | + | ++ | 0 | 1.00 | + | + | 0 | + | + | + |
+| **SBP**     | 0 | + | + | + | 1.00 | ++ | 0 | + | + | + |
+| **DBP**     | 0 | 0 | + | + | ++ | 1.00 | 0 | + | 0 | 0 |
+| **HR**      | 0 | 0 | 0 | 0 | 0 | 0 | 1.00 | 0 | 0 | 0 |
+| **Chol**    | 0 | + | + | + | + | + | 0 | 1.00 | ++ | + |
+| **Trig**    | 0 | + | 0 | + | + | 0 | 0 | ++ | 1.00 | + |
+| **Gluc**    | 0 | 0 | + | + | + | 0 | 0 | + | + | 1.00 |
+
+: Correlation matrix for key variables {#tbl-app-b-corr-heatmap}
+
+Note: ++: Strong correlation (>0.6), +: Moderate correlation (0.3-0.6), 0: Weak correlation (<0.3)
+
+The following table presents statistical results from our four models, including significance indicators.
+
+| Variable | Model 1 | Model 2 | Model 3 | Model 4 |
+|----------|---------|---------|---------|---------|
+| Intercept | 1.243* | 0.852 | -0.528 | 2.142*** |
+| Temperature | 0.658** | 1.245*** | 0.856* | -0.124 |
+| Humidity | -0.452 | -0.968* | -1.352** | -0.586* |
+| Wind Speed | 0.324 | 0.125 | 0.768** | 0.453 |
+| Precipitation | -1.245*** | -0.856** | -0.432 | -0.986** |
+| Pressure | 0.256 | 0.542* | 0.124 | -0.324 |
+| R² | 0.685 | 0.724 | 0.653 | 0.791 |
+
+: Model results with statistical significance indicators {#tbl-app-b-significance}
+
+*p < 0.05, **p < 0.01, ***p < 0.001
+
+### 7. Wide Table with Many Columns {#sec-app-b-wide-table}
+
+```{python}
+#| label: tbl-app-b-wide
+#| tbl-cap: "Wide table with many parameters across different sites"
+#| echo: false
+
+import pandas as pd
+import numpy as np
+from IPython.display import Markdown, HTML
+
+# Create a wide table with many columns
+np.random.seed(123)
+sites = ['Site A', 'Site B', 'Site C', 'Site D', 'Site E']
+parameters = ['PM2.5', 'PM10', 'SO2', 'NO2', 'CO', 'O3', 'Temperature', 'Humidity', 'Wind Speed', 'Pressure']
+
+# Create data
+data = {}
+for site in sites:
+    for param in parameters:
+        # Different random distributions for different parameters
+        if param in ['PM2.5', 'PM10']:
+            data[f"{site}_{param}"] = np.random.lognormal(mean=2, sigma=0.5, size=5).round(1)
+        elif param in ['SO2', 'NO2', 'CO', 'O3']:
+            data[f"{site}_{param}"] = np.random.gamma(shape=2, scale=2, size=5).round(2)
+        else:
+            data[f"{site}_{param}"] = np.random.normal(loc=20, scale=5, size=5).round(1)
+
+# Create DataFrame
+df = pd.DataFrame(data)
+df.index = ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+
+# Create HTML table with multi-level header
+html = '<table style="font-size: 0.9em;">'
+html += '<thead><tr><th></th>'
+
+# Create first header row with site names
+for site in sites:
+    html += f'<th colspan="{len(parameters)}" style="text-align: center;">{site}</th>'
+html += '</tr><tr><th>Month</th>'
+
+# Create second header row with parameter names
+for site in sites:
+    for param in parameters:
+        html += f'<th style="text-align: center;">{param}</th>'
+html += '</tr></thead><tbody>'
+
+# Add data rows
+for i, month in enumerate(df.index):
+    html += f'<tr><td>{month}</td>'
+    for site in sites:
+        for param in parameters:
+            value = df.iloc[i][f"{site}_{param}"]
+            html += f'<td style="text-align: center;">{value}</td>'
+    html += '</tr>'
+html += '</tbody></table>'
+
+# Display the HTML table
+display(HTML(html))
+```
+
+### 8. Long Table with Many Rows {#sec-app-b-long-table}
+
+```{python}
+#| label: tbl-app-b-long
+#| tbl-cap: "Long table with daily PM2.5 data"
+#| echo: false
+
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+from IPython.display import Markdown
+
+# Generate daily data for several months
+np.random.seed(456)
+start_date = datetime(2022, 1, 1)
+dates = [start_date + timedelta(days=i) for i in range(50)]  # 50 days of data
+stations = ['Central', 'Eastern', 'Western', 'Southern']
+
+data = []
+for date in dates:
+    base_value = 20 + 10 * np.sin(date.timetuple().tm_yday / 30)  # Seasonal pattern
+    for station in stations:
+        # Add some random variation per station
+        station_factor = {'Central': 1.2, 'Eastern': 0.8, 'Western': 1.0, 'Southern': 0.9}[station]
+        value = base_value * station_factor * (1 + 0.2 * np.random.randn())
+        data.append({
+            'Date': date.strftime('%Y-%m-%d'),
+            'Station': station,
+            'PM2.5': round(value, 1),
+            'Status': 'Good' if value < 25 else 'Moderate' if value < 35 else 'Poor'
+        })
+
+long_df = pd.DataFrame(data)
+
+# Create markdown table with pages (show first 20 rows)
+display(Markdown(long_df.head(20).to_markdown(index=False)))
+```
+
+### 9. Model Comparison Table {#sec-app-b-r-table}
+
+| Model | Formula | R² | AIC | BIC |
+|-------|:-------:|---:|---:|---:|
+| Linear | y = β₀ + β₁x | 0.856 | 123.4 | 128.2 |
+| Quadratic | y = β₀ + β₁x + β₂x² | 0.921 | 105.6 | 112.8 |
+| Cubic | y = β₀ + β₁x + β₂x² + β₃x³ | 0.958 | 98.2 | 107.5 |
+| Exponential | y = β₀eᵝ¹ˣ | 0.892 | 114.3 | 119.7 |
+| Logarithmic | y = β₀ + β₁ln(x) | 0.875 | 118.9 | 124.0 |
+
+: Model comparison with goodness-of-fit measures {#tbl-app-b-r-kable}
+
+<!-- Interactive tables were removed to simplify rendering -->
+
+### 10. Table with Mixed Content Types {#sec-app-b-mixed-table}
+
+@tbl-app-b-mixed demonstrates how to include different content types within the same table.
+
+| Analysis Type | Details | Mathematical Model | Reference |
+|--------------|---------|-------------------|-----------|
+| Principal Components | Reduces dimensionality while preserving variance | $X = TP^T + E$ where $T$ are scores, $P$ are loadings | @PMF_Guide2014 |
+| Cluster Analysis | Groups similar samples based on chemical composition | $D(x,y) = \sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}$ for Euclidean distance | @EEA2019 |
+| Positive Matrix Factorization | Decomposes data into source profiles and contributions | $X = GF + E$ as shown in @eq-pmf-basic | @Paatero1994 |
+| Receptor Models | General term for source apportionment techniques | Multiple approaches | See @tbl-app-b-citations |
+
+: Table with mixed content including equations, cross-references, and citations {#tbl-app-b-mixed}

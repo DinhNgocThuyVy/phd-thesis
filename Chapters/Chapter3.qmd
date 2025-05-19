@@ -1,0 +1,127 @@
+# Integration of PMF Results with Policy Development {#sec-ch3}
+
+::: {.center data-latex=""}
+Some authors
+:::
+
+Under review at Environmental Science & Policy
+
+## Abstract
+
+This chapter examines how PMF source apportionment results can be effectively integrated into air quality policy development. We present case studies from multiple European cities and develop a framework for translating scientific findings into actionable policy recommendations.
+
+## Methods
+
+### Policy Impact Framework
+
+```{python}
+#| label: tbl-impact-framework
+#| tbl-cap: "Framework for evaluating source-specific interventions"
+#| echo: false
+#| cache: true
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from IPython.display import Markdown
+
+impact_df = pd.DataFrame({
+    'Source': ['Traffic', 'Industry', 'Biomass', 'Secondary'],
+    'Contribution (%)': [35, 25, 20, 20],
+    'Control Options': ['LEZ', 'BAT', 'Regulation', 'Regional'],
+    'Implementation Cost': ['High', 'Very High', 'Medium', 'High'],
+    'Health Impact': ['High', 'Medium', 'High', 'Medium'],    'Stakeholder Support': ['High', 'Medium', 'High', 'Medium']
+})
+
+display(Markdown(impact_df.to_markdown(index=False)))
+```
+
+### Cost-Benefit Analysis
+
+```{python}
+#| label: fig-cost-benefit
+#| fig-cap: "Cost-benefit analysis of source control measures"
+#| fig-width: 10
+#| fig-height: 6
+#| echo: false
+#| warning: false
+#| cache: true
+
+# Create cost-benefit visualization
+costs = np.array([100, 150, 60, 80])  # Million EUR
+benefits = np.array([180, 200, 90, 100])  # Million EUR
+sources = ['Traffic', 'Industry', 'Biomass', 'Secondary']
+
+x = np.arange(len(sources))
+width = 0.35
+
+fig, ax = plt.subplots(figsize=(10, 6))
+rects1 = ax.bar(x - width/2, costs, width, label='Implementation Cost')
+rects2 = ax.bar(x + width/2, benefits, width, label='Expected Benefit')
+
+ax.set_ylabel('Million EUR')
+ax.set_title('Cost-Benefit Analysis by Source')
+ax.set_xticks(x)
+ax.set_xticklabels(sources)
+ax.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+
+### Implementation Timeline
+
+```{python}
+#| label: fig-timeline
+#| fig-cap: "Implementation timeline for source control measures"
+#| fig-width: 12
+#| fig-height: 4
+#| echo: false
+#| warning: false
+#| cache: true
+
+# Create timeline data
+years = np.arange(2024, 2031)
+measures = ['Traffic Control', 'Industrial Emissions', 'Biomass Regulations', 'Regional Cooperation']
+status = np.array([
+    [1,1,1,1,1,1,1],  # Traffic
+    [0,1,1,1,1,1,1],  # Industry
+    [0,0,1,1,1,1,1],  # Biomass
+    [0,0,0,1,1,1,1]   # Regional
+])
+
+# Create timeline plot
+fig, ax = plt.subplots(figsize=(12, 4))
+
+colors = ['firebrick', 'steelblue', 'forestgreen', 'goldenrod']
+for i, measure in enumerate(measures):
+    start_year = years[status[i,:].argmax()]
+    ax.barh(i, years[-1] - start_year + 1, left=start_year, color=colors[i], label=measure)
+
+ax.set_yticks(range(len(measures)))
+ax.set_yticklabels(measures)
+ax.set_xlabel('Year')
+ax.set_title('Implementation Timeline')
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+```
+
+
+## Policy Recommendations
+
+Based on our analysis of PMF results and stakeholder input, we recommend:
+
+1. Short-term (1-2 years):
+   - Implementation of Low Emission Zones
+   - Enhanced industrial emissions monitoring
+   
+2. Medium-term (2-4 years):
+   - Biomass burning regulations
+   - Regional cooperation frameworks
+
+3. Long-term (4+ years):
+   - Integrated air quality management system
+   - Cross-border pollution control measures

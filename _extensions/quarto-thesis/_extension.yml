@@ -34,9 +34,8 @@ contributes:
       citecolor: magenta
       linkcolor: blue
       urlcolor: red
+      
       toclinkcolor: black
-      filters:
-        - summary.lua
 
     html:
       theme: [cosmo, html/custom-theme.scss]  # Path relative to extension
@@ -54,11 +53,5 @@ contributes:
       citations-hover: true
       reference-location: margin
       smooth-scroll: true
-      template-partials:
-        - html/title.html
-        - html/frontmatter.html  
-      filters:
-        - frontmatter-handler.lua
-        - summary.lua
       css:
         - html/styles.css

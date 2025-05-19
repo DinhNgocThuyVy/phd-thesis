@@ -22,151 +22,131 @@
   {
     "objectID": "Chapters/Chapter1.html",
     "href": "Chapters/Chapter1.html",
-    "title": "1  Chapter 1 Title",
+    "title": "1  Literature Review",
     "section": "",
-    "text": "1.1 Welcome and Thank You\nWelcome to this LaTeX Thesis Template, using the LaTeX typesetting system and Quarto and based on the LaTeX thesis template MastersDoctoralThesis version 2.0 downloaded from LaTeXTemplates. This LaTeX document class was authored by Vel (vel@latextemplates.com) and Johannes Böttcher based on a style file by Steve R. Gunn from the University of Southampton (UK), department of Electronics and Computer Science.\nArnold et al. (1998)",
+    "text": "1.1 PMF Mathematical Foundation\nThis is the literature review chapter. It should appear with the title “Literature Review” in the navigation.\nThe basic PMF model is defined by the following equation:\n\\[X_{ij} = \\sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij} \\tag{1.1}\\]\nWhere: - \\(X_{ij}\\) is the concentration of species \\(j\\) in sample \\(i\\) - \\(g_{ik}\\) is the contribution of factor \\(k\\) to sample \\(i\\) - \\(f_{kj}\\) is the concentration of species \\(j\\) in factor profile \\(k\\) - \\(e_{ij}\\) is the residual - \\(p\\) is the number of factors",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Literature Review</span>"
     ]
   },
   {
-    "objectID": "Chapters/Chapter1.html#a-short-math-guide-for-latex",
-    "href": "Chapters/Chapter1.html#a-short-math-guide-for-latex",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.2 A Short Math Guide for LaTeX",
-    "text": "1.2 A Short Math Guide for LaTeX\nIf you are writing a technical or mathematical thesis, then you may want to read the document by the AMS (American Mathematical Society) called, “A Short Math Guide for LaTeX”. It can be found online at AMS under the “Additional Documentation” section towards the bottom of the page.\n\n1.2.1 Common LaTeX Math Symbols\nThere are a multitude of mathematical symbols available for LaTeX and it would take a great effort to learn the commands for them all. The most common ones you are likely to use are shown on this page.\nYou can use this page as a reference or crib sheet, the symbols are rendered as large, high quality images so you can quickly find the LaTeX command for the symbol you need.",
+    "objectID": "Chapters/Chapter1.html#sec-ch1-intro-models",
+    "href": "Chapters/Chapter1.html#sec-ch1-intro-models",
+    "title": "1  Literature Review",
+    "section": "1.2 Introduction to Source Apportionment Models",
+    "text": "1.2 Introduction to Source Apportionment Models\nTable 1.1 summarizes the mathematical representations of various source apportionment models discussed in this thesis.\n\n\n\nTable 1.1: Mathematical Representations of Source Apportionment Models\n\n\n\n\n\n\n\n\n\n\n\nModel\nEquation\nDescription\nKey Constraints\n\n\n\n\nPMF\n\\(X_{ij} = \\sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij}\\)\nPositive Matrix Factorization\n\\(g_{ik} \\geq 0\\), \\(f_{kj} \\geq 0\\)\n\n\nCMB\n\\(C_i = \\sum_{j=1}^{n} a_{ij} S_{j} + e_i\\)\nChemical Mass Balance\nRequires source profiles\n\n\nPCA\n\\(X = TP^T + E\\)\nPrincipal Component Analysis\nOrthogonal components\n\n\nUNMIX\n\\(C = AS\\)\nMultivariate receptor model\nGeometrically determined factors",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Literature Review</span>"
     ]
   },
   {
-    "objectID": "Chapters/Chapter1.html#about-this-template",
-    "href": "Chapters/Chapter1.html#about-this-template",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.3 About this Template",
-    "text": "1.3 About this Template\nThis LaTeX Thesis Template is originally based and created around a LaTeX style file created by Steve R. Gunn from the University of Southampton (UK), department of Electronics and Computer Science. You can find his original thesis style file at his site, here: http://www.ecs.soton.ac.uk/~srg/softwaretools/document/templates/.\nSteve’s ecsthesis.cls was then taken by Sunil Patel who modified it by creating a skeleton framework and folder structure to place the thesis files in. The resulting template can be found on Sunil’s site here: http://www.sunilpatel.co.uk/thesis-template.\nSunil’s template was made available through LaTeXTemplates where it was modified many times based on user requests and questions. Version 2.0 and onwards of this template represents a major modification to Sunil’s template and is, in fact, hardly recognisable. The work to make version 2.0 possible was carried out by Vel (vel@latextemplates.com) and Johannes Böttcher.",
+    "objectID": "Chapters/Chapter1.html#sec-ch1-tables",
+    "href": "Chapters/Chapter1.html#sec-ch1-tables",
+    "title": "1  Literature Review",
+    "section": "1.3 Tables and Figures",
+    "text": "1.3 Tables and Figures\n\n1.3.1 Mathematical Equations in Tables\nTable 1.2 presents key PMF models with their mathematical formulations and applications in source apportionment studies.\n\n\n\nTable 1.2: PMF Model Variations with Their Mathematical Formulations\n\n\n\n\n\n\n\n\n\n\n\nModel\nMathematical Formulation\nKey Features\nApplication in PM Studies\n\n\n\n\nBasic PMF\n\\(X_{ij} = \\sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij}\\)\nNon-negativity constraints\nFirst applied by Paatero and Tapper (1994)\n\n\nWeighted PMF\n\\(Q = \\sum_{i=1}^{n}\\sum_{j=1}^{m} \\left(\\frac{e_{ij}}{\\sigma_{ij}}\\right)^2\\)\nUncertainty-weighted residuals\nExtended by Hyndman et al. (2002)\n\n\nME-2 Engine\n\\(Q_{\\text{aux}} = Q + \\alpha^2 \\sum (f_{kj} - f_{kj}^*)^2\\)\nTarget factor profiles\nRecommended by Norris et al. (2014)\n\n\nRobust PMF\n\\(Q = \\sum_{i=1}^{n}\\sum_{j=1}^{m} h(e_{ij}/\\sigma_{ij})\\)\nOutlier protection\nUsed in Agency (2019)\n\n\n\n\n\n\n\n\n1.3.2 Data-Driven Tables from CSV Files\nTable 1.3 shows London PM2.5 component data loaded directly from a CSV file.\n\n\n\n\nTable 1.3: London PM2.5 Component Concentrations (μg/m³)\n\n\n\n\n\n\n\nSO4\nNO3\nNH4\nOC\nEC\n\n\n\n\ncount\n3\n3\n3\n3\n3\n\n\nmean\n4.77\n3.5\n2.37\n7.1\n2.5\n\n\nstd\n0.25\n0.3\n0.25\n0.3\n0.2\n\n\nmin\n4.5\n3.2\n2.1\n6.8\n2.3\n\n\n25%\n4.65\n3.35\n2.25\n6.95\n2.4\n\n\n50%\n4.8\n3.5\n2.4\n7.1\n2.5\n\n\n75%\n4.9\n3.65\n2.5\n7.25\n2.6\n\n\nmax\n5\n3.8\n2.6\n7.4\n2.7\n\n\n\n\n\n\n\n\n\n\n1.3.3 Analysis Methods with Citations\nTable 1.4 presents key analysis methods used in this study with relevant citations and their significance.\n\n\n\nTable 1.4: Statistical Analysis Methods with Citations\n\n\n\n\n\n\n\n\n\n\n\nMethod\nMathematical Representation\nApplication\nReference\n\n\n\n\nCorrelation Analysis\n\\(r_{xy} = \\frac{\\sum(x_i-\\bar{x})(y_i-\\bar{y})}{\\sqrt{\\sum(x_i-\\bar{x})^2\\sum(y_i-\\bar{y})^2}}\\)\nComponent relationships\nSee Paatero and Tapper (1994)\n\n\nLinear Regression\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\)\nTrend analysis\nAs per Hyndman et al. (2002)\n\n\nPrincipal Component Analysis\n\\(\\mathbf{X} = \\mathbf{T}\\mathbf{P}^T + \\mathbf{E}\\)\nDimensionality reduction\nCompared in Norris et al. (2014)\n\n\nCluster Analysis\n\\(d(x,y) = \\sqrt{\\sum_{i=1}^{n}(x_i-y_i)^2}\\)\nSource grouping\nApplied by Agency (2019)\n\n\n\n\n\n\n\n\n1.3.4 Mixed Content Table with Cross-References\nTable 1.5 demonstrates how to include multiple content types in a single table, including references to figures, tables, and equations.\n\n\n\nTable 1.5: Integration of Results with Cross-References\n\n\n\n\n\n\n\n\n\n\n\n\nFactor\nContribution Range\nSeasonal Pattern\nRelated Figure/Table\nStatistical Significance\n\n\n\n\nTraffic\n15-35%\nHighest in winter (Figure 4.2)\nSee Table 4.1\n\\(p &lt; 0.01\\) (\\(\\chi^2 = 15.3\\))\n\n\nIndustrial\n20-30%\nConsistent year-round\nEquation Equation 1.1\n\\(p &lt; 0.05\\) (\\(t = 2.4\\))\n\n\nBiomass Burning\n5-30%\nWinter &gt; Fall &gt; Spring &gt; Summer\nTable 1.2\n\\(p &lt; 0.001\\) (\\(F = 8.7\\))\n\n\nSecondary Formation\n15-50%\nSee Figure 4.1\nCompare to Agency (2019) findings\n\\(r^2 = 0.76\\) (\\(p &lt; 0.01\\))\n\n\n\n\n\n\n\n\n1.3.5 Comparative Source Profiles\nTable 1.6 compares source profiles identified in this study with those reported in previous research.\n\n\n\nTable 1.6: Comparative Source Profiles (Bold = Dominant, Italic = Secondary)\n\n\n\n\n\n\n\n\n\n\n\n\nComponent\nTraffic Profile\nIndustrial Profile\nBiomass Profile\nSecondary Profile\n\n\n\n\nSO₄²⁻\n20%\n35%\n15%\n25% (Norris et al. 2014)\n\n\nNO₃⁻\n25%\n15%\n20%\n35% (Agency 2019)\n\n\nNH₄⁺\n10%\n5%\n25%\n55% (Paatero and Tapper 1994)\n\n\nOC\n35%\n15%\n40% (Hyndman et al. 2002)\n10%\n\n\nEC\n45%\n10%\n25%\n5%\n\n\n\n\n\n\n\n\n\n\n\n\nAgency, E. E. (2019), “European air quality source apportionment with PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nHyndman, R. J., Koehler, A. B., Snyder, R. D., and Grose, S. (2002), “A state space framework for automatic forecasting using exponential smoothing methods,” International Journal of Forecasting, 18, 439–454.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive matrix factorization (PMF) 5.0 fundamentals and user guide, U.S. Environmental Protection Agency.\n\n\nPaatero, P., and Tapper, U. (1994), “Positive matrix factorization: A non-negative factor model with optimal utilization of error estimates of data values,” Environmetrics, 5, 111–126. https://doi.org/10.1002/env.3170050203.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#what-this-template-includes",
-    "href": "Chapters/Chapter1.html#what-this-template-includes",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.4 What this Template Includes",
-    "text": "1.4 What this Template Includes\n\n1.4.1 Folders\n\nAppendices – this is the folder where you put the appendices. Each appendix should go into its own separate qmd file. An example and template are included in the directory.\nChapters – this is the folder where you put the thesis chapters. Each chapter should go in its own separate qmd file.\nFigures – this folder contains static figures for the thesis, i.e. figures that are not generated by code in the chapters.\n\n1.4.2 Files\n\nexample.bib – this is file that contains all the bibliographic information and references that you will be citing in the thesis for use with BibTeX. You can write it manually, but there are reference manager programs available that will create and manage it for you. Zotero is popular and integrates with RStudio IDE if you use that.\nMastersDoctoralThesis.cls – this is the class file that tells LaTeX how to format the thesis.\npdf in docs folder – this is your typeset thesis.\nFrontmater folder – this has the files for the various front matter elements.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#filling-in-your-information",
-    "href": "Chapters/Chapter1.html#filling-in-your-information",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.5 Filling in Your Information",
-    "text": "1.5 Filling in Your Information\nMost of the personal information is found on in the _quarto.yml file.\n\nauthor – you; optionally add url\nsupervisor – your supervisor; optionally add url.\nuniversity – your university\ndepartment – your department\nfaculty – faculty name\ngroup – research group name (optional)\nabstract",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#the-texbefore-body.tex-file-explained",
-    "href": "Chapters/Chapter1.html#the-texbefore-body.tex-file-explained",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.6 The tex\\before-body.tex File Explained",
-    "text": "1.6 The tex\\before-body.tex File Explained\nThe tex\\before-body.tex file contains the structure of the thesis and is a mix of Pandoc template and LaTeX code. The bits that look like $book.university$ say are Pandoc and are referencing variables in the _quarto.yml file. Knowing that, you should be able to figure out what is happening.\nThere are plenty of written comments that explain what pages, sections and formatting the LaTeX code is creating. Each major document element is divided into commented blocks with titles in all capitals to make it obvious what the following bit of code is doing. Initially there seems to be a lot of LaTeX code, but this is all formatting, and it has all been taken care of so you don’t have to do it.\nMany of the sections have $if(...)$ so that the section is only included if you included information for that in _quarto.yml.\nIn the _quarto.yml, pdf: toc: false is used so that Quarto/Pandoc doesn’t add a table of contents. This template puts the table of contents before the abbreviations and symbols pages and Quarto/Pandoc doesn’t let us control where it puts the table of contents. So we have to add the TOC manually for pdf and pass in toc: false.\nThe list of figures and tables are all taken care of for you and do not need to be manually created or edited. The next set of pages are more likely to be optional and can be deleted since they are for a more technical thesis: insert a list of abbreviations you have used in the thesis, then a list of the physical constants and numbers you refer to and finally, a list of mathematical symbols used in any formulae. Making the effort to fill these tables means the reader has a one-stop place to refer to instead of searching the internet and references to try and find out what you meant by certain abbreviations or symbols.\nThe list of symbols is split into the Roman and Greek alphabets. Whereas the abbreviations and symbols ought to be listed in alphabetical order (and this is not done automatically for you) the list of physical constants should be grouped into similar themes.\nThe next page contains a one line dedication. Who will you dedicate your thesis to?",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#adding-your-chapters-and-appendices",
-    "href": "Chapters/Chapter1.html#adding-your-chapters-and-appendices",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.7 Adding Your Chapters and Appendices",
-    "text": "1.7 Adding Your Chapters and Appendices\nAdd your chapters and appendices to _quarto.yml. Note that the spacing is important as is the leading -.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#bibliography-and-citations",
-    "href": "Chapters/Chapter1.html#bibliography-and-citations",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.8 Bibliography and Citations",
-    "text": "1.8 Bibliography and Citations\nCitations will be added and formatted automatically for you.\nIf you use the RStudio IDE, then you can link Zotero to RStudio and Quarto will find your citations for you when you enter @. This is in the visual editor mode. Make sure to search for videos on how to do this as using Zotero libraries will make your citation and bibliography management much easier.\nIn the text use @smith2000 to produce Smith (2000) add use [@smith2000, @jones1999] to produce (Smith 2000; Jones 1999). See the natbib cheatsheet for how to do other types of formatting for your in text citations. The bibliography style (classoption: \"authoryear\") is used for the bibliography and is a fully featured style that will even include links to where the referenced paper can be found online.\nWieman and Hollberg (1991)\n\n1.8.0.1 A Note on bibtex\nThe bibtex backend used in the template by default does not correctly handle unicode character encoding (i.e. “international” characters). You may see a warning about this in the compilation log and, if your references contain unicode characters, they may not show up correctly or at all. One solution to this is to use the biber backend instead of the outdated bibtex backend. This is done by finding this in tex/in-header.tex: backend=bibtex and changing it to backend=biber. Google a bit to find information on this.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#sec-ThesisConventions",
-    "href": "Chapters/Chapter1.html#sec-ThesisConventions",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.9 Thesis Features and Conventions",
-    "text": "1.9 Thesis Features and Conventions\nTo get the best out of this template, there are a few conventions that you may want to follow.\n\n1.9.1 Printing Format\nThis thesis template is designed for double sided printing (i.e. content on the front and back of pages) as most theses are printed and bound this way. Switching to one sided printing is as simple as adding \"oneside\" to classoptions: in the _quarto.yml file. The headers for the pages contain the page number on the outer side (so it is easy to flick through to the page you want) and the chapter name on the inner side.\nThe text is set to 11 point by default with single line spacing, again, you can tune the text size and spacing should you want or need to using the class options. The spacing can be changed similarly by replacing the \"singlespacing\" with \"onehalfspacing\" or \"doublespacing\" in the class options.\n\n1.9.2 Using US Letter Paper\nThe paper size used in the template is A4, which is the standard size in Europe. If you are using this thesis template elsewhere and particularly in the United States, then you may have to change the A4 paper size to the US Letter size. This can be by editting geometry: in _quarto.yml in the pdf format section.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#tables",
-    "href": "Chapters/Chapter1.html#tables",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.10 Tables",
-    "text": "1.10 Tables\nWhen you render your Quarto thesis to PDF, it will process LaTeX table code just fine. However, if you are doing that, I am guessing you would be writing your thesis in LaTeX not Quarto. So I will not discuss LaTeX tables. Instead here is how you create tables using R. Python and Julia users, you’ll have your own table packages but the idea will be similar.\n```{r}\n#| label: tbl-cars\n#| tbl-cap: This is my caption.\nknitr::kable(head(mtcars))\n```\nThe #| is what sets up our cross-references and you can then reference the table as @tbl-cars. Note in order for table numbering to work in Quarto, you must label your tables with the tbl- prefix.\n\n\n\nTable 1.1: This is my caption.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\nMazda RX4\n21.0\n6\n160\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\nMazda RX4 Wag\n21.0\n6\n160\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\nDatsun 710\n22.8\n4\n108\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1\n\n\nHornet 4 Drive\n21.4\n6\n258\n110\n3.08\n3.215\n19.44\n1\n0\n3\n1\n\n\nHornet Sportabout\n18.7\n8\n360\n175\n3.15\n3.440\n17.02\n0\n0\n3\n2\n\n\nValiant\n18.1\n6\n225\n105\n2.76\n3.460\n20.22\n1\n0\n3\n1\n\n\n\n\n\n\n\n\nThis is Table 1.1.\nSee the Quarto manual for full examples and instructions.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#figures",
-    "href": "Chapters/Chapter1.html#figures",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.11 Figures",
-    "text": "1.11 Figures\nAgain we write in Quarto (markdown) not LaTeX for our figures. You can write in LaTeX if you really want but it would only be interpreted for the PDF output.\n```{r}\n#| label: fig-cars\n#| fig-cap: This is my caption.\nplot(mtcars[,1:4])\n```\nThe #| is what sets up our cross-references and you can then reference the table as @fig-cars.\n\n\n\n\n\n\n\nFigure 1.1: This is my caption.\n\n\n\n\nThis is Figure 1.1.\nSee the Quarto manual for full examples and instructions.\n\n1.11.1 Typesetting mathematics\nIf your thesis is going to contain heavy mathematical content, LaTeX will make it look beautiful, for HTML or PDF output.\nThe Not So Short Introduction to LaTeX should tell you everything you need to know for most cases of typesetting mathematics. If you need more information, a much more thorough mathematical guide is available from the AMS called, A Short Math Guide to LaTeX.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
-    ]
-  },
-  {
-    "objectID": "Chapters/Chapter1.html#in-closing",
-    "href": "Chapters/Chapter1.html#in-closing",
-    "title": "1  Chapter 1 Title",
-    "section": "\n1.12 In Closing",
-    "text": "1.12 In Closing\nGood luck and have lots of fun!\nThis guide was written originally by\nSunil Patel: http://www.sunilpatel.co.uk}{www.sunilpatel.co.uk\nand Vel: http://www.LaTeXTemplates.com\nand heavily shortened and adapted for Quarto by Eli Holmes.\n\n\n\n\n\n\nArnold, A. S., J. S. Wilson, M. G. Boshier, and J. Smith. 1998. “A Simple Extended-Cavity Diode Laser.” Review of Scientific Instruments 69 (3): 1236–39. http://link.aip.org/link/?RSI/69/1236/1.\n\n\nWieman, Carl E., and Leo Hollberg. 1991. “Using Diode Lasers for Atomic Physics.” Review of Scientific Instruments 62 (1): 1–20. http://link.aip.org/link/?RSI/62/1/1.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 Title</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Literature Review</span>"
     ]
   },
   {
     "objectID": "Chapters/Chapter2.html",
     "href": "Chapters/Chapter2.html",
-    "title": "2  Chapter 2 Title",
+    "title": "2  Optimization and Validation of PMF Models",
     "section": "",
-    "text": "2.1 Main Section 1\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.\n\\[\n\\int_{A_i}{\\lambda (\\pmb{\\mu})}\n\\tag{2.1}\\]\n\\[\n\\int_{A_i}{\\lambda (\\mathbf{x})}\n\\tag{2.2}\\]",
+    "text": "2.1 Abstract\nUnder review at Science of the Total Environment\nThis chapter presents a comprehensive framework for optimizing and validating PMF (Positive Matrix Factorization) models in European urban environments (Paatero and Tapper 1994). We develop a systematic approach for model parameter selection and results validation using multiple complementary techniques (Hyndman et al. 2002; Norris et al. 2014).",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 Title</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimization and Validation of PMF Models</span>"
     ]
   },
   {
-    "objectID": "Chapters/Chapter2.html#main-section-1",
-    "href": "Chapters/Chapter2.html#main-section-1",
-    "title": "2  Chapter 2 Title",
-    "section": "",
-    "text": "2.1.1 Subsection 1\nNunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.\n\n\n2.1.2 Subsection 2\nMorbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.",
+    "objectID": "Chapters/Chapter2.html#methods",
+    "href": "Chapters/Chapter2.html#methods",
+    "title": "2  Optimization and Validation of PMF Models",
+    "section": "2.2 Methods",
+    "text": "2.2 Methods\n\n2.2.1 Model Optimization Framework\nThe PMF optimization process (Agency 2019) involves iterative refinement of several key parameters:\n\nNumber of factors (p): \\[Q(p) = \\sum_{i=1}^{n} \\sum_{j=1}^{m} \\left(\\frac{x_{ij} - \\sum_{k=1}^{p} g_{ik}f_{kj}}{\\sigma_{ij}}\\right)^2 \\tag{2.1}\\]\nFPEAK parameter (\\(\\phi\\)): \\[Q(\\phi) = Q_{base} + P(\\phi) \\tag{2.2}\\]\n\nwhere \\(P(\\phi)\\) is the penalty term for non-zero FPEAK values (Agency 2019).\n\n\n2.2.2 Validation Methods\nWe employed three complementary validation approaches as recommended by (Norris et al. 2014):\n\nBootstrap analysis\nDISP (displacement) analysis\nBS-DISP combined analysis",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 Title</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimization and Validation of PMF Models</span>"
     ]
   },
   {
-    "objectID": "Chapters/Chapter2.html#main-section-2",
-    "href": "Chapters/Chapter2.html#main-section-2",
-    "title": "2  Chapter 2 Title",
-    "section": "2.2 Main Section 2",
-    "text": "2.2 Main Section 2\nSed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.",
+    "objectID": "Chapters/Chapter2.html#results",
+    "href": "Chapters/Chapter2.html#results",
+    "title": "2  Optimization and Validation of PMF Models",
+    "section": "2.3 Results",
+    "text": "2.3 Results\n\n2.3.1 Factor Number Selection\n\n\n\n\n\n\n\n\nFigure 2.1: Q-value vs number of factors\n\n\n\n\n\n\n\n2.3.2 PMF Results Summary\n\n\n\n\nTable 2.1: Summary of PMF results for different factor numbers\n\n\n\n\n\n\nFactors\nQ/Q_exp\nR²\nSources Identified\n\n\n\n\n3\n1.5\n0.75\nBasic\n\n\n4\n1.3\n0.82\nImproved\n\n\n5\n1.2\n0.87\nGood\n\n\n6\n1\n0.91\nOptimal\n\n\n7\n0.92\n0.92\nSplitting\n\n\n8\n0.91\n0.93\nSplitting+",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 Title</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimization and Validation of PMF Models</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter2.html#sec-ch2-advanced",
+    "href": "Chapters/Chapter2.html#sec-ch2-advanced",
+    "title": "2  Optimization and Validation of PMF Models",
+    "section": "2.4 Advanced Model Optimization Techniques",
+    "text": "2.4 Advanced Model Optimization Techniques\n\n2.4.1 Mathematical Formulations of Optimization Metrics\nTable 2.2 presents the mathematical formulations of various optimization metrics used in PMF model development and their interpretation.\n\n\n\nTable 2.2: Mathematical Formulations for PMF Model Optimization\n\n\n\n\n\n\n\n\n\n\n\nMetric\nMathematical Formulation\nInterpretation\nReference\n\n\n\n\nQ/Q\\(_{exp}\\)\n\\(\\frac{Q}{n \\times m - p \\times (n+m)}\\)\nShould approach 1.0\nPaatero and Tapper (1994)\n\n\nExplained Variation (EV)\n\\(EV_{jk} = \\frac{\\sum_{i=1}^{n} g_{ik}f_{kj}}{\\sum_{i=1}^{n} x_{ij}}\\)\nFactor importance for each species\nHyndman et al. (2002)\n\n\nResidual Analysis\n\\(r_{ij} = \\frac{x_{ij} - \\sum_{k=1}^{p} g_{ik}f_{kj}}{\\sigma_{ij}}\\)\nShould be normally distributed\nNorris et al. (2014)\n\n\nBS Mapping\n\\(s = \\frac{1}{n_{boot}} \\sum_{n=1}^{n_{boot}} d^2_{n}\\)\nStability of factors\nAgency (2019)\n\n\nDISP Swap Count\nNumber of factor swaps at \\(d_{max}\\)\n&lt; 5% for stable solution\nNorris et al. (2014)\n\n\nBS-DISP Error\n\\(\\Delta Q/Q_{exp}\\) &lt; 0.5%\nIndicates robust factors\nAgency (2019)\n\n\n\n\n\n\n\n\n2.4.2 Cross-Validation with External Datasets\nTable 2.3 compares our PMF results with external validation datasets, building upon the findings from Section 1.3.\n\n\n\nTable 2.3: Cross-Comparison Between PMF Results and External Validation Data\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nPMF Contribution (%)\nExternal Validation (%)\nCorrelation (\\(r\\))\nReference\nComparison to Table 1.6\n\n\n\n\nTraffic\n\\(35.2 \\pm 4.5\\)\n\\(33.8 \\pm 5.2\\)\n0.87\nTraffic counts\nWithin 5% of values in Table 1.6\n\n\nIndustry\n\\(22.7 \\pm 3.8\\)\n\\(24.5 \\pm 6.1\\)\n0.81\nEmission inventory\nConsistent with profiles in Table 1.2\n\n\nBiomass\n\\(18.5 \\pm 6.2\\)\n\\(20.1 \\pm 5.8\\)\n0.79\nLevoglucosan\nSimilar to findings in Agency (2019)\n\n\nSecondary\n\\(23.6 \\pm 5.3\\)\n\\(21.6 \\pm 4.9\\)\n0.92\nNH\\(_4\\)/SO\\(_4\\) ratio\nMatches equation Equation 1.1 predictions\n\n\n\n\n\n\n\n\n2.4.3 Rotational Ambiguity Analysis\nTable 2.4 shows the impact of different FPEAK values on the model results, as formulated in equation Equation 2.2.\n\n\n\nTable 2.4: Impact of FPEAK Values on PMF Model Results\n\n\n\n\n\n\n\n\n\n\n\n\nFPEAK Value\n\\(\\Delta Q/Q_{exp}\\) (%)\nFactor Identity Changes\nG-Space Correlation Changes\nRecommended by\n\n\n\n\n-1.0\n+8.5%\nMajor\nDecreased correlations\nRarely used\n\n\n-0.5\n+2.2%\nModerate\nSlight decreases\nHyndman et al. (2002) for specific cases\n\n\n-0.2\n+0.4%\nMinor\nMinimal changes\nNorris et al. (2014) as lower bound\n\n\n0.0\n0.0%\nBase run\nReference point\nPaatero and Tapper (1994) as default\n\n\n+0.2\n+0.5%\nMinor\nMinimal changes\nNorris et al. (2014) as upper bound\n\n\n+0.5\n+2.5%\nModerate\nSlight increases\nSometimes used\n\n\n+1.0\n+9.2%\nMajor\nIncreased correlations\nRarely used\n\n\n\n\n\n\n\n\n2.4.4 Advanced Model Uncertainty Metrics\n\n\n\n\nTable 2.5: Bootstrap Uncertainty Results for Source Contributions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nBase Contribution (%)\nBootstrap Mean (%)\nBootstrap 5th (%)\nBootstrap 95th (%)\nBS Mapping (%)\nDISP Error (%)\n\n\n\n\nTraffic\n35.2\n34.8\n31.5\n38.2\n95\n0.2\n\n\nIndustry\n22.7\n23.1\n20.2\n25.9\n92\n0.3\n\n\nBiomass\n18.5\n18.2\n15.8\n22.5\n88\n0.4\n\n\nSecondary\n23.6\n23.9\n21.1\n26.8\n97\n0.1\n\n\n\n\n\n\n\n\n\n\n2.4.5 Integration with Results from Other Chapters\nTable 2.6 presents an integrated view of our PMF model results, linking to findings from other chapters and using complex mathematical notation.\n\n\n\nTable 2.6: Integrated Analysis of Source Contributions Across Chapters\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nMathematical Expression for Time Series\nSpatial Distribution\nTemporal Pattern\nPolicy Implications\n\n\n\n\nTraffic\n\\(g_{i1} = \\beta_0 + \\beta_1 \\text{(traffic count)}_i + \\varepsilon_i\\)\nUrban cores (see Table 1.6)\nWeekday peaks (see Figure 4.2)\nLEZ expansion\n\n\nIndustry\n\\(g_{i2} = \\sum_{j=1}^{m} \\gamma_j \\text{(industrial activity)}_{j,i} + \\varepsilon_i\\)\nIndustrial zones\nConsistent patterns\nEmission standards\n\n\nBiomass\n\\(g_{i3} = \\alpha \\exp\\left(-\\frac{(T_i-T_0)^2}{2\\sigma^2}\\right) + \\varepsilon_i\\)\nResidential areas\nWinter peaks\nRegulation of wood burning\n\n\nSecondary\n\\(g_{i4} = \\lambda \\sin\\left(\\frac{2\\pi t_i}{365}\\right) + \\gamma t_i + \\varepsilon_i\\)\nRegional\nSummer peaks\nRegional cooperation\n\n\n\n\n\n\n\n\n2.4.6 Model Comparison Matrix\nTable 2.7 compares various receptor models for source apportionment, building on the equations in Table 1.1 from the introduction.\n\n\n\nTable 2.7: Comparison of Receptor Models for Source Apportionment\n\n\n\n\n\n\n\n\n\n\n\n\nModel Type\nMathematical Basis\nStrengths\nLimitations\nCompared to PMF\n\n\n\n\nPMF\n\\(X = GF + E\\) with \\(g_{ik} \\geq 0\\), \\(f_{kj} \\geq 0\\)\nNon-negativity constraints, uncertainty weighting\nRotational ambiguity\nBase model\n\n\nPCA/APCS\n\\(X = TP^T + E\\)\nSimple implementation\nCannot ensure non-negativity\nInferior for source apportionment\n\n\nCMB\n\\(C_i = \\sum_{j=1}^{n} a_{ij} S_{j} + e_i\\)\nUses source profiles\nRequires prior knowledge\nMore constrained than PMF\n\n\nUNMIX\n\\(C = AS\\) with \\(A \\geq 0\\), \\(S \\geq 0\\)\nGeometrically determines edges\nFewer factors than PMF\nLess statistical power\n\n\nME-2\n\\(X = GF + E\\) with partial constraints\nCan include prior knowledge\nComplex implementation\nEnhanced version of PMF\n\n\nHybrid Models\nPMF + dispersion models: \\(C_{i,j} = \\sum_{k=1}^{p} D_{i,j,k} \\cdot Q_k\\)\nCombines receptor and dispersion\nData intensive\nExtended PMF application\n\n\n\n\n\n\n\n\n\n\n\n\nAgency, E. E. (2019), “European air quality source apportionment with PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nHyndman, R. J., Koehler, A. B., Snyder, R. D., and Grose, S. (2002), “A state space framework for automatic forecasting using exponential smoothing methods,” International Journal of Forecasting, 18, 439–454.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive matrix factorization (PMF) 5.0 fundamentals and user guide, U.S. Environmental Protection Agency.\n\n\nPaatero, P., and Tapper, U. (1994), “Positive matrix factorization: A non-negative factor model with optimal utilization of error estimates of data values,” Environmetrics, 5, 111–126. https://doi.org/10.1002/env.3170050203.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimization and Validation of PMF Models</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter3.html",
+    "href": "Chapters/Chapter3.html",
+    "title": "3  Integration of PMF Results with Policy Development",
+    "section": "",
+    "text": "3.1 Abstract\nUnder review at Environmental Science & Policy\nThis chapter examines how PMF source apportionment results can be effectively integrated into air quality policy development. We present case studies from multiple European cities and develop a framework for translating scientific findings into actionable policy recommendations.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Integration of PMF Results with Policy Development</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter3.html#methods",
+    "href": "Chapters/Chapter3.html#methods",
+    "title": "3  Integration of PMF Results with Policy Development",
+    "section": "3.2 Methods",
+    "text": "3.2 Methods\n\n3.2.1 Policy Impact Framework\n\n\n\n\nTable 3.1: Framework for evaluating source-specific interventions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nContribution (%)\nControl Options\nImplementation Cost\nHealth Impact\nStakeholder Support\n\n\n\n\nTraffic\n35\nLEZ\nHigh\nHigh\nHigh\n\n\nIndustry\n25\nBAT\nVery High\nMedium\nMedium\n\n\nBiomass\n20\nRegulation\nMedium\nHigh\nHigh\n\n\nSecondary\n20\nRegional\nHigh\nMedium\nMedium\n\n\n\n\n\n\n\n\n\n\n3.2.2 Cost-Benefit Analysis\n\n\n\n\n\n\n\n\nFigure 3.1: Cost-benefit analysis of source control measures\n\n\n\n\n\n\n\n3.2.3 Implementation Timeline\n\n\n\n\n\n\n\n\nFigure 3.2: Implementation timeline for source control measures",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Integration of PMF Results with Policy Development</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter3.html#policy-recommendations",
+    "href": "Chapters/Chapter3.html#policy-recommendations",
+    "title": "3  Integration of PMF Results with Policy Development",
+    "section": "3.3 Policy Recommendations",
+    "text": "3.3 Policy Recommendations\nBased on our analysis of PMF results and stakeholder input, we recommend:\n\nShort-term (1-2 years):\n\nImplementation of Low Emission Zones\nEnhanced industrial emissions monitoring\n\nMedium-term (2-4 years):\n\nBiomass burning regulations\nRegional cooperation frameworks\n\nLong-term (4+ years):\n\nIntegrated air quality management system\nCross-border pollution control measures",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Integration of PMF Results with Policy Development</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter4.html",
+    "href": "Chapters/Chapter4.html",
+    "title": "4  Spatial and Temporal Variations in PM Source Contributions",
+    "section": "",
+    "text": "4.1 Abstract\nUnder review at Atmospheric Environment\nThis study investigates the spatial and temporal variations in particulate matter (PM) source contributions across major European cities using EPA PMF 5.0 (Norris et al. 2014). We analyzed data from 15 urban monitoring stations over a five-year period (2018-2022), identifying key pollution sources and their relative contributions to PM2.5 and PM10 concentrations (Agency 2019).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Spatial and Temporal Variations in PM Source Contributions</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter4.html#methods",
+    "href": "Chapters/Chapter4.html#methods",
+    "title": "4  Spatial and Temporal Variations in PM Source Contributions",
+    "section": "4.2 Methods",
+    "text": "4.2 Methods\n\n4.2.1 Data Processing with Python",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Spatial and Temporal Variations in PM Source Contributions</span>"
+    ]
+  },
+  {
+    "objectID": "Chapters/Chapter4.html#results",
+    "href": "Chapters/Chapter4.html#results",
+    "title": "4  Spatial and Temporal Variations in PM Source Contributions",
+    "section": "4.3 Results",
+    "text": "4.3 Results\n\n4.3.1 Temporal Patterns in PM Components\n\n\n\n\n\n\n\n\nFigure 4.1: Temporal variation of major PM2.5 components\n\n\n\n\n\n\n\n4.3.2 Source Profiles\n\n\n\n\nTable 4.1: Source profiles for major PM components\n\n\n\n\n\n\n\nTraffic\nIndustry\nBiomass\nSecondary\n\n\n\n\nPM2.5\n0.15\n0.2\n0.1\n0.05\n\n\nNa\n0.05\n0.1\n0.05\n0.05\n\n\nSO4\n0.2\n0.35\n0.15\n0.25\n\n\nNO3\n0.25\n0.15\n0.2\n0.35\n\n\nNH4\n0.1\n0.05\n0.25\n0.55\n\n\nAl\n0.05\n0.15\n0.05\n0.05\n\n\nSi\n0.1\n0.2\n0.05\n0.05\n\n\nK\n0.05\n0.1\n0.4\n0.05\n\n\nCa\n0.15\n0.25\n0.1\n0.05\n\n\nFe\n0.4\n0.3\n0.15\n0.05\n\n\nCu\n0.3\n0.25\n0.05\n0.05\n\n\nZn\n0.25\n0.35\n0.1\n0.05\n\n\nPb\n0.15\n0.3\n0.05\n0.05\n\n\nOC\n0.35\n0.15\n0.4\n0.1\n\n\nEC\n0.45\n0.1\n0.25\n0.05\n\n\n\n\n\n\n\n\n\n\n4.3.3 Seasonal Source Contributions\n\n\n\n\n\n\n\n\nFigure 4.2: Seasonal source contributions to PM2.5\n\n\n\n\n\n\n\n\n\n\n\nAgency, E. E. (2019), “European air quality source apportionment with PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive matrix factorization (PMF) 5.0 fundamentals and user guide, U.S. Environmental Protection Agency.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Spatial and Temporal Variations in PM Source Contributions</span>"
     ]
   },
   {
@@ -174,7 +154,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Arnold, A. S., J. S. Wilson, M. G. Boshier, and J. Smith. 1998. “A\nSimple Extended-Cavity Diode Laser.” Review of Scientific\nInstruments 69 (3): 1236–39. http://link.aip.org/link/?RSI/69/1236/1.\n\n\nWieman, Carl E., and Leo Hollberg. 1991. “Using Diode Lasers for\nAtomic Physics.” Review of Scientific Instruments 62\n(1): 1–20. http://link.aip.org/link/?RSI/62/1/1.",
+    "text": "Agency, E. E. (2019), “European air quality source apportionment\nwith PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nHyndman, R. J., Koehler, A. B., Snyder, R. D., and Grose, S. (2002),\n“A state space framework for automatic forecasting using\nexponential smoothing methods,” International Journal of\nForecasting, 18, 439–454.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive\nmatrix factorization (PMF) 5.0 fundamentals and user guide, U.S.\nEnvironmental Protection Agency.\n\n\nPaatero, P., and Tapper, U. (1994), “Positive matrix\nfactorization: A non-negative factor model with optimal utilization of\nerror estimates of data values,” Environmetrics, 5,\n111–126. https://doi.org/10.1002/env.3170050203.",
     "crumbs": [
       "References"
     ]
@@ -182,12 +162,78 @@
   {
     "objectID": "Appendices/AppendixA.html",
     "href": "Appendices/AppendixA.html",
-    "title": "Appendix A — Frequently Asked Questions",
+    "title": "Appendix A — Python Packages",
     "section": "",
-    "text": "A.1 How do I change the colors of links?\nPass in urlcolor: in yaml. Or set these in the include-in-header file.\nIf you want to completely hide the links, you can use:\n{}, or even better:\n{}.\nIf you want to have obvious links in the PDF but not the printed text, use:\n{}.",
+    "text": "The following Python packages were used in this thesis:\n\n\n\nTable A.1: Packages used in this thesis\n\n\n\n\n\nPackage\nDescription\nVersion\n\n\n\n\npandas\nData manipulation and analysis\n2.0.0+\n\n\nnumpy\nNumerical computing\n1.24.0+\n\n\nmatplotlib\nVisualization library\n3.7.0+\n\n\nseaborn\nStatistical data visualization\n0.12.0+\n\n\nscikit-learn\nMachine learning tools\n1.2.0+\n\n\n\n\n\n\nFor a complete list of package versions, see the requirements.txt file in the thesis repository.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Frequently Asked Questions</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Python Packages</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html",
+    "href": "Appendices/AppendixB.html",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "",
+    "text": "B.1 Table Types and Formats\nThis appendix contains supplementary materials that support the main chapters but are not essential to understanding the primary research findings. This appendix demonstrates various table formats, styles, and features available in Quarto.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html#sec-app-b-tables",
+    "href": "Appendices/AppendixB.html#sec-app-b-tables",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "",
+    "text": "B.1.1 1. Basic Markdown Table\nTable B.1 provides the complete descriptive statistics for all variables in the study.\n\n\n\nTable B.1: Complete descriptive statistics for all study variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nMean\nStd. Dev.\nMin\nMax\nMedian\nSkewness\nKurtosis\n\n\n\n\nHeight (cm)\n175.2\n7.8\n155.0\n195.0\n174.5\n0.12\n2.78\n\n\nWeight (kg)\n68.4\n12.5\n45.0\n110.0\n67.2\n0.65\n3.21\n\n\nAge (years)\n28.7\n5.3\n18.0\n65.0\n27.5\n1.85\n7.42\n\n\nBMI (kg/m²)\n22.3\n3.7\n16.8\n35.2\n21.9\n0.88\n3.54\n\n\nSystolic BP\n125.8\n15.2\n90.0\n165.0\n122.0\n0.45\n2.95\n\n\nDiastolic BP\n78.6\n8.7\n60.0\n100.0\n80.0\n0.08\n2.68\n\n\nHeart Rate\n72.3\n10.2\n45.0\n110.0\n72.0\n0.25\n3.12\n\n\nCholesterol\n192.7\n35.4\n120.0\n280.0\n190.0\n0.32\n2.45\n\n\nTriglycerides\n142.5\n65.3\n50.0\n350.0\n130.0\n1.25\n4.32\n\n\nGlucose\n92.8\n15.7\n70.0\n180.0\n90.0\n1.78\n6.85\n\n\nHbA1c (%)\n5.5\n0.8\n4.5\n9.2\n5.4\n1.95\n7.25\n\n\nVitamin D\n28.7\n12.3\n10.0\n60.0\n26.5\n0.68\n2.98\n\n\nIron\n98.5\n18.7\n45.0\n150.0\n95.0\n0.15\n2.85\n\n\nCalcium\n9.7\n0.5\n8.5\n11.0\n9.8\n-0.21\n2.54\n\n\n\n\n\n\n\n\nB.1.2 2. Table with Formatting\nTable B.2 demonstrates text formatting within a table.\n\n\n\nTable B.2: Table with formatted text elements\n\n\n\n\n\n\n\n\n\n\n\nVariable\nMean\nSD\nInterpretation\n\n\n\n\nHeight (cm)\n175.2\n7.8\nWithin normal range\n\n\nWeight (kg)\n68.4\n12.5\nWithin normal range\n\n\nBMI (kg/m²)\n22.3\n3.7\nNormal weight\n\n\nSystolic BP\n125.8\n15.2\nElevated (&gt;120 mmHg)\n\n\nDiastolic BP\n78.6\n8.7\nNormal (&lt;80 mmHg)\n\n\nHeart Rate\n72.3\n10.2\nNormal\n\n\nGlucose\n92.8\n15.7\nNormal fasting\n\n\n\n\n\n\n\n\nB.1.3 3. Table with Mathematical Equations\nTable B.3 shows various statistical tests with their equations.\n\n\n\nTable B.3: Statistical tests with mathematical equations\n\n\n\n\n\n\n\n\n\n\n\nTest\nEquation\nApplication\nCritical Value\n\n\n\n\nt-test\n\\(t = \\frac{\\bar{x} - \\mu_0}{s/\\sqrt{n}}\\)\nCompare means\n\\(t_{crit} = 1.96\\)\n\n\nChi-squared\n\\(\\chi^2 = \\sum_{i=1}^{n} \\frac{(O_i - E_i)^2}{E_i}\\)\nTest independence\n\\(\\chi^2_{crit} = 3.84\\)\n\n\nF-test\n\\(F = \\frac{MS_{between}}{MS_{within}}\\)\nCompare variances\n\\(F_{crit} = 4.03\\)\n\n\nANOVA\n\\(F = \\frac{\\sum n_i(\\bar{x}_i - \\bar{x})^2/(k-1)}{\\sum\\sum(x_{ij} - \\bar{x}_i)^2/(N-k)}\\)\nCompare multiple means\n\\(F_{crit} = 3.10\\)\n\n\nCorrelation\n\\(r = \\frac{\\sum(x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum(x_i - \\bar{x})^2\\sum(y_i - \\bar{y})^2}}\\)\nMeasure association\n\\(r_{crit} = 0.30\\)\n\n\n\n\n\n\n\n\nB.1.4 4. Table with Citations\nTable B.4 presents a literature review of PMF studies with citations.\n\n\n\nTable B.4: Summary of key PMF studies in literature\n\n\n\n\n\n\n\n\n\n\n\n\nStudy\nLocation\nYear\nMajor Sources Identified\nSignificance\n\n\n\n\nPaatero and Tapper (1994)\nFinland\n1994\nOriginal PMF algorithm\nFirst introduction of PMF approach\n\n\nHyndman et al. (2002)\nUnited States\n2002\nTraffic, Industrial, Secondary\nValidated against emission inventories\n\n\nNorris et al. (2014)\nMultiple\n2014\nMultiple\nEPA’s guidance document\n\n\nAgency (2019)\nEurope\n2019\nTraffic, Industrial, Biomass, Dust\nComprehensive European study\n\n\n\n\n\n\n\n\nB.1.5 5. Correlation Matrix\nThe following table presents a correlation matrix for key variables in our study. Strong correlations (&gt;0.6) are indicated with “++”, moderate correlations (0.3-0.6) with “+”, and weak correlations (&lt;0.3) with “0”.\n\n\n\nTable B.5: Correlation matrix for key variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nHeight\nWeight\nAge\nBMI\nSBP\nDBP\nHR\nChol\nTrig\nGluc\n\n\n\n\nHeight\n1.00\n+\n0\n+\n0\n0\n0\n0\n0\n0\n\n\nWeight\n+\n1.00\n0\n++\n+\n0\n0\n+\n+\n0\n\n\nAge\n0\n0\n1.00\n0\n+\n+\n0\n+\n0\n+\n\n\nBMI\n+\n++\n0\n1.00\n+\n+\n0\n+\n+\n+\n\n\nSBP\n0\n+\n+\n+\n1.00\n++\n0\n+\n+\n+\n\n\nDBP\n0\n0\n+\n+\n++\n1.00\n0\n+\n0\n0\n\n\nHR\n0\n0\n0\n0\n0\n0\n1.00\n0\n0\n0\n\n\nChol\n0\n+\n+\n+\n+\n+\n0\n1.00\n++\n+\n\n\nTrig\n0\n+\n0\n+\n+\n0\n0\n++\n1.00\n+\n\n\nGluc\n0\n0\n+\n+\n+\n0\n0\n+\n+\n1.00\n\n\n\n\n\n\nNote: ++: Strong correlation (&gt;0.6), +: Moderate correlation (0.3-0.6), 0: Weak correlation (&lt;0.3)\nThe following table presents statistical results from our four models, including significance indicators.\n\n\n\nTable B.6: Model results with statistical significance indicators\n\n\n\n\n\nVariable\nModel 1\nModel 2\nModel 3\nModel 4\n\n\n\n\nIntercept\n1.243*\n0.852\n-0.528\n2.142***\n\n\nTemperature\n0.658**\n1.245***\n0.856*\n-0.124\n\n\nHumidity\n-0.452\n-0.968*\n-1.352**\n-0.586*\n\n\nWind Speed\n0.324\n0.125\n0.768**\n0.453\n\n\nPrecipitation\n-1.245***\n-0.856**\n-0.432\n-0.986**\n\n\nPressure\n0.256\n0.542*\n0.124\n-0.324\n\n\nR²\n0.685\n0.724\n0.653\n0.791\n\n\n\n\n\n\np &lt; 0.05, p &lt; 0.01, p &lt; 0.001\n\n\nB.1.6 6. CSV Loading & Time Series Table\n\n\nC:\\Users\\nguytruo\\AppData\\Local\\Temp\\ipykernel_3932\\3106367120.py:11: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\nC:\\Users\\nguytruo\\AppData\\Local\\Temp\\ipykernel_3932\\3106367120.py:12: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\nC:\\Users\\nguytruo\\AppData\\Local\\Temp\\ipykernel_3932\\3106367120.py:15: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\nC:\\Users\\nguytruo\\AppData\\Local\\Temp\\ipykernel_3932\\3106367120.py:16: SettingWithCopyWarning:\n\n\nA value is trying to be set on a copy of a slice from a DataFrame.\nTry using .loc[row_indexer,col_indexer] = value instead\n\nSee the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n\n\n\n\n\nTable B.7: Quarterly sales data loaded from CSV file\n\n\n\n\n\n\nUnnamed: 0\nSales\nAdBudget\nGDP\n% Change\n\n\n\n\nMar-81\n$1,020.2\n$659.2\n251.8\nN/A\n\n\nJun-81\n$889.2\n$589.0\n290.9\n-12.8%\n\n\nSep-81\n$795.0\n$512.5\n290.8\n-10.6%\n\n\nDec-81\n$1,003.9\n$614.1\n292.4\n26.3%\n\n\nMar-82\n$1,057.7\n$647.2\n279.1\n5.4%\n\n\nJun-82\n$944.4\n$602.0\n254\n-10.7%\n\n\nSep-82\n$778.5\n$530.7\n295.6\n-17.6%\n\n\nDec-82\n$932.5\n$608.4\n271.7\n19.8%\n\n\n\n\n\n\n\n\n\n\nB.1.7 7. Wide Table with Many Columns\n\n\n\n\nTable B.8: Wide table with many parameters across different sites\n\n\n\n\n\n\n\nSite A\nSite B\nSite C\nSite D\nSite E\n\n\nMonth\nPM2.5\nPM10\nSO2\nNO2\nCO\nO3\nTemperature\nHumidity\nWind Speed\nPressure\nPM2.5\nPM10\nSO2\nNO2\nCO\nO3\nTemperature\nHumidity\nWind Speed\nPressure\nPM2.5\nPM10\nSO2\nNO2\nCO\nO3\nTemperature\nHumidity\nWind Speed\nPressure\nPM2.5\nPM10\nSO2\nNO2\nCO\nO3\nTemperature\nHumidity\nWind Speed\nPressure\nPM2.5\nPM10\nSO2\nNO2\nCO\nO3\nTemperature\nHumidity\nWind Speed\nPressure\n\n\n\n\nJan\n4.3\n16.9\n1.87\n4.43\n2.72\n4.12\n24.9\n16.0\n27.5\n13.4\n4.1\n4.3\n1.6\n12.15\n6.77\n3.42\n13.1\n17.2\n24.1\n14.5\n5.6\n7.9\n4.66\n0.46\n5.36\n3.14\n27.0\n15.1\n21.0\n19.4\n22.2\n4.7\n2.67\n3.34\n1.05\n2.33\n22.2\n21.8\n23.7\n34.8\n12.1\n9.1\n0.95\n1.12\n1.26\n5.93\n25.9\n19.3\n15.9\n17.9\n\n\nFeb\n12.2\n2.2\n3.09\n1.45\n0.07\n2.42\n31.2\n20.1\n25.3\n27.1\n8.2\n2.6\n7.74\n3.78\n4.41\n4.56\n18.3\n20.6\n22.5\n16.2\n18.2\n13.9\n9.12\n4.98\n1.51\n4.49\n18.2\n18.2\n19.4\n18.3\n10.4\n7.0\n0.85\n1.03\n3.66\n6.77\n18.4\n29.3\n19.6\n20.0\n6.2\n4.0\n1.89\n0.75\n5.37\n1.9\n23.4\n18.8\n13.3\n11.2\n\n\nMar\n8.5\n6.0\n2.31\n7.38\n6.35\n5.05\n13.5\n25.3\n16.1\n24.0\n9.3\n12.4\n1.85\n7.27\n2.45\n0.67\n29.8\n23.7\n22.4\n21.6\n15.8\n8.7\n4.03\n2.14\n3.54\n8.76\n17.3\n22.0\n21.0\n18.9\n7.4\n8.5\n6.22\n2.1\n2.74\n2.86\n23.2\n24.2\n23.0\n19.2\n10.2\n3.8\n7.78\n2.28\n0.42\n5.17\n15.0\n16.7\n18.1\n18.3\n\n\nApr\n3.5\n13.9\n2.33\n6.27\n2.9\n14.11\n14.8\n24.5\n24.0\n20.2\n4.9\n6.0\n2.58\n1.02\n5.53\n1.77\n9.9\n28.0\n17.2\n23.8\n6.2\n9.8\n4.12\n3.39\n2.67\n2.42\n7.2\n20.9\n3.8\n23.5\n6.7\n9.9\n4.38\n6.46\n3.51\n4.14\n9.2\n16.6\n20.6\n19.4\n8.5\n14.9\n0.85\n0.63\n5.47\n1.83\n23.2\n19.9\n13.1\n19.0\n\n\nMay\n5.5\n4.8\n6.66\n0.84\n1.54\n4.52\n28.7\n28.8\n21.6\n18.8\n13.2\n6.9\n1.24\n2.54\n3.27\n4.8\n18.6\n18.6\n15.0\n21.6\n4.9\n6.6\n0.86\n2.86\n1.29\n3.71\n17.3\n19.9\n18.7\n17.0\n7.1\n9.9\n1.73\n0.85\n4.24\n4.11\n12.7\n11.5\n20.1\n17.1\n13.6\n5.5\n1.03\n7.73\n3.77\n5.67\n26.9\n23.4\n22.6\n22.2\n\n\n\n\n\n\n\n\n\n\nB.1.8 8. Long Table with Many Rows\n\n\n\n\nTable B.9: Long table with daily PM2.5 data\n\n\n\n\n\n\nDate\nStation\nPM2.5\nStatus\n\n\n\n\n2022-01-01\nCentral\n21.1\nGood\n\n\n2022-01-01\nEastern\n14.6\nGood\n\n\n2022-01-01\nWestern\n22.8\nGood\n\n\n2022-01-01\nSouthern\n20.4\nGood\n\n\n2022-01-02\nCentral\n31.5\nModerate\n\n\n2022-01-02\nEastern\n21.9\nGood\n\n\n2022-01-02\nWestern\n21.9\nGood\n\n\n2022-01-02\nSouthern\n20.3\nGood\n\n\n2022-01-03\nCentral\n23.5\nGood\n\n\n2022-01-03\nEastern\n15.7\nGood\n\n\n2022-01-03\nWestern\n12.5\nGood\n\n\n2022-01-03\nSouthern\n14.6\nGood\n\n\n2022-01-04\nCentral\n19.9\nGood\n\n\n2022-01-04\nEastern\n17.9\nGood\n\n\n2022-01-04\nWestern\n19.9\nGood\n\n\n2022-01-04\nSouthern\n26.7\nModerate\n\n\n2022-01-05\nCentral\n35.9\nPoor\n\n\n2022-01-05\nEastern\n20.5\nGood\n\n\n2022-01-05\nWestern\n25.7\nModerate\n\n\n2022-01-05\nSouthern\n24\nGood\n\n\n\n\n\n\n\n\n\n\nB.1.9 9. Model Comparison Table\n\n\n\nTable B.10: Model comparison with goodness-of-fit measures\n\n\n\n\n\nModel\nFormula\nR²\nAIC\nBIC\n\n\n\n\nLinear\ny = β₀ + β₁x\n0.856\n123.4\n128.2\n\n\nQuadratic\ny = β₀ + β₁x + β₂x²\n0.921\n105.6\n112.8\n\n\nCubic\ny = β₀ + β₁x + β₂x² + β₃x³\n0.958\n98.2\n107.5\n\n\nExponential\ny = β₀eᵝ¹ˣ\n0.892\n114.3\n119.7\n\n\nLogarithmic\ny = β₀ + β₁ln(x)\n0.875\n118.9\n124.0\n\n\n\n\n\n\n\n\n\nB.1.10 10. Table with Mixed Content Types\nTable B.11 demonstrates how to include different content types within the same table.\n\n\n\nTable B.11: Table with mixed content including equations, cross-references, and citations\n\n\n\n\n\n\n\n\n\n\n\nAnalysis Type\nDetails\nMathematical Model\nReference\n\n\n\n\nPrincipal Components\nReduces dimensionality while preserving variance\n\\(X = TP^T + E\\) where \\(T\\) are scores, \\(P\\) are loadings\nNorris et al. (2014)\n\n\nCluster Analysis\nGroups similar samples based on chemical composition\n\\(D(x,y) = \\sqrt{\\sum_{i=1}^{n}(x_i-y_i)^2}\\) for Euclidean distance\nAgency (2019)\n\n\nPositive Matrix Factorization\nDecomposes data into source profiles and contributions\n\\(X = GF + E\\) as shown in Equation 1.1\nPaatero and Tapper (1994)\n\n\nReceptor Models\nGeneral term for source apportionment techniques\nMultiple approaches\nSee Table B.4",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html#sec-app-b-comparison-ref",
+    "href": "Appendices/AppendixB.html#sec-app-b-comparison-ref",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "B.2 Table Comparison and References",
+    "text": "B.2 Table Comparison and References\nThis section demonstrates how to reference and compare tables throughout this document.\nAs shown in Table B.1, descriptive statistics provide a foundation for understanding the dataset. The formatted presentation in Table B.2 enhances readability through strategic use of text styling.\nStatistical analyses utilize mathematical equations (see Table B.3) and incorporate significance indicators (Table B.6). These analyses build upon previous research summarized in Table B.4.\nFor temporal data analysis, we examine quarterly sales patterns (Table B.7) and daily PM2.5 measurements across stations (Table B.9). Spatial variation is visible in the wide-format presentation of site parameters (Table B.8).\nWhen comparing modeling approaches (Table B.10), a clear trend emerges: higher-order models achieve better fit metrics but risk overfitting. The correlation heat map (Table B.5) reveals relationships between variables that inform these models.\nFinally, Table B.11 demonstrates how tables can integrate multiple content types, creating rich information displays that connect to other document elements.\nAge | 0.12 | 0.25 | 1.00 | 0.22 | 0.45 | 0.38 | 0.05 | 0.35 | 0.30 | 0.32 |\nBMI | 0.08 | 0.82 | 0.22 | 1.00 | 0.28 | 0.24 | 0.18 | 0.20 | 0.30 | 0.25 |\nSystolic BP | 0.15 | 0.30 | 0.45 | 0.28 | 1.00 | 0.78 | 0.15 | 0.25 | 0.28 | 0.30 |\nDiastolic BP| 0.10 | 0.25 | 0.38 | 0.24 | 0.78 | 1.00 | 0.12 | 0.22 | 0.25 | 0.28 |\nHeart Rate | -0.05 | 0.15 | 0.05 | 0.18 | 0.15 | 0.12 | 1.00 | 0.05 | 0.18 | 0.15 |\nCholesterol | 0.08 | 0.18 | 0.35 | 0.20 | 0.25 | 0.22 | 0.05 | 1.00 | 0.65 | 0.38 |\nTriglycerides| 0.12 | 0.28 | 0.30 | 0.30 | 0.28 | 0.25 | 0.18 | 0.65 | 1.00 | 0.45 |\nGlucose | 0.03 | 0.22 | 0.32 | 0.25 | 0.30 | 0.28 | 0.15 | 0.38 | 0.45 | 1.00 |\n: Correlation matrix for key study variables {#tbl-app-b-corr}",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html#sec-app-b-figures-add",
+    "href": "Appendices/AppendixB.html#sec-app-b-figures-add",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "B.3 Additional Figures",
+    "text": "B.3 Additional Figures\n\nB.3.1 Extended Visualizations\nWe analyzed the distribution of key measurements by demographic groups. Our analysis showed clear differences between male and female participants across several metrics:\n\nHeight: Males averaged 178 cm (SD=7), females 165 cm (SD=6)\nWeight: Males averaged 80 kg (SD=10), females 65 kg (SD=8)\nSystolic BP: Males averaged 130 mmHg (SD=12), females 120 mmHg (SD=10)\nDiastolic BP: Males averaged 82 mmHg (SD=8), females 78 mmHg (SD=7)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html#sec-app-b-math-derivations",
+    "href": "Appendices/AppendixB.html#sec-app-b-math-derivations",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "D.1 Extended Mathematical Derivations",
+    "text": "D.1 Extended Mathematical Derivations\n\nD.1.1 Proof of Equation 3 in Chapter 2\nHere we provide a step-by-step derivation of the expansion of \\((x + y)^2\\) as presented in Equation 3 of Chapter 2.\nStarting with the definition of the square:\n\\[\n(x + y)^2 = (x + y)(x + y)\n\\]\nUsing the distributive property to expand the first factor:\n\\[\n(x + y)(x + y) = x(x + y) + y(x + y)\n\\]\nFurther expanding each term:\n\\[\n\\begin{aligned}\nx(x + y) + y(x + y) &= x \\cdot x + x \\cdot y + y \\cdot x + y \\cdot y \\\\\n&= x^2 + xy + yx + y^2\n\\end{aligned}\n\\]\nSince multiplication is commutative for real numbers, \\(xy = yx\\), so:\n\\[\n\\begin{aligned}\nx^2 + xy + yx + y^2 &= x^2 + xy + xy + y^2 \\\\\n&= x^2 + 2xy + y^2\n\\end{aligned}\n\\]\nThis completes the derivation.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
+    ]
+  },
+  {
+    "objectID": "Appendices/AppendixB.html#sec-app-b-source-code",
+    "href": "Appendices/AppendixB.html#sec-app-b-source-code",
+    "title": "Appendix B — Supplementary Materials",
+    "section": "D.2 Source Code",
+    "text": "D.2 Source Code\n\nD.2.1 Data Processing Script\nBelow is the R script used for data processing:\n\n\n\n\n\n\nAgency, E. E. (2019), “European air quality source apportionment with PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nHyndman, R. J., Koehler, A. B., Snyder, R. D., and Grose, S. (2002), “A state space framework for automatic forecasting using exponential smoothing methods,” International Journal of Forecasting, 18, 439–454.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive matrix factorization (PMF) 5.0 fundamentals and user guide, U.S. Environmental Protection Agency.\n\n\nPaatero, P., and Tapper, U. (1994), “Positive matrix factorization: A non-negative factor model with optimal utilization of error estimates of data values,” Environmetrics, 5, 111–126. https://doi.org/10.1002/env.3170050203.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Supplementary Materials</span>"
     ]
   }
 ]

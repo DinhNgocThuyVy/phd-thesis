@@ -6,33 +6,16 @@
 
 %\usepackage{mathpazo} % Use the Palatino font by default
 
-\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+% Don't load biblatex here - let Quarto handle the bibliography processing
+% Quarto uses Pandoc's citation processing which conflicts with direct biblatex loading
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
+% Load pdfpages package - moved up to ensure it's loaded before use
 \usepackage{pdfpages} % Required for including PDF files directly
 
-%----------------------------------------------------------------------------------------
-%	CHAPTER SUMMARY ENVIRONMENT
-%----------------------------------------------------------------------------------------
-
-\usepackage{mdframed}
-\usepackage{xcolor}
-\definecolor{summarycolor}{RGB}{240, 242, 245}
-\definecolor{summaryframe}{RGB}{41, 128, 185}
-
-\newenvironment{chaptersummary}{%
-  \begin{mdframed}[linewidth=1pt, linecolor=summaryframe, backgroundcolor=summarycolor, 
-                  topline=true, bottomline=true, leftline=true, rightline=true,
-                  innertopmargin=8pt, innerbottommargin=8pt,  % Reduced padding
-                  innerrightmargin=10pt, innerleftmargin=10pt,
-                  skipabove=5pt, skipbelow=5pt] % Added smaller skip values
-  \begin{center}\textbf{Chapter Summary}\end{center}\vspace{-1em} % More negative space
-}{%
-  \end{mdframed}
-}
-
-%----------------------------------------------------------------------------------------
+% Define fallback mechanism for includepdf if needed
+\providecommand{\includepdf}[2][]{\textbf{Error: pdfpages package not properly loaded. Cannot include PDF file #2.}}
 
 %----------------------------------------------------------------------------------------
 %	MARGINS
