@@ -202,6 +202,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Chapters/Introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -2373,196 +2379,131 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>*p &lt; 0.05, **p &lt; 0.01, ***p &lt; 0.001</span>
 <span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. CSV Loading &amp; Time Series Table {#sec-app-b-csv}</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Wide Table with Many Columns {#sec-app-b-wide-table}</span></span>
 <span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-app-b-sales</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Quarterly sales data loaded from CSV file"</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-app-b-wide</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Wide table with many parameters across different sites"</span></span>
 <span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, HTML</span>
 <span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data from CSV file</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>sales_data <span class="op">=</span> pd.read_csv(<span class="st">'data/sales.csv'</span>)</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Format the data - select first 8 rows for example</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>sales_sample <span class="op">=</span> sales_data.head(<span class="dv">8</span>).copy()  <span class="co"># Create a true copy to prevent SettingWithCopyWarning</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Add percent change column</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>sales_sample.loc[:, <span class="st">'% Change'</span>] <span class="op">=</span> sales_sample[<span class="st">'Sales'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>sales_sample.loc[:, <span class="st">'% Change'</span>] <span class="op">=</span> sales_sample[<span class="st">'% Change'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="ss">f"</span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">%"</span> <span class="cf">if</span> <span class="kw">not</span> pd.isna(x) <span class="cf">else</span> <span class="st">"N/A"</span>)</span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Format currency values</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>sales_sample.loc[:, <span class="st">'Sales'</span>] <span class="op">=</span> sales_sample[<span class="st">'Sales'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="ss">f"$</span><span class="sc">{</span>x<span class="sc">:,.1f}</span><span class="ss">"</span>)</span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>sales_sample.loc[:, <span class="st">'AdBudget'</span>] <span class="op">=</span> sales_sample[<span class="st">'AdBudget'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="ss">f"$</span><span class="sc">{</span>x<span class="sc">:,.1f}</span><span class="ss">"</span>)</span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Display as markdown table</span></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>display(Markdown(sales_sample.to_markdown(index<span class="op">=</span><span class="va">False</span>)))</span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Wide Table with Many Columns {#sec-app-b-wide-table}</span></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-app-b-wide</span></span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Wide table with many parameters across different sites"</span></span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, HTML</span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a wide table with many columns</span></span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [<span class="st">'Site A'</span>, <span class="st">'Site B'</span>, <span class="st">'Site C'</span>, <span class="st">'Site D'</span>, <span class="st">'Site E'</span>]</span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> [<span class="st">'PM2.5'</span>, <span class="st">'PM10'</span>, <span class="st">'SO2'</span>, <span class="st">'NO2'</span>, <span class="st">'CO'</span>, <span class="st">'O3'</span>, <span class="st">'Temperature'</span>, <span class="st">'Humidity'</span>, <span class="st">'Wind Speed'</span>, <span class="st">'Pressure'</span>]</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a wide table with many columns</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [<span class="st">'Site A'</span>, <span class="st">'Site B'</span>, <span class="st">'Site C'</span>, <span class="st">'Site D'</span>, <span class="st">'Site E'</span>]</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> [<span class="st">'PM2.5'</span>, <span class="st">'PM10'</span>, <span class="st">'SO2'</span>, <span class="st">'NO2'</span>, <span class="st">'CO'</span>, <span class="st">'O3'</span>, <span class="st">'Temperature'</span>, <span class="st">'Humidity'</span>, <span class="st">'Wind Speed'</span>, <span class="st">'Pressure'</span>]</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {}</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Different random distributions for different parameters</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> param <span class="kw">in</span> [<span class="st">'PM2.5'</span>, <span class="st">'PM10'</span>]:</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="dv">2</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> param <span class="kw">in</span> [<span class="st">'SO2'</span>, <span class="st">'NO2'</span>, <span class="st">'CO'</span>, <span class="st">'O3'</span>]:</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.gamma(shape<span class="op">=</span><span class="dv">2</span>, scale<span class="op">=</span><span class="dv">2</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>]</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="co"># Create HTML table with multi-level header</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> <span class="st">'&lt;table style="font-size: 0.9em;"&gt;'</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;'</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="co"># Create first header row with site names</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="ss">f'&lt;th colspan="</span><span class="sc">{</span><span class="bu">len</span>(parameters)<span class="sc">}</span><span class="ss">" style="text-align: center;"&gt;</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">&lt;/th&gt;'</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Month&lt;/th&gt;'</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Create second header row with parameter names</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>        html <span class="op">+=</span> <span class="ss">f'&lt;th style="text-align: center;"&gt;</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">&lt;/th&gt;'</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'</span></span>
 <span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {}</span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Different random distributions for different parameters</span></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> param <span class="kw">in</span> [<span class="st">'PM2.5'</span>, <span class="st">'PM10'</span>]:</span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="dv">2</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> param <span class="kw">in</span> [<span class="st">'SO2'</span>, <span class="st">'NO2'</span>, <span class="st">'CO'</span>, <span class="st">'O3'</span>]:</span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.gamma(shape<span class="op">=</span><span class="dv">2</span>, scale<span class="op">=</span><span class="dv">2</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>            data[<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="dv">5</span>, size<span class="op">=</span><span class="dv">5</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>]</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Add data rows</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, month <span class="kw">in</span> <span class="bu">enumerate</span>(df.index):</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="ss">f'&lt;tr&gt;&lt;td&gt;</span><span class="sc">{</span>month<span class="sc">}</span><span class="ss">&lt;/td&gt;'</span></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> site <span class="kw">in</span> sites:</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> df.iloc[i][<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>]</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>            html <span class="op">+=</span> <span class="ss">f'&lt;td style="text-align: center;"&gt;</span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">&lt;/td&gt;'</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;'</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tbody&gt;&lt;/table&gt;'</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the HTML table</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>display(HTML(html))</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Long Table with Many Rows {#sec-app-b-long-table}</span></span>
 <span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Create HTML table with multi-level header</span></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> <span class="st">'&lt;table style="font-size: 0.9em;"&gt;'</span></span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;'</span></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="co"># Create first header row with site names</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="ss">f'&lt;th colspan="</span><span class="sc">{</span><span class="bu">len</span>(parameters)<span class="sc">}</span><span class="ss">" style="text-align: center;"&gt;</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">&lt;/th&gt;'</span></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Month&lt;/th&gt;'</span></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Create second header row with parameter names</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> site <span class="kw">in</span> sites:</span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>        html <span class="op">+=</span> <span class="ss">f'&lt;th style="text-align: center;"&gt;</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">&lt;/th&gt;'</span></span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;'</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a><span class="co"># Add data rows</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, month <span class="kw">in</span> <span class="bu">enumerate</span>(df.index):</span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="ss">f'&lt;tr&gt;&lt;td&gt;</span><span class="sc">{</span>month<span class="sc">}</span><span class="ss">&lt;/td&gt;'</span></span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> site <span class="kw">in</span> sites:</span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> param <span class="kw">in</span> parameters:</span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> df.iloc[i][<span class="ss">f"</span><span class="sc">{</span>site<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>param<span class="sc">}</span><span class="ss">"</span>]</span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>            html <span class="op">+=</span> <span class="ss">f'&lt;td style="text-align: center;"&gt;</span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">&lt;/td&gt;'</span></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>    html <span class="op">+=</span> <span class="st">'&lt;/tr&gt;'</span></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>html <span class="op">+=</span> <span class="st">'&lt;/tbody&gt;&lt;/table&gt;'</span></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the HTML table</span></span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>display(HTML(html))</span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Long Table with Many Rows {#sec-app-b-long-table}</span></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-app-b-long</span></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Long table with daily PM2.5 data"</span></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-app-b-long</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Long table with daily PM2.5 data"</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate daily data for several months</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">456</span>)</span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> datetime(<span class="dv">2022</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> [start_date <span class="op">+</span> timedelta(days<span class="op">=</span>i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>)]  <span class="co"># 50 days of data</span></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">'Central'</span>, <span class="st">'Eastern'</span>, <span class="st">'Western'</span>, <span class="st">'Southern'</span>]</span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> date <span class="kw">in</span> dates:</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>    base_value <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> np.sin(date.timetuple().tm_yday <span class="op">/</span> <span class="dv">30</span>)  <span class="co"># Seasonal pattern</span></span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add some random variation per station</span></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>        station_factor <span class="op">=</span> {<span class="st">'Central'</span>: <span class="fl">1.2</span>, <span class="st">'Eastern'</span>: <span class="fl">0.8</span>, <span class="st">'Western'</span>: <span class="fl">1.0</span>, <span class="st">'Southern'</span>: <span class="fl">0.9</span>}[station]</span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> base_value <span class="op">*</span> station_factor <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">*</span> np.random.randn())</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Date'</span>: date.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>),</span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Station'</span>: station,</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>            <span class="st">'PM2.5'</span>: <span class="bu">round</span>(value, <span class="dv">1</span>),</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Status'</span>: <span class="st">'Good'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">25</span> <span class="cf">else</span> <span class="st">'Moderate'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">35</span> <span class="cf">else</span> <span class="st">'Poor'</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="co"># Create markdown table with pages (show first 20 rows)</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>display(Markdown(long_df.head(<span class="dv">20</span>).to_markdown(index<span class="op">=</span><span class="va">False</span>)))</span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate daily data for several months</span></span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">456</span>)</span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> datetime(<span class="dv">2022</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> [start_date <span class="op">+</span> timedelta(days<span class="op">=</span>i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>)]  <span class="co"># 50 days of data</span></span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [<span class="st">'Central'</span>, <span class="st">'Eastern'</span>, <span class="st">'Western'</span>, <span class="st">'Southern'</span>]</span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> date <span class="kw">in</span> dates:</span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>    base_value <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> np.sin(date.timetuple().tm_yday <span class="op">/</span> <span class="dv">30</span>)  <span class="co"># Seasonal pattern</span></span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> station <span class="kw">in</span> stations:</span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add some random variation per station</span></span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>        station_factor <span class="op">=</span> {<span class="st">'Central'</span>: <span class="fl">1.2</span>, <span class="st">'Eastern'</span>: <span class="fl">0.8</span>, <span class="st">'Western'</span>: <span class="fl">1.0</span>, <span class="st">'Southern'</span>: <span class="fl">0.9</span>}[station]</span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> base_value <span class="op">*</span> station_factor <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">*</span> np.random.randn())</span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Date'</span>: date.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>),</span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Station'</span>: station,</span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>            <span class="st">'PM2.5'</span>: <span class="bu">round</span>(value, <span class="dv">1</span>),</span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Status'</span>: <span class="st">'Good'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">25</span> <span class="cf">else</span> <span class="st">'Moderate'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">35</span> <span class="cf">else</span> <span class="st">'Poor'</span></span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Model Comparison Table {#sec-app-b-r-table}</span></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>| Model | Formula | R² | AIC | BIC |</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>|-------|:-------:|---:|---:|---:|</span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>| Linear | y = β₀ + β₁x | 0.856 | 123.4 | 128.2 |</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>| Quadratic | y = β₀ + β₁x + β₂x² | 0.921 | 105.6 | 112.8 |</span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>| Cubic | y = β₀ + β₁x + β₂x² + β₃x³ | 0.958 | 98.2 | 107.5 |</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>| Exponential | y = β₀eᵝ¹ˣ | 0.892 | 114.3 | 119.7 |</span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>| Logarithmic | y = β₀ + β₁ln(x) | 0.875 | 118.9 | 124.0 |</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>: Model comparison with goodness-of-fit measures {#tbl-app-b-r-kable}</span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Interactive tables were removed to simplify rendering --&gt;</span></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Table with Mixed Content Types {#sec-app-b-mixed-table}</span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>@tbl-app-b-mixed demonstrates how to include different content types within the same table.</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>| Analysis Type | Details | Mathematical Model | Reference |</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>|--------------|---------|-------------------|-----------|</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>| Principal Components | Reduces dimensionality while preserving variance | $X = TP^T + E$ where $T$ are scores, $P$ are loadings | @PMF_Guide2014 |</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>| Cluster Analysis | Groups similar samples based on chemical composition | $D(x,y) = \sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}$ for Euclidean distance | @EEA2019 |</span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>| Positive Matrix Factorization | Decomposes data into source profiles and contributions | $X = GF + E$ as shown in @eq-pmf-basic | @Paatero1994 |</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>| Receptor Models | General term for source apportionment techniques | Multiple approaches | See @tbl-app-b-citations |</span>
 <span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="co"># Create markdown table with pages (show first 20 rows)</span></span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>display(Markdown(long_df.head(<span class="dv">20</span>).to_markdown(index<span class="op">=</span><span class="va">False</span>)))</span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Model Comparison Table {#sec-app-b-r-table}</span></span>
-<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>| Model | Formula | R² | AIC | BIC |</span>
-<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>|-------|:-------:|---:|---:|---:|</span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>| Linear | y = β₀ + β₁x | 0.856 | 123.4 | 128.2 |</span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>| Quadratic | y = β₀ + β₁x + β₂x² | 0.921 | 105.6 | 112.8 |</span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>| Cubic | y = β₀ + β₁x + β₂x² + β₃x³ | 0.958 | 98.2 | 107.5 |</span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>| Exponential | y = β₀eᵝ¹ˣ | 0.892 | 114.3 | 119.7 |</span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>| Logarithmic | y = β₀ + β₁ln(x) | 0.875 | 118.9 | 124.0 |</span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>: Model comparison with goodness-of-fit measures {#tbl-app-b-r-kable}</span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Interactive tables were removed to simplify rendering --&gt;</span></span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Table with Mixed Content Types {#sec-app-b-mixed-table}</span></span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>@tbl-app-b-mixed demonstrates how to include different content types within the same table.</span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>| Analysis Type | Details | Mathematical Model | Reference |</span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>|--------------|---------|-------------------|-----------|</span>
-<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>| Principal Components | Reduces dimensionality while preserving variance | $X = TP^T + E$ where $T$ are scores, $P$ are loadings | @PMF_Guide2014 |</span>
-<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>| Cluster Analysis | Groups similar samples based on chemical composition | $D(x,y) = \sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}$ for Euclidean distance | @EEA2019 |</span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>| Positive Matrix Factorization | Decomposes data into source profiles and contributions | $X = GF + E$ as shown in @eq-pmf-basic | @Paatero1994 |</span>
-<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>| Receptor Models | General term for source apportionment techniques | Multiple approaches | See @tbl-app-b-citations |</span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>: Table with mixed content including equations, cross-references, and citations {#tbl-app-b-mixed}</span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## Table Comparison and References {#sec-app-b-comparison-ref}</span></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>This section demonstrates how to reference and compare tables throughout this document.</span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>As shown in @tbl-app-b-full, descriptive statistics provide a foundation for understanding the dataset. The formatted presentation in @tbl-app-b-formatted enhances readability through strategic use of text styling.</span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a>Statistical analyses utilize mathematical equations (see @tbl-app-b-eq) and incorporate significance indicators (@tbl-app-b-significance). These analyses build upon previous research summarized in @tbl-app-b-citations.</span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>For temporal data analysis, we examine quarterly sales patterns (@tbl-app-b-sales) and daily PM2.5 measurements across stations (@tbl-app-b-long). Spatial variation is visible in the wide-format presentation of site parameters (@tbl-app-b-wide).</span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>When comparing modeling approaches (@tbl-app-b-r-kable), a clear trend emerges: higher-order models achieve better fit metrics but risk overfitting. The correlation heat map (@tbl-app-b-corr-heatmap) reveals relationships between variables that inform these models.</span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a>Finally, @tbl-app-b-mixed demonstrates how tables can integrate multiple content types, creating rich information displays that connect to other document elements.</span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a>| Age         | 0.12   | 0.25   | 1.00  | 0.22  | 0.45  | 0.38  | 0.05  | 0.35  | 0.30  | 0.32  |</span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>| BMI         | 0.08   | 0.82   | 0.22  | 1.00  | 0.28  | 0.24  | 0.18  | 0.20  | 0.30  | 0.25  |</span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>| Systolic BP | 0.15   | 0.30   | 0.45  | 0.28  | 1.00  | 0.78  | 0.15  | 0.25  | 0.28  | 0.30  |</span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a>| Diastolic BP| 0.10   | 0.25   | 0.38  | 0.24  | 0.78  | 1.00  | 0.12  | 0.22  | 0.25  | 0.28  |</span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>| Heart Rate  | -0.05  | 0.15   | 0.05  | 0.18  | 0.15  | 0.12  | 1.00  | 0.05  | 0.18  | 0.15  |</span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>| Cholesterol | 0.08   | 0.18   | 0.35  | 0.20  | 0.25  | 0.22  | 0.05  | 1.00  | 0.65  | 0.38  |</span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>| Triglycerides| 0.12   | 0.28   | 0.30  | 0.30  | 0.28  | 0.25  | 0.18  | 0.65  | 1.00  | 0.45  |</span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a>| Glucose     | 0.03   | 0.22   | 0.32  | 0.25  | 0.30  | 0.28  | 0.15  | 0.38  | 0.45  | 1.00  |</span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>: Correlation matrix for key study variables {#tbl-app-b-corr}</span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Additional Figures {#sec-app-b-figures-add}</span></span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extended Visualizations {#sec-app-b-ext-viz-add}</span></span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>We analyzed the distribution of key measurements by demographic groups. Our analysis showed clear differences between male and female participants across several metrics:</span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Height**: Males averaged 178 cm (SD=7), females 165 cm (SD=6)</span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Weight**: Males averaged 80 kg (SD=10), females 65 kg (SD=8)</span>
-<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Systolic BP**: Males averaged 130 mmHg (SD=12), females 120 mmHg (SD=10)</span>
-<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Diastolic BP**: Males averaged 82 mmHg (SD=8), females 78 mmHg (SD=7)</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>: Table with mixed content including equations, cross-references, and citations {#tbl-app-b-mixed}</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -4,17 +4,37 @@
     "href": "index.html",
     "title": "Titre de la Thèse",
     "section": "",
-    "text": "Introduction",
+    "text": "Acknowledgements\nI would like to express my sincere gratitude to my supervisors, Prof. Jean Dupont and Dr. Marie Lambert, for their invaluable guidance and support throughout this research journey.\nI am deeply grateful to the members of my thesis committee for their insightful comments and constructive feedback that greatly improved the quality of this work.\nSpecial thanks to my colleagues at the Laboratoire d’Informatique de Grenoble for creating a stimulating and collaborative research environment.\nFinally, I would like to thank my family and friends for their unwavering support and encouragement during the challenging times of this doctoral study.\n\n\nAbstract\nThis thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution. We develop advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources across European urban environments.\nOur research demonstrates that improved model configuration and validation protocols can significantly reduce uncertainties in source contribution estimates, providing policy makers with more reliable data for targeted interventions.\nKeywords: keyword1, keyword2, keyword3, keyword4\n\n\nRésumé\nCette thèse examine l’application de la Factorisation Matricielle Positive (PMF) pour l’attribution des sources de pollution atmosphérique. Nous développons des techniques d’optimisation avancées et des cadres de validation qui améliorent la précision et la fiabilité de la PMF dans l’identification des sources de pollution dans les environnements urbains européens.\nNotre recherche démontre que des protocoles améliorés de configuration et de validation du modèle peuvent réduire significativement les incertitudes dans les estimations de contribution des sources, fournissant aux décideurs politiques des données plus fiables pour des interventions ciblées.\nMots-clés: mot-clé1, mot-clé2, mot-clé3, mot-clé4",
+    "crumbs": [
+      "Acknowledgements"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html",
+    "href": "Chapters/Introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Overview\nThis thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution across European urban environments. The research presented here develops advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources.\nOur work demonstrates that improved model configuration and validation protocols can significantly reduce uncertainties in source contribution estimates, providing policy makers with more reliable data for targeted interventions.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
-    "title": "Titre de la Thèse",
-    "section": "Overview",
-    "text": "Overview\nThis is the preface for the thesis.\nYou can add introductory content here that is not considered part of the main chapters.",
+    "objectID": "Chapters/Introduction.html#research-objectives",
+    "href": "Chapters/Introduction.html#research-objectives",
+    "title": "Introduction",
+    "section": "Research Objectives",
+    "text": "Research Objectives\nThe primary objectives of this research are to:\n\nDevelop robust mathematical foundations for PMF optimization\nCreate validation frameworks for source apportionment results\nIntegrate PMF outputs with policy development processes\nAnalyze spatial and temporal variations in source contributions",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#thesis-structure",
+    "href": "Chapters/Introduction.html#thesis-structure",
+    "title": "Introduction",
+    "section": "Thesis Structure",
+    "text": "Thesis Structure\nThis thesis is organized into the following chapters:\n\nChapter 1 presents a comprehensive literature review of PMF and its applications in atmospheric science.\nChapter 2 details the optimization and validation methodologies for PMF models.\nChapter 3 explores the integration of PMF results with policy development frameworks.\nChapter 4 examines spatial and temporal variations in PM source contributions across European cities.\n\nThe appendices provide additional technical details, code documentation, and supplementary results.",
     "crumbs": [
       "Introduction"
     ]

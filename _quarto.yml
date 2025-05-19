@@ -2,16 +2,6 @@ project:
   type: book
   output-dir: docs
 
-thesis:
-  # declaration: "Frontmatter/declaration.tex"
-  abstract:
-    english: "Frontmatter/abstract_en.tex"
-    french: "Frontmatter/abstract_fr.tex"
-  acknowledgements: "Frontmatter/acknowledgements.tex"
-  abbreviations: "Frontmatter/abbreviations.tex"
-  # symbols: "Frontmatter/symbols.tex"
-  dedication: "Frontmatter/dedication.tex"
-
 book:
   title: "Titre de la Thèse"
   subtitle: "Sous-titre optionnel"
@@ -20,7 +10,8 @@ book:
     name: "Nom Prénom"
   downloads: [pdf]  # Standard chapters list (used for PDF)
   chapters:
-    - index.qmd
+    - index.qmd  # Introduction with all frontmatter content
+    - Chapters/Introduction.qmd
     - Chapters/Chapter1.qmd
     - Chapters/Chapter2.qmd
     - Chapters/Chapter3.qmd
@@ -100,6 +91,7 @@ format:
     code-fold: true
     code-tools: true
     code-link: true
+    embed-pdf: true  # Render PDF images as normal images
   pdf:
     template-partials:
       - "_extensions/quarto-thesis/partials/before-body.tex"

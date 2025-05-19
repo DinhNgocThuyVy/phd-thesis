@@ -1,6 +1,6 @@
-\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
-
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+% Note: \frontmatter is now called from _frontmatter.qmd
 
 % Prevent empty pages regardless of single/double-sided layout
 \let\cleardoublepage\clearpage
@@ -142,87 +142,3 @@
   \end{titlepage}
 \fi
 \makeatother
-
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%----------------------------------------------------------------------------------------
-$if(thesis.declaration)$
-\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-$if(thesis.declaration.text)$
-$thesis.declaration.text$
-$else$
-\input{"$thesis.declaration$"}
-$endif$
-\end{declaration}
-$endif$
-
-$if(thesis.acknowledgements)$
-%----------------------------------------------------------------------------------------
-%	ACKNOWLEDGEMENTS
-%----------------------------------------------------------------------------------------
-
-\begin{acknowledgements}
-\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-$if(thesis.acknowledgements.text)$
-$thesis.acknowledgements.text$
-$else$
-\input{"$thesis.acknowledgements$"}
-$endif$
-\end{acknowledgements}
-$endif$
-
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGES
-%----------------------------------------------------------------------------------------
-
-% English Abstract
-$if(thesis.abstract.english)$
-\begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-$if(thesis.abstract.english.text)$
-$thesis.abstract.english.text$
-$else$
-\input{$thesis.abstract.english$}
-$endif$
-\end{abstract}
-$endif$
-
-% French Abstract (Résumé)
-$if(thesis.abstract.french)$
-\renewcommand{\abstractname}{Résumé}
-\begin{abstract}
-\addchaptertocentry{\abstractname}
-$if(thesis.abstract.french.text)$
-$thesis.abstract.french.text$
-$else$
-\input{$thesis.abstract.french$}
-$endif$
-\end{abstract}
-\renewcommand{\abstractname}{Abstract} % Reset to English for potential later use
-$endif$
-
-$if(thesis.dedication)$
-%----------------------------------------------------------------------------------------
-%	DEDICATION
-%----------------------------------------------------------------------------------------
-
-\dedicatory{\input{$thesis.dedication$}}
-$endif$
-
-% LIST OF CONTENTS/FIGURES/TABLES PAGES
-\begingroup
-\hypersetup{linkcolor=$if(toclinkcolor)$$toclinkcolor$$else$black$endif$}
-
-\tableofcontents % Prints the main table of contents
-\listoffigures % Prints the list of figures
-\listoftables % Prints the list of tables
-
-\endgroup
-
-%----------------------------------------------------------------------------------------
-%	THESIS CONTENT - CHAPTERS
-%----------------------------------------------------------------------------------------
-
-\mainmatter % Begin numeric (1,2,3...) page numbering
-\pagestyle{thesis} % Return the page headers back to the "thesis" style

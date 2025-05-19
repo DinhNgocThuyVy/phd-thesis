@@ -1,0 +1,27 @@
+# Introduction {.unnumbered #sec-introduction}
+
+## Overview
+
+This thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution across European urban environments. The research presented here develops advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources.
+
+Our work demonstrates that improved model configuration and validation protocols can significantly reduce uncertainties in source contribution estimates, providing policy makers with more reliable data for targeted interventions.
+
+## Research Objectives
+
+The primary objectives of this research are to:
+
+1. Develop robust mathematical foundations for PMF optimization
+2. Create validation frameworks for source apportionment results
+3. Integrate PMF outputs with policy development processes
+4. Analyze spatial and temporal variations in source contributions
+
+## Thesis Structure
+
+This thesis is organized into the following chapters:
+
+- Chapter 1 presents a comprehensive literature review of PMF and its applications in atmospheric science.
+- Chapter 2 details the optimization and validation methodologies for PMF models.
+- Chapter 3 explores the integration of PMF results with policy development frameworks.
+- Chapter 4 examines spatial and temporal variations in PM source contributions across European cities.
+
+The appendices provide additional technical details, code documentation, and supplementary results.

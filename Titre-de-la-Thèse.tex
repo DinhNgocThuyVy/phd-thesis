@@ -254,9 +254,9 @@ Prénom} % Your name, this is used in the title page and abstract, print it else
 \def\@use@custom@cover{true}
 
 \begin{document}
-\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
-
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+% Note: \frontmatter is now called from _frontmatter.qmd
 
 % Prevent empty pages regardless of single/double-sided layout
 \let\cleardoublepage\clearpage
@@ -368,72 +368,149 @@ Prénom} % Your name, this is used in the title page and abstract, print it else
   \end{titlepage}
 \fi
 \makeatother
+\frontmatter
 
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%----------------------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------------------
-%	ACKNOWLEDGEMENTS
-%----------------------------------------------------------------------------------------
-
-\begin{acknowledgements}
-\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-\input{"Frontmatter/acknowledgements.tex"}
-\end{acknowledgements}
-
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGES
-%----------------------------------------------------------------------------------------
-
-% English Abstract
-\begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-\input{Frontmatter/abstract\_en.tex}
-\end{abstract}
-
-% French Abstract (Résumé)
-\renewcommand{\abstractname}{Résumé}
-\begin{abstract}
-\addchaptertocentry{\abstractname}
-\input{Frontmatter/abstract\_fr.tex}
-\end{abstract}
-\renewcommand{\abstractname}{Abstract} % Reset to English for potential later use
-
-%----------------------------------------------------------------------------------------
-%	DEDICATION
-%----------------------------------------------------------------------------------------
-
-\dedicatory{\input{Frontmatter/dedication.tex}}
-
-% LIST OF CONTENTS/FIGURES/TABLES PAGES
-\begingroup
-\hypersetup{linkcolor=black}
-
-\tableofcontents % Prints the main table of contents
-\listoffigures % Prints the list of figures
-\listoftables % Prints the list of tables
-
-\endgroup
-
-%----------------------------------------------------------------------------------------
-%	ABBREVIATIONS
-%----------------------------------------------------------------------------------------
-
-\input{"Frontmatter/abbreviations.tex"}
-
-
-
-%----------------------------------------------------------------------------------------
-%	THESIS CONTENT - CHAPTERS
-%----------------------------------------------------------------------------------------
-
-\mainmatter % Begin numeric (1,2,3...) page numbering
-\pagestyle{thesis} % Return the page headers back to the "thesis" style
 
 \bookmarksetup{startatroot}
 
-\chapter*{Introduction}\label{introduction}
+\chapter*{Acknowledgements}\label{acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+\markboth{Acknowledgements}{Acknowledgements}
+
+I would like to express my sincere gratitude to my supervisors,
+Prof.~Jean Dupont and Dr.~Marie Lambert, for their invaluable guidance
+and support throughout this research journey.
+
+I am deeply grateful to the members of my thesis committee for their
+insightful comments and constructive feedback that greatly improved the
+quality of this work.
+
+Special thanks to my colleagues at the Laboratoire d'Informatique de
+Grenoble for creating a stimulating and collaborative research
+environment.
+
+Finally, I would like to thank my family and friends for their
+unwavering support and encouragement during the challenging times of
+this doctoral study.
+
+\bookmarksetup{startatroot}
+
+\chapter*{Abstract}\label{abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\markboth{Abstract}{Abstract}
+
+This thesis examines the application of Positive Matrix Factorization
+(PMF) for source apportionment of atmospheric pollution. We develop
+advanced optimization techniques and validation frameworks that enhance
+the accuracy and reliability of PMF in identifying pollution sources
+across European urban environments.
+
+Our research demonstrates that improved model configuration and
+validation protocols can significantly reduce uncertainties in source
+contribution estimates, providing policy makers with more reliable data
+for targeted interventions.
+
+\textbf{Keywords:} keyword1, keyword2, keyword3, keyword4
+
+\bookmarksetup{startatroot}
+
+\chapter*{Résumé}\label{ruxe9sumuxe9}
+\addcontentsline{toc}{chapter}{Résumé}
+
+\markboth{Résumé}{Résumé}
+
+Cette thèse examine l'application de la Factorisation Matricielle
+Positive (PMF) pour l'attribution des sources de pollution
+atmosphérique. Nous développons des techniques d'optimisation avancées
+et des cadres de validation qui améliorent la précision et la fiabilité
+de la PMF dans l'identification des sources de pollution dans les
+environnements urbains européens.
+
+Notre recherche démontre que des protocoles améliorés de configuration
+et de validation du modèle peuvent réduire significativement les
+incertitudes dans les estimations de contribution des sources,
+fournissant aux décideurs politiques des données plus fiables pour des
+interventions ciblées.
+
+\textbf{Mots-clés:} mot-clé1, mot-clé2, mot-clé3, mot-clé4
+
+\clearpage
+\begin{center}
+\vspace*{\fill}
+\textit{For Vinh thúi}
+\vspace*{\fill}
+\end{center}
+
+\clearpage
+\begingroup
+\hypersetup{linkcolor=blue}
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\listoftables
+\endgroup
+
+\cleardoublepage
+
+\bookmarksetup{startatroot}
+
+\chapter*{List of Abbreviations}\label{list-of-abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+
+\markboth{List of Abbreviations}{List of Abbreviations}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Abbreviation & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+PMF & Positive Matrix Factorization \\
+EPA & Environmental Protection Agency \\
+PM & Particulate Matter \\
+BS & Bootstrap \\
+DISP & Displacement \\
+ME-2 & Multilinear Engine version 2 \\
+CMB & Chemical Mass Balance \\
+PCA & Principal Component Analysis \\
+EV & Explained Variation \\
+LEZ & Low Emission Zone \\
+BAT & Best Available Technology \\
+\end{longtable}
+
+\cleardoublepage
+
+\bookmarksetup{startatroot}
+
+\chapter*{List of Symbols}\label{list-of-symbols}
+\addcontentsline{toc}{chapter}{List of Symbols}
+
+\markboth{List of Symbols}{List of Symbols}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Symbol & Name & Unit \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(a\) & distance & m \\
+\(P\) & power & W (J s\(^{-1}\)) \\
+\(\omega\) & angular frequency & rad \\
+\end{longtable}
+
+\clearpage
+\pagenumbering{arabic}\setcounter{page}{1}
+\mainmatter
+\pagestyle{thesis}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Introduction}\label{sec-introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
 \markboth{Introduction}{Introduction}
@@ -443,10 +520,62 @@ Prénom} % Your name, this is used in the title page and abstract, print it else
 
 \markright{Overview}
 
-This is the preface for the thesis.
+This thesis examines the application of Positive Matrix Factorization
+(PMF) for source apportionment of atmospheric pollution across European
+urban environments. The research presented here develops advanced
+optimization techniques and validation frameworks that enhance the
+accuracy and reliability of PMF in identifying pollution sources.
 
-You can add introductory content here that is not considered part of the
-main chapters.
+Our work demonstrates that improved model configuration and validation
+protocols can significantly reduce uncertainties in source contribution
+estimates, providing policy makers with more reliable data for targeted
+interventions.
+
+\section*{Research Objectives}\label{research-objectives}
+\addcontentsline{toc}{section}{Research Objectives}
+
+\markright{Research Objectives}
+
+The primary objectives of this research are to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Develop robust mathematical foundations for PMF optimization
+\item
+  Create validation frameworks for source apportionment results
+\item
+  Integrate PMF outputs with policy development processes
+\item
+  Analyze spatial and temporal variations in source contributions
+\end{enumerate}
+
+\section*{Thesis Structure}\label{thesis-structure}
+\addcontentsline{toc}{section}{Thesis Structure}
+
+\markright{Thesis Structure}
+
+This thesis is organized into the following chapters:
+
+\begin{itemize}
+\tightlist
+\item
+  Chapter 1 presents a comprehensive literature review of PMF and its
+  applications in atmospheric science.
+\item
+  Chapter 2 details the optimization and validation methodologies for
+  PMF models.
+\item
+  Chapter 3 explores the integration of PMF results with policy
+  development frameworks.
+\item
+  Chapter 4 examines spatial and temporal variations in PM source
+  contributions across European cities.
+\end{itemize}
+
+The appendices provide additional technical details, code documentation,
+and supplementary results.
 
 \bookmarksetup{startatroot}
 
@@ -782,7 +911,7 @@ Some authors
 
 Under review at Science of the Total Environment
 
-\section{Abstract}\label{abstract}
+\section{Abstract}\label{abstract-1}
 
 This chapter presents a comprehensive framework for optimizing and
 validating PMF (Positive Matrix Factorization) models in European urban
@@ -1226,7 +1355,7 @@ Some authors
 
 Under review at Environmental Science \& Policy
 
-\section{Abstract}\label{abstract-1}
+\section{Abstract}\label{abstract-2}
 
 This chapter examines how PMF source apportionment results can be
 effectively integrated into air quality policy development. We present
@@ -1357,7 +1486,7 @@ Some authors
 
 Under review at Atmospheric Environment
 
-\section{Abstract}\label{abstract-2}
+\section{Abstract}\label{abstract-3}
 
 This study investigates the spatial and temporal variations in
 particulate matter (PM) source contributions across major European

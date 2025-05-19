@@ -435,21 +435,12 @@ figcaption {
   text-align: center;
   
   img {
-    max-width: 100%;
+    max-width: 100%; // Ensure it takes full width of its container
     height: auto;
+    display: block;
+    margin-left: auto; // Center the image if it's not full width due to parent constraints
+    margin-right: auto; // Center the image
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-  }
-  
-  @media (min-width: 768px) {
-    img {
-      max-width: 80%;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    img {
-      max-width: 70%;
-    }
   }
 }

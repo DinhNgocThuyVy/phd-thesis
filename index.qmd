@@ -1,13 +1,91 @@
-# Introduction {.unnumbered}
+---
+format: 
+  pdf:
+    include-before-body: 
+      text: |
+        \frontmatter
+---
 
 ::: {.content-visible when-format="html"}
 ::: {.thesis-cover-image}
-![Thesis Cover](images/thesis-cover.png)
+<img src="cover.pdf" alt="Thesis Cover" />
 :::
 :::
 
-## Overview
+# Acknowledgements {.unnumbered}
 
-This is the preface for the thesis.
+I would like to express my sincere gratitude to my supervisors, Prof. Jean Dupont and Dr. Marie Lambert, for their invaluable guidance and support throughout this research journey.
 
-You can add introductory content here that is not considered part of the main chapters.
+I am deeply grateful to the members of my thesis committee for their insightful comments and constructive feedback that greatly improved the quality of this work.
+
+Special thanks to my colleagues at the Laboratoire d'Informatique de Grenoble for creating a stimulating and collaborative research environment.
+
+Finally, I would like to thank my family and friends for their unwavering support and encouragement during the challenging times of this doctoral study.
+
+# Abstract {.unnumbered}
+
+This thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution. We develop advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources across European urban environments.
+
+Our research demonstrates that improved model configuration and validation protocols can significantly reduce uncertainties in source contribution estimates, providing policy makers with more reliable data for targeted interventions.
+
+**Keywords:** keyword1, keyword2, keyword3, keyword4
+
+# Résumé {.unnumbered}
+
+Cette thèse examine l'application de la Factorisation Matricielle Positive (PMF) pour l'attribution des sources de pollution atmosphérique. Nous développons des techniques d'optimisation avancées et des cadres de validation qui améliorent la précision et la fiabilité de la PMF dans l'identification des sources de pollution dans les environnements urbains européens.
+
+Notre recherche démontre que des protocoles améliorés de configuration et de validation du modèle peuvent réduire significativement les incertitudes dans les estimations de contribution des sources, fournissant aux décideurs politiques des données plus fiables pour des interventions ciblées.
+
+**Mots-clés:** mot-clé1, mot-clé2, mot-clé3, mot-clé4
+
+\clearpage
+\begin{center}
+\vspace*{\fill}
+\textit{For Vinh thúi}
+\vspace*{\fill}
+\end{center}
+
+::: {.content-visible when-format="pdf"}
+\clearpage
+\begingroup
+\hypersetup{linkcolor=blue}
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\listoftables
+\endgroup
+
+\cleardoublepage
+
+# List of Abbreviations {.unnumbered}
+
+| Abbreviation | Definition                     |
+|--------------|--------------------------------|
+| PMF          | Positive Matrix Factorization  |
+| EPA          | Environmental Protection Agency|
+| PM           | Particulate Matter             |
+| BS           | Bootstrap                      |
+| DISP         | Displacement                   |
+| ME-2         | Multilinear Engine version 2   |
+| CMB          | Chemical Mass Balance          |
+| PCA          | Principal Component Analysis   |
+| EV           | Explained Variation            |
+| LEZ          | Low Emission Zone              |
+| BAT          | Best Available Technology      |
+
+\cleardoublepage
+
+# List of Symbols {.unnumbered}
+
+| Symbol | Name | Unit |
+|--------|------|------|
+| $a$ | distance | m |
+| $P$ | power | W (J s$^{-1}$) |
+| $\omega$ | angular frequency | rad |
+
+\clearpage
+\pagenumbering{arabic}\setcounter{page}{1}
+\mainmatter
+\pagestyle{thesis}
+:::

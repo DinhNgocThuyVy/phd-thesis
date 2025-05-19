@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nguyentruonganlab.github.io/quarto-thesis/index.html</loc>
-    <lastmod>2025-05-18T12:08:57.424Z</lastmod>
+    <lastmod>2025-05-19T10:56:08.157Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nguyentruonganlab.github.io/quarto-thesis/Chapters/Introduction.html</loc>
+    <lastmod>2025-05-19T10:57:31.326Z</lastmod>
   </url>
   <url>
     <loc>https://nguyentruonganlab.github.io/quarto-thesis/Chapters/Chapter1.html</loc>
@@ -30,10 +34,10 @@
   </url>
   <url>
     <loc>https://nguyentruonganlab.github.io/quarto-thesis/Appendices/AppendixB.html</loc>
-    <lastmod>2025-05-19T09:09:29.240Z</lastmod>
+    <lastmod>2025-05-19T09:41:32.029Z</lastmod>
   </url>
   <url>
     <loc>https://nguyentruonganlab.github.io/quarto-thesis/Titre-de-la-Thèse.pdf</loc>
-    <lastmod>2025-05-19T09:38:34.256Z</lastmod>
+    <lastmod>2025-05-19T10:57:48.868Z</lastmod>
   </url>
 </urlset>

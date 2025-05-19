@@ -1,6 +1,0 @@
-# List of Abbreviations {.unnumbered}
-
-| Abbreviation | Definition               |
-|--------------|--------------------------|
-| LAH          | List Abbreviations Here  |
-| WSF          | What (it) Stands For     |

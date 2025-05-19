@@ -37,5 +37,32 @@
   },
   "Chapters/Chapter4.qmd": {
     "Chapter4.html": "cb6a1844"
+  },
+  "Frontmatter/abstract-en.qmd": {
+    "abstract-en.html": "860bc636"
+  },
+  "Frontmatter/abstract-fr.qmd": {
+    "abstract-fr.html": "43d71d57"
+  },
+  "Frontmatter/acknowledgements.qmd": {
+    "acknowledgements.html": "2eb4ac89"
+  },
+  "Frontmatter/abbreviations.qmd": {
+    "abbreviations.html": "a43b82c1"
+  },
+  "Frontmatter/symbols.qmd": {
+    "symbols.html": "b0ab2f5d"
+  },
+  "Frontmatter/dedication.qmd": {
+    "dedication.html": "67b5c721"
+  },
+  "Frontmatter/_frontmatter.qmd": {
+    "_frontmatter.html": "5530a8d8"
+  },
+  "Frontmatter/_mainmatter.qmd": {
+    "_mainmatter.html": "0c5b963c"
+  },
+  "Chapters/Introduction.qmd": {
+    "Introduction.html": "71dddcbf"
   }
 }

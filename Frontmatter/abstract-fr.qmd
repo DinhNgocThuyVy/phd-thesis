@@ -1,5 +1,0 @@
-# Résumé {.unnumbered}
-
-Cette thèse présente une étude de... [Your French abstract text here]
-
-**Mots-clés:** mot-clé1, mot-clé2, mot-clé3, mot-clé4
