@@ -21,6 +21,10 @@ jobs:
         id: commit_message
         run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
       
+      - name: Generate timestamp for tag
+        id: timestamp
+        run: echo "value=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
+      
       - name: Copy PDF to root with version in name
         run: |
           mkdir -p release_assets
@@ -30,7 +34,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v$(date +'%Y%m%d%H%M%S')
+          tag_name: v${{ steps.timestamp.outputs.value }}
           name: Thesis Release-${{ github.run_id }}
           body: |
             ${{ steps.commit_message.outputs.message }}
