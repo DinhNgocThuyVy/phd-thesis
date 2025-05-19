@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Titre de la Thèse"
+  title: "My-Thesis"
   subtitle: "Sous-titre optionnel"
   date: "17 mai 2025"
   author:
