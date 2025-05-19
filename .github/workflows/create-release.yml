@@ -31,7 +31,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v$(date +'%Y%m%d%H%M%S')
-          name: Thesis Release
+          name: Thesis Release-${{ github.run_id }}
           body: |
             ${{ steps.commit_message.outputs.message }}
           files: |

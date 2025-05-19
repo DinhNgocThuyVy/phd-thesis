@@ -14,27 +14,107 @@
     "href": "Chapters/Introduction.html",
     "title": "Introduction",
     "section": "",
-    "text": "Overview\nThis thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution across European urban environments. The research presented here develops advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources.\nOur work demonstrates that improved model configuration and validation protocols can significantly reduce uncertainties in source contribution estimates, providing policy makers with more reliable data for targeted interventions.",
+    "text": "Figures\nQuarto supports multiple ways to include figures:",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "Chapters/Introduction.html#research-objectives",
-    "href": "Chapters/Introduction.html#research-objectives",
+    "objectID": "Chapters/Introduction.html#sec-figures",
+    "href": "Chapters/Introduction.html#sec-figures",
     "title": "Introduction",
-    "section": "Research Objectives",
-    "text": "Research Objectives\nThe primary objectives of this research are to:\n\nDevelop robust mathematical foundations for PMF optimization\nCreate validation frameworks for source apportionment results\nIntegrate PMF outputs with policy development processes\nAnalyze spatial and temporal variations in source contributions",
+    "section": "",
+    "text": "Single Figure\n\n\n\n\n\n\nFigure 1: Organization logo\n\n\n\nYou can reference this as Figure 1.\n\n\nSide-by-Side Figures\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Logo\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Cover Page\n\n\n\n\n\n\nSee Figure 2 and Figure 3 side by side.\n\n\nFigure with Custom Attributes\n\n\n\n\n\n\nFigure 4: Organization logo\n\n\n\nYou can reference this as Figure 4.\n\n\nSubfigures\n\n\n\n\n\n\n\n\n\n\n\n(a) Logo 1\n\n\n\n\n\n\n\n\n\n\n\n(b) Logo 2\n\n\n\n\n\n\n\nFigure 5: Combined figures demonstration\n\n\n\nReference the combined figure as Figure 5 or individual subfigures as Figure 5 (a) and Figure 5 (b).\n\n\nFigure Generated from CSV Data\n\n\n\n\n\n\n\n\nFigure 6: Plot generated from CSV data\n\n\n\n\n\nReference this figure as Figure 6.\n\n\nMultiple Data Series Plot\n\n\n\n\n\n\n\n\nFigure 7: Multiple parameters from CSV data\n\n\n\n\n\nReference this figure as Figure 7.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "Chapters/Introduction.html#thesis-structure",
-    "href": "Chapters/Introduction.html#thesis-structure",
+    "objectID": "Chapters/Introduction.html#sec-tables",
+    "href": "Chapters/Introduction.html#sec-tables",
     "title": "Introduction",
-    "section": "Thesis Structure",
-    "text": "Thesis Structure\nThis thesis is organized into the following chapters:\n\nChapter 1 presents a comprehensive literature review of PMF and its applications in atmospheric science.\nChapter 2 details the optimization and validation methodologies for PMF models.\nChapter 3 explores the integration of PMF results with policy development frameworks.\nChapter 4 examines spatial and temporal variations in PM source contributions across European cities.\n\nThe appendices provide additional technical details, code documentation, and supplementary results.",
+    "section": "Tables",
+    "text": "Tables\n\nSimple Table\n\n\n\nTable 1: Basic Features\n\n\n\n\n\nFeature\nDescription\n\n\n\n\nFigures\nEmbedded images and graphics\n\n\nTables\nStructured data presentation\n\n\nEquations\nMathematical expressions\n\n\n\n\n\n\nReference as Table 1.\n\n\nGrid Table\n\n\n\nTable 2: Grid Table Example\n\n\n\n\n\n\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nRow 1\nData\n\n\nRow 2\nData\n\n\n\n\n\n\nReference as Table 2.\n\n\nPipe Table with Alignment\n\n\n\nTable 3: Aligned Table\n\n\n\n\n\nLeft\nCenter\nRight\n\n\n\n\nL1\nC1\nR1\n\n\nL2\nC2\nR2\n\n\n\n\n\n\nReference as Table 3.\n\n\nTable from CSV Data\n\n\n\n\nTable 4: Data imported from CSV file\n\n\n\n\n\n\nDate\nPM2.5\nSO4\nNO3\n\n\n\n\n2022-01-01\n25.3\n4.2\n3.1\n\n\n2022-01-02\n28.6\n4.8\n3.5\n\n\n\n\n\n\n\n\nReference this as Table 4.\n\n\nSimple Formatted Table\n\n\n\n\nTable 5: Summary of key parameters\n\n\n\n\n\n\nParameter\nMin\nMax\nAverage\n\n\n\n\nPM2.5\n25.3\n28.6\n26.95\n\n\nSO4\n4.2\n4.8\n4.5\n\n\nNO3\n3.1\n3.5\n3.3\n\n\nOC\n6.2\n7.1\n6.65\n\n\nEC\n1.8\n2.1\n1.95\n\n\n\n\n\n\n\n\nReference as Table 5.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-equations",
+    "href": "Chapters/Introduction.html#sec-equations",
+    "title": "Introduction",
+    "section": "Equations",
+    "text": "Equations\n\nInline Equations\nInline math: \\(E = mc^2\\) or \\(x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}\\)\n\n\nDisplay Equations\n\\[\n\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}\n\\tag{1}\\]\n\\[\n\\nabla \\times \\mathbf{B} = \\mu_0\\left(\\mathbf{J} + \\epsilon_0\\frac{\\partial \\mathbf{E}}{\\partial t}\\right)\n\\tag{2}\\]\nReference Maxwell’s equations as Equation 1 and Equation 2.\n\n\nSingle Equation with Label\n\\[\nf(x) = \\int_{-\\infty}^{\\infty} \\hat{f}(\\xi)\\,e^{2 \\pi i \\xi x} \\,d\\xi\n\\tag{3}\\]\nReference as Equation 3.\n\n\nEquation Arrays\n\\[\n\\begin{array}{lcl}\nz & = & a \\\\\nf(x,y,z) & = & x + y + z\n\\end{array}\n\\tag{4}\\]\nReference as Equation 4.\n\n\nLaTeX Equation with Matrix\n\\[\nA =\n\\begin{bmatrix}\na_{11} & a_{12} & \\cdots & a_{1n} \\\\\na_{21} & a_{22} & \\cdots & a_{2n} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\na_{m1} & a_{m2} & \\cdots & a_{mn}\n\\end{bmatrix}\n\\tag{5}\\]\nReference as Equation 5.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-code",
+    "href": "Chapters/Introduction.html#sec-code",
+    "title": "Introduction",
+    "section": "Code Blocks",
+    "text": "Code Blocks\n\nBasic Python Code\n\n\n\nListing 1\n\n\n\n25°C is equal to 77.0°F\n\n\n\n\nReference as Listing 1.\n\n\nData Import Example\n\n\n\nListing 2\n\n\n\nNumber of rows: 2\nNumber of columns: 16\n\nFirst few column names:\nDate, PM2.5, Na, SO4, NO3\n\n\n\n\nReference as Listing 2.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-citations",
+    "href": "Chapters/Introduction.html#sec-citations",
+    "title": "Introduction",
+    "section": "Citations",
+    "text": "Citations\nCitations can be:\n\nSingle: Paatero and Tapper (1994)\nMultiple: (Agency 2019; Norris et al. 2014)\nIn-text: Paatero and Tapper (1994) states that…\nParenthetical: (Paatero and Tapper 1994)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-callouts",
+    "href": "Chapters/Introduction.html#sec-callouts",
+    "title": "Introduction",
+    "section": "Callouts",
+    "text": "Callouts\n\n\n\n\n\n\nNote Title\n\n\n\nThis is a note callout for important observations.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThis is a warning callout for potential issues.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an important callout for critical information.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThis is a tip callout for helpful advice.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-crossrefs",
+    "href": "Chapters/Introduction.html#sec-crossrefs",
+    "title": "Introduction",
+    "section": "Cross-References",
+    "text": "Cross-References\nYou can reference:\n\nFigures: Figure 1, Figure 2, Figure 5\nTables: Table 1, Table 2, Table 4\nEquations: Equation 3, Equation 1, Equation 5\nCode: Listing 1, Listing 2",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#additional-features",
+    "href": "Chapters/Introduction.html#additional-features",
+    "title": "Introduction",
+    "section": "Additional Features",
+    "text": "Additional Features\n\nFootnotes\nHere’s a footnote reference1 and another one2.\n\n\nDefinition Lists\n\nTerm 1\n\nDefinition 1\n\nTerm 2\n\nDefinition 2\n\n\n\n\nBlockquotes\n\nThis is a blockquote. It can span multiple lines.\n\n\n\nText Formatting\nBold text, italic text, strikethrough, inline code\n\n\nLists\nOrdered list:\n\nFirst item\nSecond item\nThird item\n\nUnordered list:\n\nItem one\nItem two\nItem three",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#sec-theorems",
+    "href": "Chapters/Introduction.html#sec-theorems",
+    "title": "Introduction",
+    "section": "Theorems",
+    "text": "Theorems\n\nTheorem 1 (Pythagorean Theorem) For a right-angled triangle with sides \\(a\\), \\(b\\) and hypotenuse \\(c\\):\n\\[a^2 + b^2 = c^2\\]\n\nReference as Theorem 1.\n\n\n\n\n\n\nAgency, E. E. (2019), “European air quality source apportionment with PMF methodology,” EEA Technical Report, 2019/5. https://doi.org/10.2800/05293.\n\n\nNorris, G., Duvall, R., Brown, S., and Bai, S. (2014), EPA positive matrix factorization (PMF) 5.0 fundamentals and user guide, U.S. Environmental Protection Agency.\n\n\nPaatero, P., and Tapper, U. (1994), “Positive matrix factorization: A non-negative factor model with optimal utilization of error estimates of data values,” Environmetrics, 5, 111–126. https://doi.org/10.1002/env.3170050203.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Chapters/Introduction.html#footnotes",
+    "href": "Chapters/Introduction.html#footnotes",
+    "title": "Introduction",
+    "section": "",
+    "text": "This is the footnote content.↩︎\nFootnotes can contain multiple paragraphs.↩︎",
     "crumbs": [
       "Introduction"
     ]

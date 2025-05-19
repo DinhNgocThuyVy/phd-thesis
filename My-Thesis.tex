@@ -74,6 +74,46 @@
 \fi
 \makeatother
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
@@ -238,6 +278,15 @@
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{remark}
+\AtBeginDocument{\renewcommand*{\proofname}{Proof}}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem{refremark}{Remark}[chapter]
+\newtheorem{refsolution}{Solution}[chapter]
 \makeatother
 \makeatletter
 \makeatother
@@ -560,81 +609,558 @@ Symbol & Name & Unit \\
 
 \markboth{Introduction}{Introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, titlerule=0mm, coltitle=black, bottomtitle=1mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colback=white, opacitybacktitle=0.6, arc=.35mm, breakable, toprule=.15mm, left=2mm, opacityback=0, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
 
-This introductory chapter sets the stage for the entire thesis. It
-begins by establishing the context and significance of research into
-Positive Matrix Factorization (PMF) for atmospheric pollution source
-apportionment. The chapter clearly articulates the primary research
-questions and objectives that guide this work, highlighting the gaps in
-current knowledge that this thesis aims to address. Furthermore, it
-provides a concise roadmap of the thesis structure, outlining the
-content and purpose of each subsequent chapter, thereby offering readers
-a clear overview of the research journey.
+This chapter demonstrates all major features available in Quarto for
+thesis writing. Each section showcases different elements and their
+cross-referencing capabilities to ensure everything works correctly.
 
 \end{tcolorbox}
 
-\section*{Overview}\label{overview}
-\addcontentsline{toc}{section}{Overview}
+\section*{Figures}\label{sec-figures}
+\addcontentsline{toc}{section}{Figures}
 
-\markright{Overview}
+\markright{Figures}
 
-This thesis examines the application of Positive Matrix Factorization
-(PMF) for source apportionment of atmospheric pollution across European
-urban environments. The research presented here develops advanced
-optimization techniques and validation frameworks that enhance the
-accuracy and reliability of PMF in identifying pollution sources.
+Quarto supports multiple ways to include figures:
 
-Our work demonstrates that improved model configuration and validation
-protocols can significantly reduce uncertainties in source contribution
-estimates, providing policy makers with more reliable data for targeted
-interventions.
+\subsection*{Single Figure}\label{single-figure}
+\addcontentsline{toc}{subsection}{Single Figure}
 
-\section*{Research Objectives}\label{research-objectives}
-\addcontentsline{toc}{section}{Research Objectives}
+\begin{figure}
 
-\markright{Research Objectives}
+\centering{
 
-The primary objectives of this research are to:
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png}
+
+}
+
+\caption{\label{fig-logo}Organization logo}
+
+\end{figure}%
+
+You can reference this as Figure~\ref{fig-logo}.
+
+\subsection*{Side-by-Side Figures}\label{side-by-side-figures}
+\addcontentsline{toc}{subsection}{Side-by-Side Figures}
+
+\begin{figure}
+
+\begin{minipage}{0.50\linewidth}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/images/logo.png}}
+
+}
+
+\caption{\label{fig-logo2}Logo}
+
+\end{figure}%
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/images/cover.pdf}}
+
+}
+
+\caption{\label{fig-cover}Cover Page}
+
+\end{figure}%
+
+\end{minipage}%
+
+\end{figure}%
+
+See Figure~\ref{fig-logo2} and Figure~\ref{fig-cover} side by side.
+
+\subsection*{Figure with Custom
+Attributes}\label{figure-with-custom-attributes}
+\addcontentsline{toc}{subsection}{Figure with Custom Attributes}
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png}
+
+}
+
+\caption{\label{fig-logo3}Organization logo}
+
+\end{figure}%
+
+You can reference this as Figure~\ref{fig-logo3}.
+
+\subsection*{Subfigures}\label{subfigures}
+\addcontentsline{toc}{subsection}{Subfigures}
+
+\begin{figure}
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/images/logo.png}}
+
+}
+
+\subcaption{\label{fig-logo4}Logo 1}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/images/logo.png}}
+
+}
+
+\subcaption{\label{fig-logo5}Logo 2}
+
+\end{minipage}%
+
+\caption{\label{fig-combined}Combined figures demonstration}
+
+\end{figure}%
+
+Reference the combined figure as Figure~\ref{fig-combined} or individual
+subfigures as Figure~\ref{fig-logo4} and Figure~\ref{fig-logo5}.
+
+\subsection*{Figure Generated from CSV
+Data}\label{figure-generated-from-csv-data}
+\addcontentsline{toc}{subsection}{Figure Generated from CSV Data}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/Introduction_files/figure-pdf/fig-matplotlib-output-1.pdf}}
+
+}
+
+\caption{\label{fig-matplotlib}Plot generated from CSV data}
+
+\end{figure}%
+
+Reference this figure as Figure~\ref{fig-matplotlib}.
+
+\subsection*{Multiple Data Series Plot}\label{multiple-data-series-plot}
+\addcontentsline{toc}{subsection}{Multiple Data Series Plot}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Chapters/Introduction_files/figure-pdf/fig-timeseries-output-1.pdf}}
+
+}
+
+\caption{\label{fig-timeseries}Multiple parameters from CSV data}
+
+\end{figure}%
+
+Reference this figure as Figure~\ref{fig-timeseries}.
+
+\section*{Tables}\label{sec-tables}
+\addcontentsline{toc}{section}{Tables}
+
+\markright{Tables}
+
+\subsection*{Simple Table}\label{simple-table}
+\addcontentsline{toc}{subsection}{Simple Table}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Basic Features}\label{tbl-simple}\tabularnewline
+\toprule\noalign{}
+Feature & Description \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Feature & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Figures & Embedded images and graphics \\
+Tables & Structured data presentation \\
+Equations & Mathematical expressions \\
+\end{longtable}
+
+Reference as Table~\ref{tbl-simple}.
+
+\subsection*{Grid Table}\label{grid-table}
+\addcontentsline{toc}{subsection}{Grid Table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2222}}@{}}
+\caption{Grid Table Example}\label{tbl-grid}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Column 1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Column 2
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Column 1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Column 2
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Row 1 & Data \\
+Row 2 & Data \\
+\end{longtable}
+
+Reference as Table~\ref{tbl-grid}.
+
+\subsection*{Pipe Table with Alignment}\label{pipe-table-with-alignment}
+\addcontentsline{toc}{subsection}{Pipe Table with Alignment}
+
+\begin{longtable}[]{@{}lcr@{}}
+\caption{Aligned Table}\label{tbl-align}\tabularnewline
+\toprule\noalign{}
+Left & Center & Right \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Left & Center & Right \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+L1 & C1 & R1 \\
+L2 & C2 & R2 \\
+\end{longtable}
+
+Reference as Table~\ref{tbl-align}.
+
+\subsection*{Table from CSV Data}\label{table-from-csv-data}
+\addcontentsline{toc}{subsection}{Table from CSV Data}
+
+\begin{longtable}[]{@{}lrrr@{}}
+
+\caption{\label{tbl-csv}Data imported from CSV file}
+
+\tabularnewline
+
+\toprule\noalign{}
+Date & PM2.5 & SO4 & NO3 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2022-01-01 & 25.3 & 4.2 & 3.1 \\
+2022-01-02 & 28.6 & 4.8 & 3.5 \\
+
+\end{longtable}
+
+Reference this as Table~\ref{tbl-csv}.
+
+\subsection*{Simple Formatted Table}\label{simple-formatted-table}
+\addcontentsline{toc}{subsection}{Simple Formatted Table}
+
+\begin{longtable}[]{@{}lrrr@{}}
+
+\caption{\label{tbl-simple-data}Summary of key parameters}
+
+\tabularnewline
+
+\toprule\noalign{}
+Parameter & Min & Max & Average \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+PM2.5 & 25.3 & 28.6 & 26.95 \\
+SO4 & 4.2 & 4.8 & 4.5 \\
+NO3 & 3.1 & 3.5 & 3.3 \\
+OC & 6.2 & 7.1 & 6.65 \\
+EC & 1.8 & 2.1 & 1.95 \\
+
+\end{longtable}
+
+Reference as Table~\ref{tbl-simple-data}.
+
+\section*{Equations}\label{sec-equations}
+\addcontentsline{toc}{section}{Equations}
+
+\markright{Equations}
+
+\subsection*{Inline Equations}\label{inline-equations}
+\addcontentsline{toc}{subsection}{Inline Equations}
+
+Inline math: \(E = mc^2\) or \(x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\)
+
+\subsection*{Display Equations}\label{display-equations}
+\addcontentsline{toc}{subsection}{Display Equations}
+
+\begin{equation}\phantomsection\label{eq-maxwell1}{
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}
+}\end{equation}
+
+\begin{equation}\phantomsection\label{eq-maxwell2}{
+\nabla \times \mathbf{B} = \mu_0\left(\mathbf{J} + \epsilon_0\frac{\partial \mathbf{E}}{\partial t}\right)
+}\end{equation}
+
+Reference Maxwell's equations as Equation~\ref{eq-maxwell1} and
+Equation~\ref{eq-maxwell2}.
+
+\subsection*{Single Equation with
+Label}\label{single-equation-with-label}
+\addcontentsline{toc}{subsection}{Single Equation with Label}
+
+\begin{equation}\phantomsection\label{eq-fourier}{
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi)\,e^{2 \pi i \xi x} \,d\xi
+}\end{equation}
+
+Reference as Equation~\ref{eq-fourier}.
+
+\subsection*{Equation Arrays}\label{equation-arrays}
+\addcontentsline{toc}{subsection}{Equation Arrays}
+
+\begin{equation}\phantomsection\label{eq-array}{
+\begin{array}{lcl}
+z & = & a \\
+f(x,y,z) & = & x + y + z
+\end{array}
+}\end{equation}
+
+Reference as Equation~\ref{eq-array}.
+
+\subsection*{LaTeX Equation with
+Matrix}\label{latex-equation-with-matrix}
+\addcontentsline{toc}{subsection}{LaTeX Equation with Matrix}
+
+\begin{equation}\phantomsection\label{eq-matrix}{
+A = 
+\begin{bmatrix} 
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+}\end{equation}
+
+Reference as Equation~\ref{eq-matrix}.
+
+\section*{Code Blocks}\label{sec-code}
+\addcontentsline{toc}{section}{Code Blocks}
+
+\markright{Code Blocks}
+
+\subsection*{Basic Python Code}\label{basic-python-code}
+\addcontentsline{toc}{subsection}{Basic Python Code}
+
+\begin{codelisting}
+
+\caption{\label{lst-basic}}
+
+\centering{
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{25°C is equal to 77.0°F}
+\end{Highlighting}
+\end{Shaded}
+
+}
+
+\end{codelisting}%
+
+Reference as Listing~\ref{lst-basic}.
+
+\subsection*{Data Import Example}\label{data-import-example}
+\addcontentsline{toc}{subsection}{Data Import Example}
+
+\begin{codelisting}
+
+\caption{\label{lst-import}}
+
+\centering{
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Number of rows: 2}
+\NormalTok{Number of columns: 16}
+
+\NormalTok{First few column names:}
+\NormalTok{Date, PM2.5, Na, SO4, NO3}
+\end{Highlighting}
+\end{Shaded}
+
+}
+
+\end{codelisting}%
+
+Reference as Listing~\ref{lst-import}.
+
+\section*{Citations}\label{sec-citations}
+\addcontentsline{toc}{section}{Citations}
+
+\markright{Citations}
+
+Citations can be:
+
+\begin{itemize}
+\tightlist
+\item
+  Single: Paatero and Tapper (\citeproc{ref-Paatero1994}{1994})
+\item
+  Multiple: (\citeproc{ref-EEA2019}{Agency 2019};
+  \citeproc{ref-PMF_Guide2014}{Norris et al. 2014})
+\item
+  In-text: Paatero and Tapper (\citeproc{ref-Paatero1994}{1994}) states
+  that\ldots{}
+\item
+  Parenthetical: (\citeproc{ref-Paatero1994}{Paatero and Tapper 1994})
+\end{itemize}
+
+\section*{Callouts}\label{sec-callouts}
+\addcontentsline{toc}{section}{Callouts}
+
+\markright{Callouts}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note Title}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
+
+This is a note callout for important observations.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-warning-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
+
+This is a warning callout for potential issues.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
+
+This is an important callout for critical information.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
+
+This is a tip callout for helpful advice.
+
+\end{tcolorbox}
+
+\section*{Cross-References}\label{sec-crossrefs}
+\addcontentsline{toc}{section}{Cross-References}
+
+\markright{Cross-References}
+
+You can reference:
+
+\begin{itemize}
+\tightlist
+\item
+  Figures: Figure~\ref{fig-logo}, Figure~\ref{fig-logo2},
+  Figure~\ref{fig-combined}
+\item
+  Tables: Table~\ref{tbl-simple}, Table~\ref{tbl-grid},
+  Table~\ref{tbl-csv}
+\item
+  Equations: Equation~\ref{eq-fourier}, Equation~\ref{eq-maxwell1},
+  Equation~\ref{eq-matrix}
+\item
+  Code: Listing~\ref{lst-basic}, Listing~\ref{lst-import}
+\end{itemize}
+
+\section*{Additional Features}\label{additional-features}
+\addcontentsline{toc}{section}{Additional Features}
+
+\markright{Additional Features}
+
+\subsection*{Footnotes}\label{footnotes}
+\addcontentsline{toc}{subsection}{Footnotes}
+
+Here's a footnote reference\footnote{This is the footnote content.} and
+another one\footnote{Footnotes can contain multiple paragraphs.}.
+
+\subsection*{Definition Lists}\label{definition-lists}
+\addcontentsline{toc}{subsection}{Definition Lists}
+
+\begin{description}
+\tightlist
+\item[Term 1]
+Definition 1
+\item[Term 2]
+Definition 2
+\end{description}
+
+\subsection*{Blockquotes}\label{blockquotes}
+\addcontentsline{toc}{subsection}{Blockquotes}
+
+\begin{quote}
+This is a blockquote. It can span multiple lines.
+\end{quote}
+
+\subsection*{Text Formatting}\label{text-formatting}
+\addcontentsline{toc}{subsection}{Text Formatting}
+
+\textbf{Bold text}, \emph{italic text}, \st{strikethrough},
+\texttt{inline\ code}
+
+\subsection*{Lists}\label{lists}
+\addcontentsline{toc}{subsection}{Lists}
+
+Ordered list:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Develop robust mathematical foundations for PMF optimization
+  First item
 \item
-  Create validation frameworks for source apportionment results
+  Second item
 \item
-  Integrate PMF outputs with policy development processes
-\item
-  Analyze spatial and temporal variations in source contributions
+  Third item
 \end{enumerate}
 
-\section*{Thesis Structure}\label{thesis-structure}
-\addcontentsline{toc}{section}{Thesis Structure}
-
-\markright{Thesis Structure}
-
-This thesis is organized into the following chapters:
+Unordered list:
 
 \begin{itemize}
 \tightlist
 \item
-  Chapter 1 presents a comprehensive literature review of PMF and its
-  applications in atmospheric science.
+  Item one
 \item
-  Chapter 2 details the optimization and validation methodologies for
-  PMF models.
+  Item two
 \item
-  Chapter 3 explores the integration of PMF results with policy
-  development frameworks.
-\item
-  Chapter 4 examines spatial and temporal variations in PM source
-  contributions across European cities.
+  Item three
 \end{itemize}
 
-The appendices provide additional technical details, code documentation,
-and supplementary results.
+\section*{Theorems}\label{sec-theorems}
+\addcontentsline{toc}{section}{Theorems}
+
+\markright{Theorems}
+
+\begin{theorem}[Pythagorean
+Theorem]\protect\hypertarget{thm-pythagorean}{}\label{thm-pythagorean}
+
+For a right-angled triangle with sides \(a\), \(b\) and hypotenuse
+\(c\):
+
+\[a^2 + b^2 = c^2\]
+
+\end{theorem}
+
+Reference as Theorem~\ref{thm-pythagorean}.
 
 \bookmarksetup{startatroot}
 
@@ -645,7 +1171,7 @@ Some Authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, titlerule=0mm, coltitle=black, bottomtitle=1mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colback=white, opacitybacktitle=0.6, arc=.35mm, breakable, toprule=.15mm, left=2mm, opacityback=0, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
 
 This chapter provides a comprehensive review of the existing literature
 pertinent to Positive Matrix Factorization (PMF) and its application in
@@ -982,7 +1508,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, titlerule=0mm, coltitle=black, bottomtitle=1mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colback=white, opacitybacktitle=0.6, arc=.35mm, breakable, toprule=.15mm, left=2mm, opacityback=0, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
 
 This chapter focuses on the methodological core of the thesis: the
 optimization and validation of Positive Matrix Factorization (PMF)
@@ -1443,7 +1969,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, titlerule=0mm, coltitle=black, bottomtitle=1mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colback=white, opacitybacktitle=0.6, arc=.35mm, breakable, toprule=.15mm, left=2mm, opacityback=0, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
 
 This chapter bridges the gap between scientific research and practical
 application by exploring the integration of PMF source apportionment
@@ -1589,7 +2115,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, titlerule=0mm, coltitle=black, bottomtitle=1mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colback=white, opacitybacktitle=0.6, arc=.35mm, breakable, toprule=.15mm, left=2mm, opacityback=0, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, coltitle=black, opacityback=0, toptitle=1mm, breakable, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm]
 
 This chapter presents an in-depth analysis of the spatial and temporal
 dynamics of particulate matter (PM) source contributions across a
