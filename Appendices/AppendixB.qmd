@@ -1,4 +1,4 @@
-# Supplementary Materials {#sec-app-b}
+# Advanced Table features {#sec-app-b}
 
 This appendix contains supplementary materials that support the main chapters but are not essential to understanding the primary research findings. This appendix demonstrates various table formats, styles, and features available in Quarto.
 

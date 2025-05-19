@@ -1,68 +1,29 @@
 {
   "index.qmd": {
-    "index.html": "443a81c0"
-  },
-  "Chapters/Chapter1.qmd": {
-    "Chapter1.html": "3b5592b6"
-  },
-  "Chapters/Chapter2.qmd": {
-    "Chapter2.html": "c6ffa095"
-  },
-  "references.qmd": {
-    "references.html": "6f41a767"
-  },
-  "Appendices/AppendixA.qmd": {
-    "AppendixA.html": "267a4a6e"
-  },
-  "frontmatter/abstract-en.qmd": {
-    "abstract-en.html": "a105a410"
-  },
-  "frontmatter/abstract-fr.qmd": {
-    "abstract-fr.html": "d8e053fc"
-  },
-  "frontmatter/acknowledgements.qmd": {
-    "acknowledgements.html": "2b741cad"
-  },
-  "frontmatter/abbreviations.qmd": {
-    "abbreviations.html": "516c624f"
-  },
-  "frontmatter/dedication.qmd": {
-    "dedication.html": "ed03afec"
-  },
-  "Chapters/Chapter3.qmd": {
-    "Chapter3.html": "94ddfefd"
-  },
-  "Appendices/AppendixB.qmd": {
-    "AppendixB.html": "4c733a6e"
-  },
-  "Chapters/Chapter4.qmd": {
-    "Chapter4.html": "cb6a1844"
-  },
-  "Frontmatter/abstract-en.qmd": {
-    "abstract-en.html": "860bc636"
-  },
-  "Frontmatter/abstract-fr.qmd": {
-    "abstract-fr.html": "43d71d57"
-  },
-  "Frontmatter/acknowledgements.qmd": {
-    "acknowledgements.html": "2eb4ac89"
-  },
-  "Frontmatter/abbreviations.qmd": {
-    "abbreviations.html": "a43b82c1"
-  },
-  "Frontmatter/symbols.qmd": {
-    "symbols.html": "b0ab2f5d"
-  },
-  "Frontmatter/dedication.qmd": {
-    "dedication.html": "67b5c721"
-  },
-  "Frontmatter/_frontmatter.qmd": {
-    "_frontmatter.html": "5530a8d8"
-  },
-  "Frontmatter/_mainmatter.qmd": {
-    "_mainmatter.html": "0c5b963c"
+    "index.html": "1d3f249f"
   },
   "Chapters/Introduction.qmd": {
-    "Introduction.html": "71dddcbf"
+    "Introduction.html": "74ddb472"
+  },
+  "Chapters/Chapter1.qmd": {
+    "Chapter1.html": "117d5ca2"
+  },
+  "Chapters/Chapter2.qmd": {
+    "Chapter2.html": "e6b9d670"
+  },
+  "Chapters/Chapter3.qmd": {
+    "Chapter3.html": "befe1376"
+  },
+  "Chapters/Chapter4.qmd": {
+    "Chapter4.html": "88ea4e90"
+  },
+  "references.qmd": {
+    "references.html": "b24fa7ce"
+  },
+  "Appendices/AppendixA.qmd": {
+    "AppendixA.html": "f7b7b200"
+  },
+  "Appendices/AppendixB.qmd": {
+    "AppendixB.html": "058ac5a3"
   }
 }

@@ -4,6 +4,10 @@
 Some authors
 :::
 
+::: {.callout-important title="Chapter Summary"}
+This chapter focuses on the methodological core of the thesis: the optimization and validation of Positive Matrix Factorization (PMF) models. It presents a systematic framework for selecting optimal model parameters, such as the number of factors and the FPEAK rotational parameter, to achieve physically meaningful solutions. Furthermore, the chapter details a multi-faceted validation strategy, incorporating techniques like bootstrap analysis, displacement of factor elements (DISP), and combined BS-DISP analysis, to rigorously assess the stability, uncertainty, and robustness of the derived source profiles and contributions.
+:::
+
 Under review at Science of the Total Environment
 
 ```{python}
@@ -54,7 +58,6 @@ We employed three complementary validation approaches as recommended by [@PMF_Gu
 ```{python}
 #| label: fig-qvalue
 #| fig-cap: "Q-value vs number of factors"
-#| fig-width: 8
 #| fig-height: 6
 #| echo: false
 #| warning: false
@@ -195,4 +198,6 @@ display(Markdown(uncertainty_data.to_markdown(index=False)))
 | Hybrid Models | PMF + dispersion models: $C_{i,j} = \sum_{k=1}^{p} D_{i,j,k} \cdot Q_k$ | Combines receptor and dispersion | Data intensive | Extended PMF application |
 
 : Comparison of Receptor Models for Source Apportionment {#tbl-ch2-model-comparison}
+
+\includepdf[pages=-, pagecommand={\thispagestyle{thesis}}]{Publication/DINH et al 2024_ACP.pdf}
 

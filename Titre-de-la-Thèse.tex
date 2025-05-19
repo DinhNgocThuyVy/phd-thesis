@@ -154,6 +154,16 @@
 % Define fallback mechanism for includepdf if needed
 \providecommand{\includepdf}[2][]{\textbf{Error: pdfpages package not properly loaded. Cannot include PDF file #2.}}
 
+% Page number customization using KOMA-Script's scrlayer-scrpage
+\usepackage{scrlayer-scrpage} % Ensure the KOMA page style package is loaded
+\clearscrplain % Clears the 'plain' page style to be based on 'scrheadings' elements
+\ifoot*{} % Clears the inner footer for 'scrheadings' and 'plain' styles
+\ofoot*{} % Clears the outer footer for 'scrheadings' and 'plain' styles
+\ohead*[]{} % Clears the outer header for 'scrheadings' and 'plain' styles
+\cfoot[\thepage]{\thepage} % Sets the page number in the center of the footer
+                           % The optional argument [\thepage] applies it to 'plain' style
+                           % The main argument {\thepage} applies it to 'scrheadings' (or 'thesis') style
+
 %----------------------------------------------------------------------------------------
 %	MARGINS
 %----------------------------------------------------------------------------------------
@@ -171,6 +181,22 @@
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
 \makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
@@ -251,7 +277,7 @@ Prénom} % Your name, this is used in the title page and abstract, print it else
 \setcounter{tocdepth}{1} % The depth to which the document sections are printed to the table of contents
 
 % Define custom cover setting
-\def\@use@custom@cover{true}
+\def\@use@custom@cover{false}
 
 \begin{document}
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
@@ -394,6 +420,13 @@ Finally, I would like to thank my family and friends for their
 unwavering support and encouragement during the challenging times of
 this doctoral study.
 
+\clearpage
+\begin{center}
+\vspace*{\fill}
+\textit{For Vinh thúi}
+\vspace*{\fill}
+\end{center}
+
 \bookmarksetup{startatroot}
 
 \chapter*{Abstract}\label{abstract}
@@ -435,13 +468,6 @@ fournissant aux décideurs politiques des données plus fiables pour des
 interventions ciblées.
 
 \textbf{Mots-clés:} mot-clé1, mot-clé2, mot-clé3, mot-clé4
-
-\clearpage
-\begin{center}
-\vspace*{\fill}
-\textit{For Vinh thúi}
-\vspace*{\fill}
-\end{center}
 
 \clearpage
 \begingroup
@@ -515,6 +541,20 @@ Symbol & Name & Unit \\
 
 \markboth{Introduction}{Introduction}
 
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+
+This introductory chapter sets the stage for the entire thesis. It
+begins by establishing the context and significance of research into
+Positive Matrix Factorization (PMF) for atmospheric pollution source
+apportionment. The chapter clearly articulates the primary research
+questions and objectives that guide this work, highlighting the gaps in
+current knowledge that this thesis aims to address. Furthermore, it
+provides a concise roadmap of the thesis structure, outlining the
+content and purpose of each subsequent chapter, thereby offering readers
+a clear overview of the research journey.
+
+\end{tcolorbox}
+
 \section*{Overview}\label{overview}
 \addcontentsline{toc}{section}{Overview}
 
@@ -585,6 +625,20 @@ and supplementary results.
 Some Authors
 
 \end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+
+This chapter provides a comprehensive review of the existing literature
+pertinent to Positive Matrix Factorization (PMF) and its application in
+source apportionment of atmospheric pollutants. It delves into the
+mathematical underpinnings of PMF, comparing it with other receptor
+models like Chemical Mass Balance (CMB) and Principal Component Analysis
+(PCA). Key historical developments, seminal studies, common challenges,
+and advancements in PMF methodology are discussed, establishing the
+theoretical framework and identifying the research niche for this
+thesis.
+
+\end{tcolorbox}
 
 This is the literature review chapter. It should appear with the title
 ``Literature Review'' in the navigation.
@@ -908,6 +962,21 @@ EC & \textbf{45\%} & 10\% & \emph{25\%} & 5\% \\
 Some authors
 
 \end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+
+This chapter focuses on the methodological core of the thesis: the
+optimization and validation of Positive Matrix Factorization (PMF)
+models. It presents a systematic framework for selecting optimal model
+parameters, such as the number of factors and the FPEAK rotational
+parameter, to achieve physically meaningful solutions. Furthermore, the
+chapter details a multi-faceted validation strategy, incorporating
+techniques like bootstrap analysis, displacement of factor elements
+(DISP), and combined BS-DISP analysis, to rigorously assess the
+stability, uncertainty, and robustness of the derived source profiles
+and contributions.
+
+\end{tcolorbox}
 
 Under review at Science of the Total Environment
 
@@ -1343,6 +1412,8 @@ Hybrid Models & PMF + dispersion models:
 dispersion & Data intensive & Extended PMF application \\
 \end{longtable}
 
+\includepdf[pages=-, pagecommand={\thispagestyle{thesis}}]{Publication/DINH et al 2024_ACP.pdf}
+
 \bookmarksetup{startatroot}
 
 \chapter{Integration of PMF Results with Policy
@@ -1352,6 +1423,21 @@ Development}\label{sec-ch3}
 Some authors
 
 \end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+
+This chapter bridges the gap between scientific research and practical
+application by exploring the integration of PMF source apportionment
+results into air quality policy development. Through illustrative case
+studies from various European urban environments, it demonstrates how
+robust PMF findings can inform targeted and effective pollution control
+strategies. The chapter also proposes a structured framework for
+translating complex scientific outputs into actionable policy
+recommendations, considering aspects such as cost-benefit analysis,
+stakeholder engagement, and realistic implementation timelines for
+proposed interventions.
+
+\end{tcolorbox}
 
 Under review at Environmental Science \& Policy
 
@@ -1484,6 +1570,20 @@ Some authors
 
 \end{center}
 
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, bottomrule=.15mm, breakable, coltitle=black, arc=.35mm, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colbacktitle=quarto-callout-important-color!10!white, leftrule=.75mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, toprule=.15mm, left=2mm, opacitybacktitle=0.6]
+
+This chapter presents an in-depth analysis of the spatial and temporal
+dynamics of particulate matter (PM) source contributions across a
+selection of major European cities. Leveraging the EPA PMF 5.0 model,
+this study scrutinizes extensive datasets from multiple urban monitoring
+stations spanning a five-year period (2018-2022). The research
+identifies key anthropogenic and natural pollution sources, quantifies
+their relative contributions to PM2.5 and PM10 concentrations, and
+examines how these contributions vary across different urban landscapes
+and evolve over diurnal, seasonal, and inter-annual timescales.
+
+\end{tcolorbox}
+
 Under review at Atmospheric Environment
 
 \section{Abstract}\label{abstract-3}
@@ -1606,7 +1706,7 @@ data values,''} \emph{Environmetrics}, 5, 111--126.
 \addcontentsline{toc}{part}{Appendices}
 \appendix
 
-\chapter{Python Packages}\label{sec-python-pkgs}
+\chapter{Simplate Table Markdown}\label{sec-python-pkgs}
 
 The following Python packages were used in this thesis:
 
@@ -1632,7 +1732,7 @@ scikit-learn & Machine learning tools & 1.2.0+ \\
 For a complete list of package versions, see the
 \texttt{requirements.txt} file in the thesis repository.
 
-\chapter{Supplementary Materials}\label{sec-app-b}
+\chapter{Advanced Table features}\label{sec-app-b}
 
 This appendix contains supplementary materials that support the main
 chapters but are not essential to understanding the primary research
@@ -1991,66 +2091,6 @@ R² & 0.685 & 0.724 & 0.653 & 0.791 \\
 \emph{p \textless{} 0.05, \textbf{p \textless{} 0.01, }}p \textless{}
 0.001
 
-\subsection{6. CSV Loading \& Time Series Table}\label{sec-app-b-csv}
-
-\begin{verbatim}
-C:\Users\nguytruo\AppData\Local\Temp\ipykernel_16048\3106367120.py:11: SettingWithCopyWarning:
-
-
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-C:\Users\nguytruo\AppData\Local\Temp\ipykernel_16048\3106367120.py:12: SettingWithCopyWarning:
-
-
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-C:\Users\nguytruo\AppData\Local\Temp\ipykernel_16048\3106367120.py:15: SettingWithCopyWarning:
-
-
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-C:\Users\nguytruo\AppData\Local\Temp\ipykernel_16048\3106367120.py:16: SettingWithCopyWarning:
-
-
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-\end{verbatim}
-
-\begin{longtable}[]{@{}lllrl@{}}
-
-\caption{\label{tbl-app-b-sales}Quarterly sales data loaded from CSV
-file}
-
-\tabularnewline
-
-\toprule\noalign{}
-Unnamed: 0 & Sales & AdBudget & GDP & \% Change \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Mar-81 & \$1,020.2 & \$659.2 & 251.8 & N/A \\
-Jun-81 & \$889.2 & \$589.0 & 290.9 & -12.8\% \\
-Sep-81 & \$795.0 & \$512.5 & 290.8 & -10.6\% \\
-Dec-81 & \$1,003.9 & \$614.1 & 292.4 & 26.3\% \\
-Mar-82 & \$1,057.7 & \$647.2 & 279.1 & 5.4\% \\
-Jun-82 & \$944.4 & \$602.0 & 254 & -10.7\% \\
-Sep-82 & \$778.5 & \$530.7 & 295.6 & -17.6\% \\
-Dec-82 & \$932.5 & \$608.4 & 271.7 & 19.8\% \\
-
-\end{longtable}
-
 \subsection{7. Wide Table with Many Columns}\label{sec-app-b-wide-table}
 
 \begin{longtable}[]{@{}lcccccccccccccccccccccccccccccccccccccccccccccccccc@{}}
@@ -2216,165 +2256,6 @@ Paatero and Tapper (\citeproc{ref-Paatero1994}{1994}) \\
 Receptor Models & General term for source apportionment techniques &
 Multiple approaches & See Table~\ref{tbl-app-b-citations} \\
 \end{longtable}
-
-\section{Table Comparison and
-References}\label{sec-app-b-comparison-ref}
-
-This section demonstrates how to reference and compare tables throughout
-this document.
-
-As shown in Table~\ref{tbl-app-b-full}, descriptive statistics provide a
-foundation for understanding the dataset. The formatted presentation in
-Table~\ref{tbl-app-b-formatted} enhances readability through strategic
-use of text styling.
-
-Statistical analyses utilize mathematical equations (see
-Table~\ref{tbl-app-b-eq}) and incorporate significance indicators
-(Table~\ref{tbl-app-b-significance}). These analyses build upon previous
-research summarized in Table~\ref{tbl-app-b-citations}.
-
-For temporal data analysis, we examine quarterly sales patterns
-(Table~\ref{tbl-app-b-sales}) and daily PM2.5 measurements across
-stations (Table~\ref{tbl-app-b-long}). Spatial variation is visible in
-the wide-format presentation of site parameters
-(Table~\ref{tbl-app-b-wide}).
-
-When comparing modeling approaches (Table~\ref{tbl-app-b-r-kable}), a
-clear trend emerges: higher-order models achieve better fit metrics but
-risk overfitting. The correlation heat map
-(Table~\ref{tbl-app-b-corr-heatmap}) reveals relationships between
-variables that inform these models.
-
-Finally, Table~\ref{tbl-app-b-mixed} demonstrates how tables can
-integrate multiple content types, creating rich information displays
-that connect to other document elements.
-
-Age \textbar{} 0.12 \textbar{} 0.25 \textbar{} 1.00 \textbar{} 0.22
-\textbar{} 0.45 \textbar{} 0.38 \textbar{} 0.05 \textbar{} 0.35
-\textbar{} 0.30 \textbar{} 0.32 \textbar{}\\
-BMI \textbar{} 0.08 \textbar{} 0.82 \textbar{} 0.22 \textbar{} 1.00
-\textbar{} 0.28 \textbar{} 0.24 \textbar{} 0.18 \textbar{} 0.20
-\textbar{} 0.30 \textbar{} 0.25 \textbar{}\\
-Systolic BP \textbar{} 0.15 \textbar{} 0.30 \textbar{} 0.45 \textbar{}
-0.28 \textbar{} 1.00 \textbar{} 0.78 \textbar{} 0.15 \textbar{} 0.25
-\textbar{} 0.28 \textbar{} 0.30 \textbar{}\\
-Diastolic BP\textbar{} 0.10 \textbar{} 0.25 \textbar{} 0.38 \textbar{}
-0.24 \textbar{} 0.78 \textbar{} 1.00 \textbar{} 0.12 \textbar{} 0.22
-\textbar{} 0.25 \textbar{} 0.28 \textbar{}\\
-Heart Rate \textbar{} -0.05 \textbar{} 0.15 \textbar{} 0.05 \textbar{}
-0.18 \textbar{} 0.15 \textbar{} 0.12 \textbar{} 1.00 \textbar{} 0.05
-\textbar{} 0.18 \textbar{} 0.15 \textbar{}\\
-Cholesterol \textbar{} 0.08 \textbar{} 0.18 \textbar{} 0.35 \textbar{}
-0.20 \textbar{} 0.25 \textbar{} 0.22 \textbar{} 0.05 \textbar{} 1.00
-\textbar{} 0.65 \textbar{} 0.38 \textbar{}\\
-Triglycerides\textbar{} 0.12 \textbar{} 0.28 \textbar{} 0.30 \textbar{}
-0.30 \textbar{} 0.28 \textbar{} 0.25 \textbar{} 0.18 \textbar{} 0.65
-\textbar{} 1.00 \textbar{} 0.45 \textbar{}\\
-Glucose \textbar{} 0.03 \textbar{} 0.22 \textbar{} 0.32 \textbar{} 0.25
-\textbar{} 0.30 \textbar{} 0.28 \textbar{} 0.15 \textbar{} 0.38
-\textbar{} 0.45 \textbar{} 1.00 \textbar{}
-
-: Correlation matrix for key study variables \{\#tbl-app-b-corr\}
-
-\section{Additional Figures}\label{sec-app-b-figures-add}
-
-\subsection{Extended Visualizations}\label{sec-app-b-ext-viz-add}
-
-We analyzed the distribution of key measurements by demographic groups.
-Our analysis showed clear differences between male and female
-participants across several metrics:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Height}: Males averaged 178 cm (SD=7), females 165 cm (SD=6)
-\item
-  \textbf{Weight}: Males averaged 80 kg (SD=10), females 65 kg (SD=8)
-\item
-  \textbf{Systolic BP}: Males averaged 130 mmHg (SD=12), females 120
-  mmHg (SD=10)
-\item
-  \textbf{Diastolic BP}: Males averaged 82 mmHg (SD=8), females 78 mmHg
-  (SD=7)
-\end{itemize}
-
-\chapter{Add units}\label{add-units}
-
-data\_long\(Measurement <- factor(data_long\)Measurement, levels =
-c(``Height'', ``Weight'', ``SBP'', ``DBP''), labels = c(``Height (cm)'',
-``Weight (kg)'', ``Systolic BP (mmHg)'', ``Diastolic BP (mmHg)''))
-
-\chapter{Create plot}\label{create-plot}
-
-\subsection{Detailed Analysis Plots}\label{sec-app-b-analysis-plots}
-
-Our regression analysis from Chapter 2 showed a strong linear
-relationship between the predictor variable and the outcome. The
-diagnostic plots revealed:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Residual Plot}: Residuals were randomly distributed around
-  zero with no discernible pattern
-\item
-  \textbf{Q-Q Plot}: Points closely followed the theoretical line,
-  suggesting normally distributed residuals
-\item
-  \textbf{Scale-Location Plot}: Square root of standardized residuals
-  showed homoscedasticity
-\item
-  \textbf{Leverage Plot}: No influential outliers were identified with
-  Cook's distance
-\end{enumerate}
-
-\section{Extended Mathematical
-Derivations}\label{sec-app-b-math-derivations}
-
-\subsection{Proof of Equation 3 in Chapter 2}\label{sec-app-b-proof-eq3}
-
-Here we provide a step-by-step derivation of the expansion of
-\((x + y)^2\) as presented in \hyperref[eq-expand]{Equation 3} of
-\hyperref[sec-ch2-adv-eq]{Chapter 2}.
-
-Starting with the definition of the square:
-
-\[
-(x + y)^2 = (x + y)(x + y)
-\]
-
-Using the distributive property to expand the first factor:
-
-\[
-(x + y)(x + y) = x(x + y) + y(x + y)
-\]
-
-Further expanding each term:
-
-\[
-\begin{aligned}
-x(x + y) + y(x + y) &= x \cdot x + x \cdot y + y \cdot x + y \cdot y \\
-&= x^2 + xy + yx + y^2
-\end{aligned}
-\]
-
-Since multiplication is commutative for real numbers, \(xy = yx\), so:
-
-\[
-\begin{aligned}
-x^2 + xy + yx + y^2 &= x^2 + xy + xy + y^2 \\
-&= x^2 + 2xy + y^2
-\end{aligned}
-\]
-
-This completes the derivation.
-
-\section{Source Code}\label{sec-app-b-source-code}
-
-\subsection{Data Processing Script}\label{sec-app-b-data-proc-script}
-
-Below is the R script used for data processing:
 
 
 

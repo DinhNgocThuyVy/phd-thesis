@@ -4,6 +4,10 @@
 Some Authors
 :::
 
+::: {.callout-important title="Chapter Summary"}
+This chapter provides a comprehensive review of the existing literature pertinent to Positive Matrix Factorization (PMF) and its application in source apportionment of atmospheric pollutants. It delves into the mathematical underpinnings of PMF, comparing it with other receptor models like Chemical Mass Balance (CMB) and Principal Component Analysis (PCA). Key historical developments, seminal studies, common challenges, and advancements in PMF methodology are discussed, establishing the theoretical framework and identifying the research niche for this thesis.
+:::
+
 This is the literature review chapter. It should appear with the title "Literature Review" in the navigation.
 
 ## PMF Mathematical Foundation {#sec-ch1-pmf-math}

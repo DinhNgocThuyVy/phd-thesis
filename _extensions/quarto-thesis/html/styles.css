@@ -44,21 +44,3 @@ h1.title {
   text-align: center;
   margin: 3rem 0;
 }
-
-/* Chapter Summary Box */
-.chapter-summary {
-  margin: 1rem 0; /* Reduced top/bottom margin */
-  padding: 1rem;  /* Reduced padding */
-  background-color: #f0f2f5;
-  border: 1px solid #2980b9;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-}
-
-.chapter-summary-title {
-  font-weight: bold;
-  font-size: 1.1rem;
-  text-align: center;
-  margin-bottom: 0.5rem; /* Reduced bottom margin */
-  color: #2c3e50;
-}

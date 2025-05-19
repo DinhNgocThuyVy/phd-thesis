@@ -17,6 +17,16 @@
 % Define fallback mechanism for includepdf if needed
 \providecommand{\includepdf}[2][]{\textbf{Error: pdfpages package not properly loaded. Cannot include PDF file #2.}}
 
+% Page number customization using KOMA-Script's scrlayer-scrpage
+\usepackage{scrlayer-scrpage} % Ensure the KOMA page style package is loaded
+\clearscrplain % Clears the 'plain' page style to be based on 'scrheadings' elements
+\ifoot*{} % Clears the inner footer for 'scrheadings' and 'plain' styles
+\ofoot*{} % Clears the outer footer for 'scrheadings' and 'plain' styles
+\ohead*[]{} % Clears the outer header for 'scrheadings' and 'plain' styles
+\cfoot[\thepage]{\thepage} % Sets the page number in the center of the footer
+                           % The optional argument [\thepage] applies it to 'plain' style
+                           % The main argument {\thepage} applies it to 'scrheadings' (or 'thesis') style
+
 %----------------------------------------------------------------------------------------
 %	MARGINS
 %----------------------------------------------------------------------------------------

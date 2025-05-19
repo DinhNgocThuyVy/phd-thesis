@@ -4,6 +4,10 @@
 Some authors
 :::
 
+::: {.callout-important title="Chapter Summary"}
+This chapter bridges the gap between scientific research and practical application by exploring the integration of PMF source apportionment results into air quality policy development. Through illustrative case studies from various European urban environments, it demonstrates how robust PMF findings can inform targeted and effective pollution control strategies. The chapter also proposes a structured framework for translating complex scientific outputs into actionable policy recommendations, considering aspects such as cost-benefit analysis, stakeholder engagement, and realistic implementation timelines for proposed interventions.
+:::
+
 Under review at Environmental Science & Policy
 
 ## Abstract
@@ -42,7 +46,6 @@ display(Markdown(impact_df.to_markdown(index=False)))
 ```{python}
 #| label: fig-cost-benefit
 #| fig-cap: "Cost-benefit analysis of source control measures"
-#| fig-width: 10
 #| fig-height: 6
 #| echo: false
 #| warning: false
@@ -76,7 +79,6 @@ plt.show()
 ```{python}
 #| label: fig-timeline
 #| fig-cap: "Implementation timeline for source control measures"
-#| fig-width: 12
 #| fig-height: 4
 #| echo: false
 #| warning: false

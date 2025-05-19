@@ -39,7 +39,7 @@ discipline: "Informatique"
 
 # University information
 university_name: "Université Grenoble Alpes"
-university_logo: "images/logo.png"
+university_logo: "images/logo.pdf" # Changed from logo.png to logo.pdf
 
 # Department and organizational information
 department: "Département d'Informatique"
@@ -69,7 +69,7 @@ committee_members: |
 
 
 execute:
-  freeze: true # True: Enable project-wide freezing of computations, auto is better
+  freeze: true # Changed from auto to true for stricter freezing
   echo: false
   warning: false   # Suppress all warning messages
   message: false   # Suppress all messages
@@ -92,13 +92,15 @@ format:
     code-tools: true
     code-link: true
     embed-pdf: true  # Render PDF images as normal images
+    fig-format: png # Ensure figures are generated in PNG format for HTML
   pdf:
     template-partials:
       - "_extensions/quarto-thesis/partials/before-body.tex"
       - "_extensions/quarto-thesis/partials/title.tex"
     include-in-header: "_extensions/quarto-thesis/partials/in-header.tex"
     documentclass: MastersDoctoralThesis
-    use_custom_cover: true
+    use_custom_cover: false # true: use cover.pdf for the title page instead of defined information
+    fig-format: pdf # Ensure figures are generated in PDF (vector) format
     toclinkcolor: black
     toc: false # Explicitly disable Quarto TOC for PDF since it's handled by the LaTeX template
     toc-depth: 2

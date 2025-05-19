@@ -1,4 +1,4 @@
-# Python Packages {#sec-python-pkgs}
+# Simplate Table Markdown {#sec-python-pkgs}
 
 The following Python packages were used in this thesis:
 

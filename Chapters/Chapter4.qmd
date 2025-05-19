@@ -4,6 +4,10 @@
 Some authors
 :::
 
+::: {.callout-important title="Chapter Summary"}
+This chapter presents an in-depth analysis of the spatial and temporal dynamics of particulate matter (PM) source contributions across a selection of major European cities. Leveraging the EPA PMF 5.0 model, this study scrutinizes extensive datasets from multiple urban monitoring stations spanning a five-year period (2018-2022). The research identifies key anthropogenic and natural pollution sources, quantifies their relative contributions to PM2.5 and PM10 concentrations, and examines how these contributions vary across different urban landscapes and evolve over diurnal, seasonal, and inter-annual timescales.
+:::
+
 Under review at Atmospheric Environment
 
 ## Abstract
@@ -41,7 +45,6 @@ df = pd.read_csv('data/pmf_data.csv', parse_dates=['Date'])
 ```{python}
 #| label: fig-temporal-patterns
 #| fig-cap: "Temporal variation of major PM2.5 components"
-#| fig-width: 10
 #| fig-height: 6
 #| echo: false
 #| warning: false
@@ -87,7 +90,6 @@ display(Markdown(profiles.round(2).to_markdown()))
 ```{python}
 #| label: fig-seasonal-contributions
 #| fig-cap: "Seasonal source contributions to PM2.5"
-#| fig-width: 10
 #| fig-height: 6
 #| echo: false
 #| warning: false

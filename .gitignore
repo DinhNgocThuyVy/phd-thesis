@@ -1,6 +1,7 @@
 # Quarto cache files
 /.quarto/
 /.luarc.json
+_freeze/
 
 # Don't ignore docs since we're using it for GitHub Pages
 # docs/

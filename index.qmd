@@ -8,7 +8,7 @@ format:
 
 ::: {.content-visible when-format="html"}
 ::: {.thesis-cover-image}
-<img src="cover.pdf" alt="Thesis Cover" />
+<img src="images/thesis-cover.png" alt="Thesis Cover" />
 :::
 :::
 
@@ -21,6 +21,13 @@ I am deeply grateful to the members of my thesis committee for their insightful 
 Special thanks to my colleagues at the Laboratoire d'Informatique de Grenoble for creating a stimulating and collaborative research environment.
 
 Finally, I would like to thank my family and friends for their unwavering support and encouragement during the challenging times of this doctoral study.
+
+\clearpage
+\begin{center}
+\vspace*{\fill}
+\textit{For Vinh thúi}
+\vspace*{\fill}
+\end{center}
 
 # Abstract {.unnumbered}
 
@@ -38,12 +45,6 @@ Notre recherche démontre que des protocoles améliorés de configuration et de 
 
 **Mots-clés:** mot-clé1, mot-clé2, mot-clé3, mot-clé4
 
-\clearpage
-\begin{center}
-\vspace*{\fill}
-\textit{For Vinh thúi}
-\vspace*{\fill}
-\end{center}
 
 ::: {.content-visible when-format="pdf"}
 \clearpage

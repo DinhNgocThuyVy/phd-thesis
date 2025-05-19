@@ -1,5 +1,9 @@
 # Introduction {.unnumbered #sec-introduction}
 
+::: {.callout-important title="Chapter Summary"}
+This introductory chapter sets the stage for the entire thesis. It begins by establishing the context and significance of research into Positive Matrix Factorization (PMF) for atmospheric pollution source apportionment. The chapter clearly articulates the primary research questions and objectives that guide this work, highlighting the gaps in current knowledge that this thesis aims to address. Furthermore, it provides a concise roadmap of the thesis structure, outlining the content and purpose of each subsequent chapter, thereby offering readers a clear overview of the research journey.
+:::
+
 ## Overview
 
 This thesis examines the application of Positive Matrix Factorization (PMF) for source apportionment of atmospheric pollution across European urban environments. The research presented here develops advanced optimization techniques and validation frameworks that enhance the accuracy and reliability of PMF in identifying pollution sources.

@@ -61,7 +61,7 @@
 
 %  Simple interface for the user  to customize the chapter titles 
 \ProvideDocumentCommand{\abovechapterskip}{}{\vspace*{0pt}} % Reduced from 10pt to 0pt
-\ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{10pt}} % Reduced from 20pt to 10pt
+\ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{5pt}} % Reduced from 20pt to 5pt
 \ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{4pt}} % Reduced from 10pt to 4pt
 \ProvideDocumentCommand{\autodot}{}{}
 \ProvideDocumentCommand{\mdtChapapp}{}{}
