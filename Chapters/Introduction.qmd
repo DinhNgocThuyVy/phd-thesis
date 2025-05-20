@@ -1,5 +1,50 @@
 # Introduction {.unnumbered #sec-introduction}
 
+<style>
+/* Custom style for borderless tables */
+.borderless-table table {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.borderless-table table th,
+.borderless-table table td {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Custom style for tables without headers */
+.headerless-table table thead {
+  display: none;
+}
+
+/* Enhanced clean figure table style */
+.clean-figure-table table {
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+.clean-figure-table table thead {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.clean-figure-table table tr {
+  border: none !important;
+}
+
+.clean-figure-table table td,
+.clean-figure-table table th {
+  border: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+</style>
+
 ::: {.callout-note}
 This chapter demonstrates all major features available in Quarto for thesis writing. Each section showcases different elements and their cross-referencing capabilities to ensure everything works correctly.
 :::
@@ -173,6 +218,85 @@ display(Markdown(df.to_markdown(index=False)))
 
 Reference as @tbl-simple-data.
 
+### Tables Containing Figures
+
+#### Single-Figure Table
+
+::: {.borderless-table}
+| Figure                          | Description                          |
+|---------------------------------|--------------------------------------|
+| ![Logo](images/logo.png){#fig-table-logo} | Organization logo example          |
+: Single-Figure Table {#tbl-single-figure}
+:::
+
+Reference as @tbl-single-figure.
+
+#### Multi-Figure Table
+
+::: {.borderless-table}
+| Figure 1                        | Figure 2                            | Description                          |
+|---------------------------------|-------------------------------------|--------------------------------------|
+| ![Logo](images/logo.png){#fig-table-logo1} | ![Cover](images/cover.pdf){#fig-table-cover} | Side-by-side figures example         |
+: Multi-Figure Table {#tbl-multi-figure}
+:::
+
+Reference as @tbl-multi-figure.
+
+#### Figure-Only Table
+
+::: {.borderless-table}
+| ![Organization logo](images/logo.png){#fig-table-logo-only width="60%"} |
+|:------------------------------------------------------------------------:|
+: Table with only a figure and no visible borders {#tbl-figure-only}
+:::
+
+Reference as @tbl-figure-only.
+
+#### Headerless Figure Table
+
+::: {.headerless-table}
+| Figure |
+|:------:|
+| ![Organization logo](images/logo.png){#fig-table-logo-headerless width="70%"} |
+: Table with hidden header row {#tbl-headerless-figure}
+:::
+
+Reference as @tbl-headerless-figure.
+
+#### Clean Figure Table (No Borders, No Header)
+
+::: {.clean-figure-table}
+| |
+|:-:|
+| ![Organization logo](images/logo.png){#fig-table-logo-clean width="80%"} |
+: Clean table with figure only {#tbl-clean-figure}
+:::
+
+Reference as @tbl-clean-figure.
+
+#### Multiple Clean Figures Table
+
+::: {.clean-figure-table}
+| | |
+|:-:|:-:|
+| ![Logo](images/logo.png){#fig-multi-clean-1 width="90%"} | ![Cover](images/cover.pdf){#fig-multi-clean-2 width="90%"} |
+: Multiple figures in a clean table {#tbl-multi-clean}
+:::
+
+Reference as @tbl-multi-clean.
+
+#### Ultra-Clean Figure Table
+
+::: {.clean-figure-table}
+<!-- Completely empty header -->
+| <!-- empty --> |
+|:--------------:|
+| ![Organization logo](images/logo.png){#fig-ultra-clean width="75%"} |
+: Ultra-clean table with invisible header {#tbl-ultra-clean}
+:::
+
+Reference as @tbl-ultra-clean.
+
 ## Equations {#sec-equations}
 
 ### Inline Equations
@@ -295,7 +419,7 @@ This is a tip callout for helpful advice.
 You can reference:
 
 - Figures: @fig-logo, @fig-logo2, @fig-combined
-- Tables: @tbl-simple, @tbl-grid, @tbl-csv
+- Tables: @tbl-simple, @tbl-grid, @tbl-csv, @tbl-single-figure, @tbl-multi-figure, @tbl-figure-only, @tbl-headerless-figure, @tbl-clean-figure, @tbl-multi-clean, @tbl-ultra-clean
 - Equations: @eq-fourier, @eq-maxwell1, @eq-matrix
 - Code: @lst-basic, @lst-import
 

@@ -97,7 +97,16 @@ format:
     template-partials:
       - "_extensions/quarto-thesis/partials/before-body.tex"
       - "_extensions/quarto-thesis/partials/title.tex"
-    include-in-header: "_extensions/quarto-thesis/partials/in-header.tex"
+    include-in-header: 
+      - "_extensions/quarto-thesis/partials/in-header.tex"
+      - text: |
+          \usepackage{booktabs}
+          % Style for clean figure tables - remove all rules
+          \newenvironment{cleanfiguretable}{%
+            \renewcommand{\toprule}[1]{}%
+            \renewcommand{\midrule}[1]{}%
+            \renewcommand{\bottomrule}[1]{}%
+          }{}
     documentclass: MastersDoctoralThesis
     use_custom_cover: false # true: use cover.pdf for the title page instead of defined information
     fig-format: pdf # Ensure figures are generated in PDF (vector) format
