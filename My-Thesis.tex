@@ -616,7 +616,7 @@ Symbol & Name & Unit \\
 
 \markboth{Introduction}{Introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, arc=.35mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, colframe=quarto-callout-note-color-frame, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This chapter demonstrates all major features available in Quarto for
 thesis writing. Each section showcases different elements and their
@@ -976,57 +976,6 @@ Description
 
 Reference as Table~\ref{tbl-multi-figure}.
 
-\subsubsection*{Figure-Only Table}\label{figure-only-table}
-\addcontentsline{toc}{subsubsection}{Figure-Only Table}
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
-\caption{Table with only a figure and no visible
-borders}\label{tbl-figure-only}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png}
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\end{longtable}
-
-Reference as Table~\ref{tbl-figure-only}.
-
-\subsubsection*{Headerless Figure Table}\label{headerless-figure-table}
-\addcontentsline{toc}{subsubsection}{Headerless Figure Table}
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
-\caption{Table with hidden header
-row}\label{tbl-headerless-figure}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-Figure
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-Figure
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png} \\
-\end{longtable}
-
-Reference as Table~\ref{tbl-headerless-figure}.
-
 \subsubsection*{Clean Figure Table (No Borders, No
 Header)}\label{clean-figure-table-no-borders-no-header}
 \addcontentsline{toc}{subsubsection}{Clean Figure Table (No Borders, No
@@ -1066,28 +1015,6 @@ table}\label{tbl-multi-clean}\tabularnewline
 \end{longtable}
 
 Reference as Table~\ref{tbl-multi-clean}.
-
-\subsubsection*{Ultra-Clean Figure
-Table}\label{ultra-clean-figure-table}
-\addcontentsline{toc}{subsubsection}{Ultra-Clean Figure Table}
-
-\begin{longtable}[]{@{}c@{}}
-\caption{Ultra-clean table with invisible
-header}\label{tbl-ultra-clean}\tabularnewline
-\toprule\noalign{}
- \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
- \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{Chapters/images/logo.png} \\
-\end{longtable}
-
-Reference as Table~\ref{tbl-ultra-clean}.
 
 \section*{Equations}\label{sec-equations}
 \addcontentsline{toc}{section}{Equations}
@@ -1228,25 +1155,25 @@ Citations can be:
 
 \markright{Callouts}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, arc=.35mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note Title}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note Title}, colframe=quarto-callout-note-color-frame, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This is a note callout for important observations.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, colframe=quarto-callout-warning-color-frame, arc=.35mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, colframe=quarto-callout-warning-color-frame, colbacktitle=quarto-callout-warning-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This is a warning callout for potential issues.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This is an important callout for critical information.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, colframe=quarto-callout-tip-color-frame, arc=.35mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colframe=quarto-callout-tip-color-frame, colbacktitle=quarto-callout-tip-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This is a tip callout for helpful advice.
 
@@ -1267,9 +1194,8 @@ You can reference:
 \item
   Tables: Table~\ref{tbl-simple}, Table~\ref{tbl-grid},
   Table~\ref{tbl-csv}, Table~\ref{tbl-single-figure},
-  Table~\ref{tbl-multi-figure}, Table~\ref{tbl-figure-only},
-  Table~\ref{tbl-headerless-figure}, Table~\ref{tbl-clean-figure},
-  Table~\ref{tbl-multi-clean}, Table~\ref{tbl-ultra-clean}
+  Table~\ref{tbl-multi-figure}, Table~\ref{tbl-clean-figure},
+  Table~\ref{tbl-multi-clean}
 \item
   Equations: Equation~\ref{eq-fourier}, Equation~\ref{eq-maxwell1},
   Equation~\ref{eq-matrix}
@@ -1366,7 +1292,7 @@ Some Authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This chapter provides a comprehensive review of the existing literature
 pertinent to Positive Matrix Factorization (PMF) and its application in
@@ -1703,7 +1629,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This chapter focuses on the methodological core of the thesis: the
 optimization and validation of Positive Matrix Factorization (PMF)
@@ -2164,7 +2090,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This chapter bridges the gap between scientific research and practical
 application by exploring the integration of PMF source apportionment
@@ -2310,7 +2236,7 @@ Some authors
 
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, breakable, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, opacityback=0, colback=white, bottomtitle=1mm, coltitle=black, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, opacitybacktitle=0.6, left=2mm, breakable, coltitle=black, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Chapter Summary}, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, bottomtitle=1mm, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, arc=.35mm, toprule=.15mm, titlerule=0mm]
 
 This chapter presents an in-depth analysis of the spatial and temporal
 dynamics of particulate matter (PM) source contributions across a
