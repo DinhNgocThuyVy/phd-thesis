@@ -82,6 +82,9 @@ __pycache__/
 .pytest_cache/
 .coverage
 .coverage.*
+.venv/   # Python virtual environment
+.env/    # Alternative virtual environment name
+venv/    # Another common virtual environment name
 
 # Node.js dependencies
 node_modules/
