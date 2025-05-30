@@ -1,28 +1,36 @@
-# Quarto cache files
+# Quarto cache and generated files
 /.quarto/
 /.luarc.json
 _freeze/
+*.tex
+site_libs/
+docs/site_libs/
+docs/search.json
+docs/sitemap.xml
+docs/robots.txt
+docs/**/figure-html/
+docs/**/figure-pdf/
+docs/**/*.html
+docs/*.pdf
 
-# Don't ignore docs since we're using it for GitHub Pages
-# docs/
-# Previously used _book folder, we can ignore it now
-_book/
+# Python environments and cache
+.venv/
+.env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.coverage.*
 
-# R Environment files
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-.Renviron
-.Rapp.history
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-~$*
-*.swp
-*.swo
+# Editor and system files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
 
 # LaTeX temporary files
 *.aux
@@ -54,40 +62,10 @@ _book/
 *.snm
 *.vrb
 
-# macOS system files
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
+# Temporary bibliography files
+*.bib.bak
+*.bib.sav
+zotero_*.bib
 
-# Windows system files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Editor-specific files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# Jupyter Notebook temporary files
-.ipynb_checkpoints/
-
-# Python cache files
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
-.coverage
-.coverage.*
-.venv/   # Python virtual environment
-.env/    # Alternative virtual environment name
-venv/    # Another common virtual environment name
-
-# Node.js dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Generated PDF files in docs
+docs/**/*.pdf

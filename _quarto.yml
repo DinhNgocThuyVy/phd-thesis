@@ -74,6 +74,7 @@ execute:
   warning: false   # Suppress all warning messages
   message: false   # Suppress all messages
   code-overflow: wrap
+  python: ".venv/Scripts/python.exe"  # Use the virtual environment Python
   python-startup: "scripts/suppress_warnings.py"  # Load this script before running any Python code
 
 format:
