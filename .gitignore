@@ -4,14 +4,6 @@
 _freeze/
 *.tex
 site_libs/
-docs/site_libs/
-docs/search.json
-docs/sitemap.xml
-docs/robots.txt
-docs/**/figure-html/
-docs/**/figure-pdf/
-docs/**/*.html
-docs/*.pdf
 
 # Python environments and cache
 .venv/
@@ -65,7 +57,3 @@ Thumbs.db
 # Temporary bibliography files
 *.bib.bak
 *.bib.sav
-zotero_*.bib
-
-# Generated PDF files in docs
-docs/**/*.pdf

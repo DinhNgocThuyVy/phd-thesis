@@ -20,11 +20,11 @@ book:
   appendices:
     - Appendices/AppendixA.qmd
     - Appendices/AppendixB.qmd
-  site-url: https://nguyentruonganlab.github.io/quarto-thesis/
+  site-url: https://dinhngocthuyvy.github.io/phd-thesis/
   search: true
   
   # Add repo URL for GitHub deployment
-  repo-url: https://github.com/NguyenTruongAnLab/quarto-thesis
+  repo-url: https://github.com/DinhNgocThuyVy/phd-thesis
   repo-actions: [edit, issue]
 
 # Bibliography style information
@@ -69,12 +69,13 @@ committee_members: |
 
 
 execute:
-  freeze: auto # Changed from auto to true for stricter freezing
+  freeze: auto
   echo: false
   warning: false   # Suppress all warning messages
   message: false   # Suppress all messages
   code-overflow: wrap
-  python: ".venv/Scripts/python.exe"  # Use the virtual environment Python
+  # Use system Python kernel directly
+  kernel: system-python312
   python-startup: "scripts/suppress_warnings.py"  # Load this script before running any Python code
 
 format:
