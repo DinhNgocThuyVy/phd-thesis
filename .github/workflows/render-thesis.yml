@@ -66,10 +66,32 @@ jobs:
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
       with:
-        version: ${{ env.QUARTO_VERSION }}
+        version: ${{ env.QUARTO_VERSION }}    # Determine render format based on commit message or manual trigger
+    - name: Set render format
+      id: set_render_format
+      run: |
+        # Check manual trigger first
+        if [ "${{ github.event.inputs.render_format }}" != "" ]; then
+          echo "render_format=${{ github.event.inputs.render_format }}" >> $GITHUB_OUTPUT
+        # Then check commit message for [release]
+        elif echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
+          echo "render_format=both" >> $GITHUB_OUTPUT
+        else
+          echo "render_format=html" >> $GITHUB_OUTPUT
+        fi
+        
+        # Set LaTeX requirement flag
+        if [[ "${{ github.event.inputs.render_format }}" == "pdf" ]] || [[ "${{ github.event.inputs.render_format }}" == "both" ]] || echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
+          echo "need_latex=true" >> $GITHUB_OUTPUT
+          echo "📚 LaTeX/PDF rendering enabled (will install TinyTeX)"
+        else
+          echo "need_latex=false" >> $GITHUB_OUTPUT
+          echo "🌐 HTML-only rendering (skipping all LaTeX installation for speed)"
+        fi
 
-    # Cache TinyTeX installation
+    # Cache TinyTeX installation (only when PDF is needed)
     - name: Cache TinyTeX
+      if: steps.set_render_format.outputs.need_latex == 'true'
       id: cache-tinytex
       uses: actions/cache@v4
       with:
@@ -78,13 +100,14 @@ jobs:
         restore-keys: |
           tinytex-${{ runner.os }}-
 
-    # Install TinyTeX
+    # Install TinyTeX (only when PDF is needed)
     - name: Set up TinyTeX
+      if: steps.set_render_format.outputs.need_latex == 'true'
       uses: r-lib/actions/setup-tinytex@v2
 
-    # Install all required LaTeX packages only if cache is missed
+    # Install all required LaTeX packages only if cache is missed (only when PDF is needed)
     - name: Install LaTeX packages for thesis
-      if: steps.cache-tinytex.outputs.cache-hit != 'true'
+      if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit != 'true'
       run: |
         echo "Installing comprehensive LaTeX packages for thesis (first run or cache miss)..."
         tlmgr install \
@@ -121,16 +144,6 @@ jobs:
     - name: Create output directories
       run: |
         mkdir -p docs release_assets
-
-    # Determine render format based on commit message
-    - name: Set render format
-      id: set_render_format
-      run: |
-        if echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
-          echo "render_format=both" >> $GITHUB_OUTPUT
-        else
-          echo "render_format=html" >> $GITHUB_OUTPUT
-        fi
 
     # Render HTML version (use Quarto cache for speed)
     - name: Render HTML version
@@ -169,11 +182,9 @@ jobs:
         find . -maxdepth 1 -name "*.pdf" -exec cp {} release_assets/ \; 2>/dev/null || echo "No PDF in root"
         
         echo "PDF files prepared:"
-        ls -la release_assets/ || echo "No PDF files found"
-
-    # Upload artifacts
+        ls -la release_assets/ || echo "No PDF files found"    # Upload artifacts
     - name: Upload HTML artifacts
-      if: ${{ github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      if: steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both'
       uses: actions/upload-artifact@v4
       with:
         name: thesis-html-${{ github.sha }}
@@ -181,7 +192,7 @@ jobs:
         retention-days: 30
 
     - name: Upload PDF artifacts
-      if: ${{ github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      if: steps.set_render_format.outputs.render_format == 'pdf' || steps.set_render_format.outputs.render_format == 'both'
       uses: actions/upload-artifact@v4
       with:
         name: thesis-pdf-${{ github.sha }}
@@ -190,7 +201,7 @@ jobs:
 
     # Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
-      if: ${{ (github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '') && github.ref == 'refs/heads/main' && success() }}
+      if: (steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main' && success()
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -199,7 +210,7 @@ jobs:
 
     # Create Release
     - name: Create Release with PDF
-      if: ${{ (github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '') && github.ref == 'refs/heads/main' && success() }}
+      if: (steps.set_render_format.outputs.render_format == 'pdf' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main' && success()
       uses: softprops/action-gh-release@v1
       with:
         tag_name: thesis-v${{ github.run_number }}
