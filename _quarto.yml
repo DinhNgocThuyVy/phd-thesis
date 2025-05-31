@@ -7,7 +7,7 @@ book:
   subtitle: "Sous-titre optionnel"
   date: "17 mai 2025"
   author:
-    name: "Nom Prénom"
+    name: "Dinh Ngoc Thuy Vy"
   downloads: [pdf]  # Standard chapters list (used for PDF)
   chapters:
     - index.qmd  # Introduction with all frontmatter content
