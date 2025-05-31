@@ -8,9 +8,8 @@ This template provides a framework for writing a PhD thesis in Quarto for Univer
 
 ## 🚀 Quick Links
 
-- **📖 [Read Online (HTML)](https://dinhngocthuyvy.github.io/phd-thesis/)** - Latest version
-- **📄 [Download PDF](https://github.com/DinhNgocThuyVy/phd-thesis/releases/latest)** - Latest release
-- **⚙️ [GitHub Actions Setup](GITHUB_ACTIONS_README.md)** - Multi-computer workflow guide
+- ** [Read Online (HTML)](https://dinhngocthuyvy.github.io/phd-thesis/)** - Latest version
+- ** [Download PDF](https://github.com/DinhNgocThuyVy/phd-thesis/releases/latest)** - Latest release
 
 ## Features
 
@@ -213,7 +212,7 @@ This template includes a robust GitHub Actions workflow for continuous integrati
 - **Artifacts:**
   - Both HTML and PDF outputs are uploaded as workflow artifacts for download and archival.
 
-## ✨ Supported Features
+## Supported Features
 
 - **Customizable Cover Page:** Use a university-required PDF cover or auto-generate a French-style title page.
 - **Full French Thesis Metadata:** Supervisor, co-supervisors, committee, laboratory, doctoral school, thesis number, etc.
