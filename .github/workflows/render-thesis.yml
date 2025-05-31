@@ -89,28 +89,24 @@ jobs:
         # Update tlmgr
         tlmgr update --self || echo "tlmgr update completed"
         
-        # Install KOMA-Script and essential packages
+        # Install essential LaTeX packages (remove core/implicit packages)
+        # The following packages are NOT installable via tlmgr and should be omitted:
+        # amssymb, array, graphicx, longtable, scrlayer-scrpage, subcaption, xparse
         tlmgr install \
           koma-script \
           etoolbox \
-          xparse \
           babel \
           parskip \
           setspace \
-          longtable \
           booktabs \
           caption \
-          graphicx \
           hyperref \
           geometry \
           amsmath \
           amsfonts \
-          amssymb \
           pdfpages \
-          scrlayer-scrpage \
           hologo \
           adjustbox \
-          array \
           multirow \
           float \
           xcolor \
@@ -119,7 +115,6 @@ jobs:
           biblatex \
           microtype \
           titlesec \
-          subcaption \
           enumitem
         
         # Install collections for comprehensive coverage
@@ -214,7 +209,7 @@ jobs:
           Branch: ${{ github.ref_name }}
           
           📝 **Changes:** ${{ github.event.head_commit.message || 'Manual trigger' }}
-          📅 **Date:** ${{ github.event.head_commit.timestamp || github.run_started_at }}
+          📅 **Date:** ${{ github.event.head_commit.timestamp }}
           
           **Technical specs:**
           - Quarto ${{ env.QUARTO_VERSION }}
