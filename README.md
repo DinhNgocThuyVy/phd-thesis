@@ -6,10 +6,10 @@
 
 This template provides a framework for writing a PhD thesis in Quarto for Université Grenoble Alpes, France. It is designed to be flexible, allowing either the use of a custom cover page (required by many French universities) or an automatically generated title page based on thesis metadata.
 
-## 🚀 Quick Links
+## Quick Links
 
-- ** [Read Online (HTML)](https://dinhngocthuyvy.github.io/phd-thesis/)** - Latest version
-- ** [Download PDF](https://github.com/DinhNgocThuyVy/phd-thesis/releases/latest)** - Latest release
+- **[Read Online (HTML)](https://dinhngocthuyvy.github.io/phd-thesis/)** - Latest version
+- **[Download PDF](https://github.com/DinhNgocThuyVy/phd-thesis/releases/latest)** - Latest release
 
 ## Features
 

@@ -1,7 +1,7 @@
 name: Render Quarto Thesis (Production Ready)
 
 on:
-  # Trigger on push to main branch
+  # Trigger on push to main branch - ALWAYS render HTML for GitHub Pages
   push:
     branches: [ main, master ]
   
@@ -15,7 +15,7 @@ on:
       render_format:
         description: 'Choose what to render'
         required: true
-        default: 'both'
+        default: 'html'
         type: choice
         options:
         - html
@@ -43,7 +43,9 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         cache: 'pip'
-        cache-dependency-path: requirements.txt    # Install Python dependencies
+        cache-dependency-path: requirements.txt
+        
+    # Install Python dependencies
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip wheel setuptools
@@ -61,24 +63,29 @@ jobs:
       with:
         path: ~/quarto
         key: quarto-${{ runner.os }}-${{ env.QUARTO_VERSION }}
-
+        
     # Install Quarto
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
       with:
-        version: ${{ env.QUARTO_VERSION }}    # Determine render format based on commit message or manual trigger
+        version: ${{ env.QUARTO_VERSION }}
+
+    # Determine render format based on commit message or manual trigger
     - name: Set render format
       id: set_render_format
       run: |
         # Check manual trigger first
         if [ "${{ github.event.inputs.render_format }}" != "" ]; then
           echo "render_format=${{ github.event.inputs.render_format }}" >> $GITHUB_OUTPUT
-        # Then check commit message for [release]
+        # Then check commit message for [release] - if found, render both HTML and PDF
         elif echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
           echo "render_format=both" >> $GITHUB_OUTPUT
+        # Default: Always render HTML for GitHub Pages on every push
         else
           echo "render_format=html" >> $GITHUB_OUTPUT
         fi
+        
+        echo "🎯 Selected render format: $(cat $GITHUB_OUTPUT | grep render_format | cut -d= -f2)"
         
         # Set LaTeX requirement flag
         if [[ "${{ github.event.inputs.render_format }}" == "pdf" ]] || [[ "${{ github.event.inputs.render_format }}" == "both" ]] || echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
@@ -86,7 +93,7 @@ jobs:
           echo "📚 LaTeX/PDF rendering enabled (will install TinyTeX)"
         else
           echo "need_latex=false" >> $GITHUB_OUTPUT
-          echo "🌐 HTML-only rendering (skipping all LaTeX installation for speed)"
+          echo "🌐 HTML-only rendering (skipping LaTeX installation for faster builds)"
         fi
 
     # Cache TinyTeX installation (only when PDF is needed)
@@ -103,7 +110,9 @@ jobs:
     # Install TinyTeX (only when PDF is needed)
     - name: Set up TinyTeX
       if: steps.set_render_format.outputs.need_latex == 'true'
-      uses: r-lib/actions/setup-tinytex@v2    # Install comprehensive LaTeX packages (only when PDF is needed and no cache hit)
+      uses: r-lib/actions/setup-tinytex@v2
+      
+    # Install comprehensive LaTeX packages (only when PDF is needed and no cache hit)
     - name: Install LaTeX packages for thesis
       if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit != 'true'
       run: |
@@ -172,15 +181,32 @@ jobs:
     - name: Render HTML version
       if: steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both'
       run: |
-        echo "Rendering HTML version..."
+        echo "🌐 Rendering HTML version for GitHub Pages..."
+        
+        # Clear any existing output
+        rm -rf docs/
+        
+        # Render with verbose output to debug issues
         quarto render --to html --cache
-        echo "HTML rendering completed!"
+        
+        echo "✅ HTML rendering completed!"
+        echo "📊 Generated files:"
+        find docs -type f | head -20
+        
+        # Verify critical files exist
+        if [ ! -f "docs/index.html" ]; then
+          echo "❌ ERROR: index.html not found in docs/"
+          exit 1
+        fi
+        
+        echo "📈 Total HTML files: $(find docs -name "*.html" | wc -l)"
+        echo "📈 Total files in docs: $(find docs -type f | wc -l)"
 
     # Render PDF version with retry logic
     - name: Render PDF version
-      if: steps.set_render_format.outputs.render_format == 'both'
+      if: steps.set_render_format.outputs.render_format == 'pdf' || steps.set_render_format.outputs.render_format == 'both'
       run: |
-        echo "Rendering PDF version..."
+        echo "📚 Rendering PDF version..."
         
         # Try PDF rendering with retry
         for attempt in 1 2 3; do
@@ -198,7 +224,8 @@ jobs:
             sleep 5
           fi
         done
-          # Copy only the main thesis PDF to release directory
+        
+        # Copy only the main thesis PDF to release directory
         mkdir -p release_assets
         
         # Look for the main thesis PDF (should be named after the project)
@@ -215,7 +242,9 @@ jobs:
         fi
         
         echo "Release PDF files prepared:"
-        ls -la release_assets/ || echo "No PDF files found"# Upload artifacts
+        ls -la release_assets/ || echo "No PDF files found"
+
+    # Upload artifacts
     - name: Upload HTML artifacts
       if: steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both'
       uses: actions/upload-artifact@v4
@@ -230,13 +259,33 @@ jobs:
       with:
         name: thesis-pdf-${{ github.sha }}
         path: release_assets/
-        retention-days: 30    # Deploy to GitHub Pages
-    - name: Debug docs directory
-      if: (steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main' && success()
+        retention-days: 30
+
+    # Deploy to GitHub Pages - ALWAYS deploy HTML when available
+    - name: Debug docs directory before deployment
+      if: always() && (steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main'
       run: |
-        echo "Contents of docs directory for GitHub Pages deployment:"
-        find docs -type f | head -20
+        echo "🔍 DEBUGGING: Contents of docs directory for GitHub Pages deployment:"
+        echo "=== Directory structure ==="
+        find docs -type f | head -30
+        echo ""
+        echo "=== HTML files ==="
+        find docs -name "*.html" | head -15
+        echo ""
+        echo "=== Index file check ==="
+        if [ -f "docs/index.html" ]; then
+          echo "✅ index.html found"
+          echo "File size: $(stat -c%s docs/index.html) bytes"
+        else
+          echo "❌ index.html NOT found - this will cause deployment issues!"
+        fi
+        echo ""
+        echo "=== Directory size ==="
         echo "Total files in docs: $(find docs -type f | wc -l)"
+        echo "HTML files in docs: $(find docs -name "*.html" | wc -l)"
+        echo "CSS files in docs: $(find docs -name "*.css" | wc -l)"
+        echo "JS files in docs: $(find docs -name "*.js" | wc -l)"
+        echo "Image files in docs: $(find docs -name "*.png" -o -name "*.jpg" -o -name "*.svg" | wc -l)"
         
     - name: Deploy to GitHub Pages
       if: (steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main' && success()
@@ -245,8 +294,24 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
         force_orphan: true
-        keep_files: false  # Ensure clean deployment
+        keep_files: false  # Ensure clean deployment - remove old files
         enable_jekyll: false  # Disable Jekyll processing
+        cname: ""  # Clear any custom domain
+        full_commit_message: "Deploy thesis HTML from ${{ github.sha }}"
+      env:
+        ACTIONS_STEP_DEBUG: true
+        
+    - name: Verify GitHub Pages deployment
+      if: (steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both') && github.ref == 'refs/heads/main' && success()
+      run: |
+        echo "✅ GitHub Pages deployment completed!"
+        echo "🌐 Your thesis should be available at: https://dinhngocthuyvy.github.io/phd-thesis/"
+        echo "⏰ Note: It may take a few minutes for the changes to appear online."
+        echo ""
+        echo "📋 Deployment summary:"
+        echo "- Source branch: ${{ github.ref_name }}"
+        echo "- Commit: ${{ github.sha }}"
+        echo "- Total files deployed: $(find docs -type f | wc -l)"
 
     # Create Release
     - name: Create Release with PDF
