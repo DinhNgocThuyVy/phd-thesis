@@ -87,64 +87,88 @@ jobs:
         else
           echo "need_latex=false" >> $GITHUB_OUTPUT
           echo "🌐 HTML-only rendering (skipping all LaTeX installation for speed)"
-        fi    # Install TinyTeX (only when PDF is needed)
-    - name: Set up TinyTeX
-      if: steps.set_render_format.outputs.need_latex == 'true'
-      uses: r-lib/actions/setup-tinytex@v2
-
-    # Cache TinyTeX packages after installation (only when PDF is needed)
-    - name: Cache TinyTeX packages
+        fi    # Cache TinyTeX installation (only when PDF is needed)
+    - name: Cache TinyTeX
       if: steps.set_render_format.outputs.need_latex == 'true'
       id: cache-tinytex
       uses: actions/cache@v4
       with:
-        path: |
-          ~/.TinyTeX
-          ~/bin
-        key: tinytex-${{ runner.os }}-packages-v3-${{ hashFiles('_quarto.yml') }}
+        path: ~/.TinyTeX
+        key: tinytex-${{ runner.os }}-packages-v3-${{ hashFiles('**/render-thesis.yml') }}
         restore-keys: |
           tinytex-${{ runner.os }}-packages-v3-
-          tinytex-${{ runner.os }}-packages-
-          tinytex-${{ runner.os }}-    # Install comprehensive LaTeX packages (only when PDF is needed)
-    - name: Install LaTeX packages for thesis
+          tinytex-${{ runner.os }}-
+
+    # Install TinyTeX (only when PDF is needed)
+    - name: Set up TinyTeX
       if: steps.set_render_format.outputs.need_latex == 'true'
+      uses: r-lib/actions/setup-tinytex@v2    # Install comprehensive LaTeX packages (only when PDF is needed and no cache hit)
+    - name: Install LaTeX packages for thesis
+      if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit != 'true'
       run: |
-        echo "Checking and installing LaTeX packages for thesis..."
-        echo "TinyTeX installation path: $HOME/.TinyTeX"
-        echo "Packages already installed: $(tlmgr list --only-installed | wc -l)"
+        echo "Installing comprehensive LaTeX packages for thesis (first run or cache miss)..."
+        echo "This may take several minutes but will be cached for future runs..."
         
         # Update tlmgr first
-        echo "Updating tlmgr..."
         tlmgr update --self
         
-        # Define packages to install
-        ESSENTIAL_PACKAGES="koma-script scrhack setspace setspaceenhanced caption soul hologo csquotes pdfpages adjustbox"
-        TEMPLATE_PACKAGES="makecell tcolorbox tikzfill pdfcol fontawesome5 floatbytocbasic pdflscape lscapeenhanced"
-        STANDARD_PACKAGES="etoolbox babel parskip booktabs hyperref geometry amsmath amsfonts multirow float xcolor natbib biblatex microtype titlesec enumitem scrlayer-scrpage"
-        COLLECTIONS="collection-fontsrecommended collection-latexextra collection-bibtexextra collection-mathscience"
-        
-        # Function to check and install packages
-        install_if_missing() {
-          local packages="$1"
-          local category="$2"
-          echo "Installing $category packages..."
-          for pkg in $packages; do
-            if tlmgr list --only-installed | grep -q "^i $pkg:"; then
-              echo "  $pkg: already installed"
-            else
-              echo "  $pkg: installing..."
-              tlmgr install "$pkg" || echo "  Warning: failed to install $pkg"
-            fi
-          done
-        }
-        
-        # Install packages by category
-        install_if_missing "$ESSENTIAL_PACKAGES" "essential"
-        install_if_missing "$TEMPLATE_PACKAGES" "template"
-        install_if_missing "$STANDARD_PACKAGES" "standard"
-        install_if_missing "$COLLECTIONS" "collection"
+        # Install all packages that your thesis template actually uses (based on runtime logs)
+        echo "Installing essential packages for thesis template..."
+        tlmgr install \
+          koma-script \
+          scrhack \
+          setspaceenhanced \
+          setspace \
+          caption \
+          soul \
+          hologo \
+          csquotes \
+          etoolbox \
+          babel \
+          parskip \
+          booktabs \
+          hyperref \
+          geometry \
+          amsmath \
+          amsfonts \
+          pdfpages \
+          adjustbox \
+          multirow \
+          float \
+          xcolor \
+          natbib \
+          biblatex \
+          microtype \
+          titlesec \
+          enumitem \
+          scrlayer-scrpage \
+          makecell \
+          tcolorbox \
+          tikzfill \
+          pdfcol \
+          fontawesome5 \
+          floatbytocbasic \
+          pdflscape \
+          lscapeenhanced
           
-        echo "LaTeX packages installation completed!"        echo "Total packages installed: $(tlmgr list --only-installed | wc -l)"
+        # Install comprehensive collections to cover most use cases
+        echo "Installing LaTeX collections for comprehensive coverage..."
+        tlmgr install \
+          collection-fontsrecommended \
+          collection-latexextra \
+          collection-bibtexextra \
+          collection-mathscience
+          
+        echo "LaTeX packages installation completed!"
+        echo "Total packages installed: $(tlmgr list --only-installed | wc -l)"
+        
+    # Quick update for cached TinyTeX (only when PDF is needed and cache hit)
+    - name: Update TinyTeX (cache hit)
+      if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit == 'true'
+      run: |
+        echo "TinyTeX cache hit - packages already installed!"
+        echo "Current installed packages: $(tlmgr list --only-installed | wc -l)"
+        echo "Auto-install will handle any new packages during rendering..."
 
     # Create output directories
     - name: Create output directories
