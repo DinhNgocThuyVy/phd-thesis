@@ -21,6 +21,8 @@ jobs:
     if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[release]')
     permissions:
       contents: write
+      pages: write
+      id-token: write
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
@@ -59,10 +61,12 @@ jobs:
   # Full rendering (HTML + PDF) for release commits
   render-release:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 25    
     if: contains(github.event.head_commit.message, '[release]')
     permissions:
       contents: write
+      pages: write
+      id-token: write
     
     steps:
     - name: Checkout repository
@@ -91,17 +95,17 @@ jobs:
         else
           echo "Installing essential packages..."
           pip install pandas matplotlib numpy jupyter ipython jupyter-cache
-        fi
-
+        fi    
+        
     # Cache TinyTeX installation for PDF rendering
     - name: Cache TinyTeX
       id: cache-tinytex
       uses: actions/cache@v4
       with:
         path: ~/.TinyTeX
-        key: tinytex-${{ runner.os }}-packages-v2
+        key: tinytex-${{ runner.os }}-complete-v3
         restore-keys: |
-          tinytex-${{ runner.os }}-
+          tinytex-${{ runner.os }}-complete-
 
     # Install TinyTeX for PDF rendering
     - name: Set up TinyTeX
@@ -170,7 +174,9 @@ jobs:
           xltxtra \
           realscripts \
           metalogo \
-          ifmtarg
+          ifmtarg \
+          scrbase \
+          scrpage2
           
         # Install comprehensive collections (covers most edge cases)
         echo "Installing LaTeX collections for comprehensive coverage..."
@@ -184,13 +190,13 @@ jobs:
         echo "LaTeX packages installation completed!"
         echo "Total packages installed: $(tlmgr list --only-installed | wc -l)"
         
-    # Quick update for cached TinyTeX
+    # Quick update for cached TinyTeX    
     - name: Update TinyTeX (cache hit)
       if: steps.cache-tinytex.outputs.cache-hit == 'true'
       run: |
         echo "TinyTeX cache hit - packages already installed!"
         echo "Current installed packages: $(tlmgr list --only-installed | wc -l)"
-        echo "Auto-install will handle any new packages during rendering..."
+        echo "No additional installation needed - all packages pre-cached!"
 
     # Render both HTML and PDF for release
     - name: Render HTML and PDF
