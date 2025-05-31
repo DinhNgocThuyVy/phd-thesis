@@ -1,0 +1,123 @@
+# Spatial and Temporal Variations in PM Source Contributions {#sec-ch4}
+
+::: {.center data-latex=""}
+Some authors
+:::
+
+::: {.callout-important title="Chapter Summary"}
+This chapter presents an in-depth analysis of the spatial and temporal dynamics of particulate matter (PM) source contributions across a selection of major European cities. Leveraging the EPA PMF 5.0 model, this study scrutinizes extensive datasets from multiple urban monitoring stations spanning a five-year period (2018-2022). The research identifies key anthropogenic and natural pollution sources, quantifies their relative contributions to PM2.5 and PM10 concentrations, and examines how these contributions vary across different urban landscapes and evolve over diurnal, seasonal, and inter-annual timescales.
+:::
+
+Under review at Atmospheric Environment
+
+## Abstract
+
+This study investigates the spatial and temporal variations in particulate matter (PM) source contributions across major European cities using EPA PMF 5.0 [@PMF_Guide2014]. We analyzed data from 15 urban monitoring stations over a five-year period (2018-2022), identifying key pollution sources and their relative contributions to PM2.5 and PM10 concentrations [@EEA2019].
+
+## Methods
+
+### Data Processing with Python
+
+```{python}
+#| label: data-processing
+#| echo: false
+#| warning: false
+#| message: false
+#| output: false
+#| cache: true
+
+# Load required libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Read the PMF data
+df = pd.read_csv('data/pmf_data.csv', parse_dates=['Date'])
+
+# We'll use df in subsequent code blocks, but won't display output here
+```
+
+## Results
+
+### Temporal Patterns in PM Components
+
+```{python}
+#| label: fig-temporal-patterns
+#| fig-cap: "Temporal variation of major PM2.5 components"
+#| fig-height: 6
+#| echo: false
+#| warning: false
+#| cache: true
+
+# Create temporal variation plot
+plt.figure(figsize=(10, 6))
+for species in ['SO4', 'NO3', 'NH4', 'OC', 'EC']:
+    plt.plot(df['Date'], df[species], label=species)
+plt.legend()
+plt.xlabel('Date')
+plt.ylabel('Concentration (μg/m³)')
+plt.title('Major PM2.5 Components')
+plt.xticks(rotation=45)
+plt.tight_layout()
+```
+
+### Source Profiles
+
+```{python}
+#| label: tbl-source-profiles
+#| tbl-cap: "Source profiles for major PM components"
+#| echo: false
+#| cache: true
+
+# Load required libraries
+from IPython.display import Markdown
+
+# Create example source profiles
+profiles = pd.DataFrame({
+    'Traffic': [0.15, 0.05, 0.20, 0.25, 0.10, 0.05, 0.10, 0.05, 0.15, 0.40, 0.30, 0.25, 0.15, 0.35, 0.45],
+    'Industry': [0.20, 0.10, 0.35, 0.15, 0.05, 0.15, 0.20, 0.10, 0.25, 0.30, 0.25, 0.35, 0.30, 0.15, 0.10],
+    'Biomass': [0.10, 0.05, 0.15, 0.20, 0.25, 0.05, 0.05, 0.40, 0.10, 0.15, 0.05, 0.10, 0.05, 0.40, 0.25],
+    'Secondary': [0.05, 0.05, 0.25, 0.35, 0.55, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.10, 0.05]
+}, index=['PM2.5', 'Na', 'SO4', 'NO3', 'NH4', 'Al', 'Si', 'K', 'Ca', 'Fe', 'Cu', 'Zn', 'Pb', 'OC', 'EC'])
+
+# Format the table output properly for Quarto
+display(Markdown(profiles.round(2).to_markdown()))
+```
+
+### Seasonal Source Contributions
+
+```{python}
+#| label: fig-seasonal-contributions
+#| fig-cap: "Seasonal source contributions to PM2.5"
+#| fig-height: 6
+#| echo: false
+#| warning: false
+#| cache: true
+
+# Create seasonal source contributions data
+seasons = ['Winter', 'Spring', 'Summer', 'Fall']
+contributions = np.array([
+    [0.35, 0.25, 0.15, 0.25],  # Traffic
+    [0.20, 0.25, 0.30, 0.25],  # Industry
+    [0.30, 0.15, 0.05, 0.25],  # Biomass
+    [0.15, 0.35, 0.50, 0.25]   # Secondary
+])
+
+# Create a stacked bar chart
+plt.figure(figsize=(10, 6))
+bottom = np.zeros(4)
+
+sources = ['Traffic', 'Industry', 'Biomass', 'Secondary']
+colors = ['lightcoral', 'steelblue', 'forestgreen', 'gold']
+
+for i, source in enumerate(sources):
+    plt.bar(seasons, contributions[i], bottom=bottom, label=source, color=colors[i])
+    bottom += contributions[i]
+
+plt.xlabel('Season')
+plt.ylabel('Fraction of PM2.5')
+plt.title('Source Contributions by Season')
+plt.legend(title='Source')
+plt.ylim(0, 1)
+plt.tight_layout()
+```

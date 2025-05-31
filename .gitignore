@@ -1,0 +1,59 @@
+# Quarto cache and generated files
+/.quarto/
+/.luarc.json
+_freeze/
+*.tex
+site_libs/
+
+# Python environments and cache
+.venv/
+.env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.coverage.*
+
+# Editor and system files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# LaTeX temporary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.ist
+*.xwm
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.run.xml
+*-blx.bib
+*.nav
+*.snm
+*.vrb
+
+# Temporary bibliography files
+*.bib.bak
+*.bib.sav

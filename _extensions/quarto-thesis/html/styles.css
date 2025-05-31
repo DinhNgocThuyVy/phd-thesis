@@ -1,0 +1,89 @@
+/* CSS for HTML output */
+
+/* Add spacing after paragraphs */
+p {
+  margin-bottom: 1em;
+}
+
+/* Add some styling to the title block */
+#title-block-header {
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+/* Style headings */
+h1, h2, h3, h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Adjust first page chapter headers */
+h1.title {
+  margin-top: 0.5rem; /* Move chapter title higher */
+}
+
+/* Style the abstract sections */
+.abstract {
+  font-style: italic;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 3px solid #007bff;
+}
+
+/* Style the acknowledgements section */
+.acknowledgements {
+  margin: 2rem 0;
+}
+
+/* Style the dedication section */
+.dedication {
+  font-style: italic;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+/* Custom style for borderless tables */
+.borderless-table table {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.borderless-table table th,
+.borderless-table table td {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Custom style for tables without headers */
+.headerless-table table thead {
+  display: none;
+}
+
+/* Enhanced clean figure table style */
+.clean-figure-table table {
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+.clean-figure-table table thead {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.clean-figure-table table tr {
+  border: none !important;
+}
+
+.clean-figure-table table td,
+.clean-figure-table table th {
+  border: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

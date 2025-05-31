@@ -1,0 +1,15 @@
+# Simplate Table Markdown {#sec-python-pkgs}
+
+The following Python packages were used in this thesis:
+
+| Package | Description | Version |
+|---------|-------------|---------|
+| pandas | Data manipulation and analysis | 2.0.0+ |
+| numpy | Numerical computing | 1.24.0+ |
+| matplotlib | Visualization library | 3.7.0+ |
+
+: Packages used in this thesis {#tbl-pkgs}
+
+For a complete list of package versions, see the `requirements.txt` file in the thesis repository.
+
+

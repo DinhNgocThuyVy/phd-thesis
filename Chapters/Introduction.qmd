@@ -1,0 +1,394 @@
+# Introduction {.unnumbered #sec-introduction}
+
+::: {.callout-note}
+This chapter demonstrates all major features available in Quarto for thesis writing. Each section showcases different elements and their cross-referencing capabilities to ensure everything works correctly.
+:::
+
+## Figures {#sec-figures}
+
+Quarto supports multiple ways to include figures:
+
+### Single Figure
+
+![Organization logo](images/logo.png){#fig-logo fig-align="center" width="60%"}
+
+You can reference this as @fig-logo.
+
+### Side-by-Side Figures
+
+::: {layout-ncol=2}
+![Logo](images/logo.png){#fig-logo2}
+
+![Cover Page](images/cover.pdf){#fig-cover}
+:::
+
+See @fig-logo2 and @fig-cover side by side.
+
+### Figure with Custom Attributes
+![Organization logo](images/logo.png){#fig-logo3 fig-align="center" width="70%"}
+
+You can reference this as @fig-logo3.
+
+### Subfigures
+
+::: {#fig-combined layout-ncol=2}
+![Logo 1](images/logo.png){#fig-logo4}
+
+![Logo 2](images/logo.png){#fig-logo5}
+
+Combined figures demonstration
+:::
+
+Reference the combined figure as @fig-combined or individual subfigures as @fig-logo4 and @fig-logo5.
+
+### Figure Generated from CSV Data
+
+```{python}
+#| label: fig-matplotlib
+#| fig-cap: "Plot generated from CSV data"
+#| fig-width: 6
+#| fig-height: 4
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load data from CSV
+data = pd.read_csv("data/pmf_data.csv")
+
+# Create a simple plot
+plt.figure(figsize=(6, 4))
+plt.bar(data['Date'], data['PM2.5'], color='steelblue')
+plt.xticks(rotation=45)
+plt.ylabel('PM2.5 (μg/m³)')
+plt.title('PM2.5 Concentrations')
+plt.tight_layout()
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+# No need for plt.show() - Quarto automatically displays the figure
+```
+
+Reference this figure as @fig-matplotlib.
+
+### Multiple Data Series Plot
+
+```{python}
+#| label: fig-timeseries
+#| fig-cap: "Multiple parameters from CSV data"
+#| fig-width: 7
+#| fig-height: 4
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load data
+data = pd.read_csv("data/pmf_data.csv")
+
+# Create a simple multi-series plot
+plt.figure(figsize=(7, 4))
+plt.plot(data['Date'], data['OC'], 'o-', label='OC')
+plt.plot(data['Date'], data['EC'], 's-', label='EC')
+plt.xticks(rotation=45)
+plt.ylabel('Concentration (μg/m³)')
+plt.legend()
+plt.title('Carbonaceous Components')
+plt.tight_layout()
+plt.grid(True, alpha=0.3)
+# No need for plt.show() - Quarto automatically displays the figure
+```
+
+Reference this figure as @fig-timeseries.
+
+## Tables {#sec-tables}
+
+### Simple Table
+| Feature   | Description                          |
+|-----------|--------------------------------------|
+| Figures   | Embedded images and graphics         |
+| Tables    | Structured data presentation         |
+| Equations | Mathematical expressions             |
+: Basic Features {#tbl-simple}
+
+Reference as @tbl-simple.
+
+### Grid Table
++---------------+---------------+
+| Column 1      | Column 2      |
++===============+===============+
+| Row 1         | Data          |
++---------------+---------------+
+| Row 2         | Data          |
++---------------+---------------+
+: Grid Table Example {#tbl-grid}
+
+Reference as @tbl-grid.
+
+### Pipe Table with Alignment
+| Left | Center | Right |
+|:-----|:------:|------:|
+| L1   |   C1   |    R1 |
+| L2   |   C2   |    R2 |
+: Aligned Table {#tbl-align}
+
+Reference as @tbl-align.
+
+### Table from CSV Data
+
+```{python}
+#| label: tbl-csv
+#| tbl-cap: "Data imported from CSV file"
+
+import pandas as pd
+from IPython.display import Markdown
+
+# Load CSV data 
+data = pd.read_csv("data/pmf_data.csv")
+
+# Display using Markdown instead of print for better LaTeX compatibility
+display(Markdown(data[['Date', 'PM2.5', 'SO4', 'NO3']].to_markdown(index=False)))
+```
+
+Reference this as @tbl-csv.
+
+### Simple Formatted Table
+
+```{python}
+#| label: tbl-simple-data
+#| tbl-cap: "Summary of key parameters"
+
+import pandas as pd
+from IPython.display import Markdown
+
+# Create simple summary data
+data = [
+    ["PM2.5", 25.3, 28.6, 26.95],
+    ["SO4", 4.2, 4.8, 4.5],
+    ["NO3", 3.1, 3.5, 3.3],
+    ["OC", 6.2, 7.1, 6.65],
+    ["EC", 1.8, 2.1, 1.95]
+]
+
+# Create a dataframe and display as markdown table
+df = pd.DataFrame(data, columns=["Parameter", "Min", "Max", "Average"])
+display(Markdown(df.to_markdown(index=False)))
+```
+
+Reference as @tbl-simple-data.
+
+### Tables Containing Figures
+
+#### Single-Figure Table
+
+::: {.borderless-table}
+| Figure                          | Description                          |
+|---------------------------------|--------------------------------------|
+| ![Logo](images/logo.png){#fig-table-logo} | Organization logo example          |
+: Single-Figure Table {#tbl-single-figure}
+:::
+
+Reference as @tbl-single-figure.
+
+#### Multi-Figure Table
+
+::: {.borderless-table}
+| Figure 1                        | Figure 2                            | Description                          |
+|---------------------------------|-------------------------------------|--------------------------------------|
+| ![Logo](images/logo.png){#fig-table-logo1} | ![Cover](images/cover.pdf){#fig-table-cover} | Side-by-side figures example         |
+: Multi-Figure Table {#tbl-multi-figure}
+:::
+
+Reference as @tbl-multi-figure.
+
+#### Clean Figure Table (No Borders, No Header)
+
+::: {.clean-figure-table}
+| |
+|:-:|
+| ![Organization logo](images/logo.png){#fig-table-logo-clean width="80%"} |
+: Clean table with figure only {#tbl-clean-figure}
+:::
+
+Reference as @tbl-clean-figure.
+
+#### Multiple Clean Figures Table
+
+::: {.clean-figure-table}
+| | |
+|:-:|:-:|
+| ![Logo](images/logo.png){#fig-multi-clean-1 width="90%"} | ![Cover](images/cover.pdf){#fig-multi-clean-2 width="90%"} |
+: Multiple figures in a clean table {#tbl-multi-clean}
+:::
+
+Reference as @tbl-multi-clean.
+
+## Equations {#sec-equations}
+
+### Inline Equations
+Inline math: $E = mc^2$ or $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$
+
+### Display Equations
+
+$$
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}
+$$ {#eq-maxwell1}
+
+$$
+\nabla \times \mathbf{B} = \mu_0\left(\mathbf{J} + \epsilon_0\frac{\partial \mathbf{E}}{\partial t}\right)
+$$ {#eq-maxwell2}
+
+Reference Maxwell's equations as @eq-maxwell1 and @eq-maxwell2.
+
+### Single Equation with Label
+
+$$
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi)\,e^{2 \pi i \xi x} \,d\xi
+$$ {#eq-fourier}
+
+Reference as @eq-fourier.
+
+### Equation Arrays
+
+$$
+\begin{array}{lcl}
+z & = & a \\
+f(x,y,z) & = & x + y + z
+\end{array}
+$$ {#eq-array}
+
+Reference as @eq-array.
+
+### LaTeX Equation with Matrix
+
+$$
+A = 
+\begin{bmatrix} 
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+$$ {#eq-matrix}
+
+Reference as @eq-matrix.
+
+## Code Blocks {#sec-code}
+
+### Basic Python Code
+```{python}
+#| label: lst-basic
+#| caption: "Basic Python example"
+
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+temp_c = 25
+temp_f = celsius_to_fahrenheit(temp_c)
+print(f"{temp_c}°C is equal to {temp_f}°F")
+```
+
+Reference as @lst-basic.
+
+### Data Import Example
+```{python}
+#| label: lst-import
+#| caption: "CSV data import example"
+
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data/pmf_data.csv")
+
+# Show basic information
+print(f"Number of rows: {len(data)}")
+print(f"Number of columns: {len(data.columns)}")
+print("\nFirst few column names:")
+print(", ".join(data.columns[:5]))
+```
+
+Reference as @lst-import.
+
+## Citations {#sec-citations}
+
+Citations can be:
+
+- Single: @Paatero1994
+- Multiple: [@PMF_Guide2014; @EEA2019]
+- In-text: @Paatero1994 states that...
+- Parenthetical: [@Paatero1994]
+
+## Callouts {#sec-callouts}
+
+::: {.callout-note}
+## Note Title
+This is a note callout for important observations.
+:::
+
+::: {.callout-warning}
+## Warning
+This is a warning callout for potential issues.
+:::
+
+::: {.callout-important}
+## Important
+This is an important callout for critical information.
+:::
+
+::: {.callout-tip}
+## Tip
+This is a tip callout for helpful advice.
+:::
+
+## Cross-References {#sec-crossrefs}
+
+You can reference:
+
+- Figures: @fig-logo, @fig-logo2, @fig-combined
+- Tables: @tbl-simple, @tbl-grid, @tbl-csv, @tbl-single-figure, @tbl-multi-figure, @tbl-clean-figure, @tbl-multi-clean
+- Equations: @eq-fourier, @eq-maxwell1, @eq-matrix
+- Code: @lst-basic, @lst-import
+
+## Additional Features
+
+### Footnotes
+Here's a footnote reference[^1] and another one[^2].
+
+[^1]: This is the footnote content.
+[^2]: Footnotes can contain multiple paragraphs.
+
+### Definition Lists
+Term 1
+: Definition 1
+
+Term 2
+: Definition 2
+
+### Blockquotes
+> This is a blockquote.
+> It can span multiple lines.
+
+### Text Formatting
+
+**Bold text**, *italic text*, ~~strikethrough~~, `inline code`
+
+### Lists
+
+Ordered list:
+
+1. First item
+2. Second item
+3. Third item
+
+Unordered list:
+
+- Item one
+- Item two
+- Item three
+
+## Theorems {#sec-theorems}
+
+::: {#thm-pythagorean}
+## Pythagorean Theorem
+For a right-angled triangle with sides $a$, $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+:::
+
+Reference as @thm-pythagorean.

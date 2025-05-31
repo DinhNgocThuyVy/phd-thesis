@@ -1,0 +1,115 @@
+# Literature Review {#sec-ch1-literature}
+
+::: {.center data-latex=""}
+Some Authors
+:::
+
+::: {.callout-important title="Chapter Summary"}
+This chapter provides a comprehensive review of the existing literature pertinent to Positive Matrix Factorization (PMF) and its application in source apportionment of atmospheric pollutants. It delves into the mathematical underpinnings of PMF, comparing it with other receptor models like Chemical Mass Balance (CMB) and Principal Component Analysis (PCA). Key historical developments, seminal studies, common challenges, and advancements in PMF methodology are discussed, establishing the theoretical framework and identifying the research niche for this thesis.
+:::
+
+This is the literature review chapter. It should appear with the title "Literature Review" in the navigation.
+
+## PMF Mathematical Foundation {#sec-ch1-pmf-math}
+
+The basic PMF model is defined by the following equation:
+
+$$X_{ij} = \sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij}$$ {#eq-pmf-basic}
+
+Where:
+- $X_{ij}$ is the concentration of species $j$ in sample $i$
+- $g_{ik}$ is the contribution of factor $k$ to sample $i$
+- $f_{kj}$ is the concentration of species $j$ in factor profile $k$
+- $e_{ij}$ is the residual
+- $p$ is the number of factors
+
+## Introduction to Source Apportionment Models {#sec-ch1-intro-models}
+
+@tbl-intro-equations summarizes the mathematical representations of various source apportionment models discussed in this thesis.
+
+| Model | Equation | Description | Key Constraints |
+|-------|----------|-------------|----------------|
+| PMF | $X_{ij} = \sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij}$ | Positive Matrix Factorization | $g_{ik} \geq 0$, $f_{kj} \geq 0$ |
+| CMB | $C_i = \sum_{j=1}^{n} a_{ij} S_{j} + e_i$ | Chemical Mass Balance | Requires source profiles |
+| PCA | $X = TP^T + E$ | Principal Component Analysis | Orthogonal components |
+| UNMIX | $C = AS$ | Multivariate receptor model | Geometrically determined factors |
+
+: Mathematical Representations of Source Apportionment Models {#tbl-intro-equations}
+
+## Tables and Figures {#sec-ch1-tables}
+
+### Mathematical Equations in Tables {#sec-ch1-math-tables}
+
+@tbl-ch1-pmf-models presents key PMF models with their mathematical formulations and applications in source apportionment studies.
+
+| Model | Mathematical Formulation | Key Features | Application in PM Studies |
+|-------|------------------------|--------------|---------------------------|
+| Basic PMF | $X_{ij} = \sum_{k=1}^{p} g_{ik}f_{kj} + e_{ij}$ | Non-negativity constraints | First applied by @Paatero1994 |
+| Weighted PMF | $Q = \sum_{i=1}^{n}\sum_{j=1}^{m} \left(\frac{e_{ij}}{\sigma_{ij}}\right)^2$ | Uncertainty-weighted residuals | Extended by @HKSG02 |
+| ME-2 Engine | $Q_{\text{aux}} = Q + \alpha^2 \sum (f_{kj} - f_{kj}^*)^2$ | Target factor profiles | Recommended by @PMF_Guide2014 |
+| Robust PMF | $Q = \sum_{i=1}^{n}\sum_{j=1}^{m} h(e_{ij}/\sigma_{ij})$ | Outlier protection | Used in @EEA2019 |
+
+: PMF Model Variations with Their Mathematical Formulations {#tbl-ch1-pmf-models}
+
+### Data-Driven Tables from CSV Files {#sec-ch1-csv-tables}
+
+@tbl-ch1-pm25-components shows London PM2.5 component data loaded directly from a CSV file.
+
+```{python}
+#| label: tbl-ch1-pm25-components
+#| tbl-cap: "London PM2.5 Component Concentrations (μg/m³)"
+#| echo: false
+#| cache: true
+
+import pandas as pd
+from IPython.display import Markdown # Add this import
+# Load London PM2.5 data from CSV
+london_pm = pd.read_csv('data/london_pm25.csv', parse_dates=['Date'])
+
+# Calculate summary statistics
+summary = london_pm.describe().round(2)
+
+# Display table using Markdown
+display(Markdown(summary.to_markdown()))
+```
+
+### Analysis Methods with Citations {#sec-ch1-methods-citations}
+
+@tbl-ch1-analysis-methods presents key analysis methods used in this study with relevant citations and their significance.
+
+| Method | Mathematical Representation | Application | Reference |
+|--------|----------------------------|-------------|-----------|
+| Correlation Analysis | $r_{xy} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum(x_i-\bar{x})^2\sum(y_i-\bar{y})^2}}$ | Component relationships | See @Paatero1994 |
+| Linear Regression | $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ | Trend analysis | As per @HKSG02 |
+| Principal Component Analysis | $\mathbf{X} = \mathbf{T}\mathbf{P}^T + \mathbf{E}$ | Dimensionality reduction | Compared in @PMF_Guide2014 |
+| Cluster Analysis | $d(x,y) = \sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}$ | Source grouping | Applied by @EEA2019 |
+
+: Statistical Analysis Methods with Citations {#tbl-ch1-analysis-methods}
+
+### Mixed Content Table with Cross-References {#sec-ch1-mixed-table}
+
+@tbl-ch1-mixed demonstrates how to include multiple content types in a single table, including references to figures, tables, and equations.
+
+| Factor | Contribution Range | Seasonal Pattern | Related Figure/Table | Statistical Significance |
+|--------|-------------------|------------------|----------------------|--------------------------|
+| Traffic | 15-35% | Highest in winter (@fig-seasonal-contributions) | See @tbl-source-profiles | $p < 0.01$ ($\chi^2 = 15.3$) |
+| Industrial | 20-30% | Consistent year-round | Equation @eq-pmf-basic | $p < 0.05$ ($t = 2.4$) |
+| Biomass Burning | 5-30% | Winter > Fall > Spring > Summer | @tbl-ch1-pmf-models | $p < 0.001$ ($F = 8.7$) |
+| Secondary Formation | 15-50% | See @fig-temporal-patterns | Compare to @EEA2019 findings | $r^2 = 0.76$ ($p < 0.01$) |
+
+: Integration of Results with Cross-References {#tbl-ch1-mixed}
+
+### Comparative Source Profiles {#sec-ch1-comp-profiles}
+
+@tbl-ch1-comparative compares source profiles identified in this study with those reported in previous research.
+
+| Component | Traffic Profile | Industrial Profile | Biomass Profile | Secondary Profile |
+|-----------|----------------|-------------------|----------------|-------------------|
+| SO₄²⁻ | 20% | 35% | 15% | **25%** [@PMF_Guide2014] |
+| NO₃⁻ | 25% | 15% | 20% | **35%** [@EEA2019] |
+| NH₄⁺ | 10% | 5% | *25%* | **55%** [@Paatero1994] |
+| OC | 35% | 15% | **40%** [@HKSG02] | 10% |
+| EC | **45%** | 10% | *25%* | 5% |
+
+: Comparative Source Profiles (Bold = Dominant, *Italic* = Secondary) {#tbl-ch1-comparative}
+
