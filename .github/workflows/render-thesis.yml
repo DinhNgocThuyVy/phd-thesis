@@ -1,37 +1,24 @@
-name: Render Quarto Thesis (Production Ready)
+name: Render Quarto Thesis
 
 on:
-  # Trigger on push to main branch (HTML only for fast feedback)
+  # Trigger on push to main branch
   push:
     branches: [ main, master ]
   
   # Trigger on pull requests (HTML only for testing)
   pull_request:
     branches: [ main, master ]
-  
-  # Allow manual triggering when needed
-  workflow_dispatch:
-    inputs:
-      render_format:
-        description: 'Choose what to render'
-        required: true
-        default: 'html'
-        type: choice
-        options:
-        - html
-        - pdf
-        - both
 
 env:
   QUARTO_VERSION: "1.4.555"
   PYTHON_VERSION: "3.11"
 
 jobs:
-  # Fast HTML rendering for regular commits
+  # Fast HTML rendering for regular commits (without [release])
   render-html:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[release]') && github.event.inputs.render_format != 'pdf'
+    if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[release]')
     permissions:
       contents: write
     steps:
@@ -68,11 +55,12 @@ jobs:
         render: html
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # Full PDF rendering for releases and manual triggers
-  render-pdf:
+
+  # Full rendering (HTML + PDF) for release commits
+  render-release:
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    if: contains(github.event.head_commit.message, '[release]') || github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both'
+    if: contains(github.event.head_commit.message, '[release]')
     permissions:
       contents: write
     
@@ -98,12 +86,14 @@ jobs:
       run: |
         python -m pip install --upgrade pip wheel setuptools
         if [ -f requirements.txt ]; then
-          echo "Installing minimal dependencies from requirements.txt..."
+          echo "Installing dependencies from requirements.txt..."
           pip install -r requirements.txt
         else
-          echo "Installing essential packages directly..."
+          echo "Installing essential packages..."
           pip install pandas matplotlib numpy jupyter ipython jupyter-cache
-        fi    # Cache TinyTeX installation for PDF rendering
+        fi
+
+    # Cache TinyTeX installation for PDF rendering
     - name: Cache TinyTeX
       id: cache-tinytex
       uses: actions/cache@v4
@@ -116,7 +106,6 @@ jobs:
     # Install TinyTeX for PDF rendering
     - name: Set up TinyTeX
       uses: r-lib/actions/setup-tinytex@v2
-      
     # Install LaTeX packages (only if cache miss)
     - name: Install LaTeX packages for thesis
       if: steps.cache-tinytex.outputs.cache-hit != 'true'
@@ -127,11 +116,12 @@ jobs:
         # Update tlmgr first
         tlmgr update --self
         
-        # Install essential packages for thesis template
-        echo "Installing essential packages for thesis template..."
+        # Install ALL packages that your thesis template uses (based on auto-install log)
+        echo "Installing ALL required packages for thesis template..."
         tlmgr install \
           koma-script \
           scrhack \
+          setspace \
           setspaceenhanced \
           caption \
           soul \
@@ -140,7 +130,6 @@ jobs:
           etoolbox \
           babel \
           parskip \
-          setspace \
           booktabs \
           hyperref \
           geometry \
@@ -156,15 +145,41 @@ jobs:
           microtype \
           titlesec \
           enumitem \
-          scrlayer-scrpage
+          scrlayer-scrpage \
+          makecell \
+          tcolorbox \
+          tikzfill \
+          pdfcol \
+          fontawesome5 \
+          floatbytocbasic \
+          pdflscape \
+          lscapeenhanced \
+          array \
+          colortbl \
+          environ \
+          trimspaces \
+          pgf \
+          xkeyval \
+          collectbox \
+          ltxcmds \
+          varwidth \
+          tikz \
+          pgfplots \
+          fontspec \
+          xunicode \
+          xltxtra \
+          realscripts \
+          metalogo \
+          ifmtarg
           
-        # Install comprehensive collections
+        # Install comprehensive collections (covers most edge cases)
         echo "Installing LaTeX collections for comprehensive coverage..."
         tlmgr install \
           collection-fontsrecommended \
           collection-latexextra \
           collection-bibtexextra \
-          collection-mathscience
+          collection-mathscience \
+          collection-pictures
           
         echo "LaTeX packages installation completed!"
         echo "Total packages installed: $(tlmgr list --only-installed | wc -l)"
@@ -177,23 +192,17 @@ jobs:
         echo "Current installed packages: $(tlmgr list --only-installed | wc -l)"
         echo "Auto-install will handle any new packages during rendering..."
 
-    # Render based on manual input or commit message
-    - name: Render HTML and Publish to GitHub Pages
-      if: github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both'
-      uses: quarto-dev/quarto-actions/publish@v2
-      with:
-        target: gh-pages
-        render: html
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # Render PDF version with retry logic
-    - name: Render PDF version
-      if: github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || contains(github.event.head_commit.message, '[release]')
+    # Render both HTML and PDF for release
+    - name: Render HTML and PDF
       run: |
-        echo "Rendering PDF version..."
+        echo "Rendering both HTML and PDF for release..."
         
-        # Try PDF rendering with retry
+        # First render HTML
+        echo "Rendering HTML..."
+        quarto render --to html
+        
+        # Then render PDF with retry logic
+        echo "Rendering PDF..."
         for attempt in 1 2 3; do
           echo "PDF rendering attempt $attempt..."
           if quarto render --to pdf; then
@@ -210,27 +219,35 @@ jobs:
           fi
         done
         
-        # Prepare PDF for release
-        mkdir -p release_assets
-        
-        # Look for the main thesis PDF
+        # Copy PDF to docs directory for GitHub Pages
+        echo "Copying PDF to docs directory for GitHub Pages..."
         if [ -f "docs/My-Thesis.pdf" ]; then
-          cp "docs/My-Thesis.pdf" release_assets/
-          echo "Main thesis PDF found and copied: My-Thesis.pdf"
+          echo "PDF already in docs directory"
         elif [ -f "My-Thesis.pdf" ]; then
-          cp "My-Thesis.pdf" release_assets/
-          echo "Main thesis PDF found in root and copied: My-Thesis.pdf"
+          cp "My-Thesis.pdf" docs/
+          echo "PDF copied to docs directory"
         else
-          find docs -name "*.pdf" ! -name "*-output-*.pdf" ! -name "cover.pdf" -exec cp {} release_assets/ \; 2>/dev/null || echo "No main thesis PDF found"
-          find . -maxdepth 1 -name "*.pdf" ! -name "*-output-*.pdf" ! -name "cover.pdf" -exec cp {} release_assets/ \; 2>/dev/null || echo "No main thesis PDF found in root"
+          echo "Warning: Main thesis PDF not found"
         fi
         
-        echo "Release PDF files prepared:"
-        ls -la release_assets/ || echo "No PDF files found"
+        # Prepare PDF for release artifacts
+        mkdir -p release_assets
+        if [ -f "docs/My-Thesis.pdf" ]; then
+          cp "docs/My-Thesis.pdf" release_assets/
+          echo "PDF prepared for release"
+        fi
+
+    # Deploy to GitHub Pages (includes both HTML and PDF)
+    - name: Deploy to GitHub Pages
+      uses: quarto-dev/quarto-actions/publish@v2
+      with:
+        target: gh-pages
+        render: false  # Already rendered above
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # Upload PDF artifacts
     - name: Upload PDF artifacts
-      if: github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || contains(github.event.head_commit.message, '[release]')
       uses: actions/upload-artifact@v4
       with:
         name: thesis-pdf-${{ github.sha }}
@@ -239,7 +256,7 @@ jobs:
 
     # Create Release with PDF
     - name: Create Release with PDF
-      if: (github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || contains(github.event.head_commit.message, '[release]')) && github.ref == 'refs/heads/main' && success()
+      if: github.ref == 'refs/heads/main' && success()
       uses: softprops/action-gh-release@v1
       with:
         tag_name: thesis-v${{ github.run_number }}
@@ -250,8 +267,12 @@ jobs:
           Generated from commit: ${{ github.sha }}
           Branch: ${{ github.ref_name }}
           
-          📝 **Changes:** ${{ github.event.head_commit.message || 'Manual trigger' }}
+          📝 **Changes:** ${{ github.event.head_commit.message }}
           📅 **Date:** ${{ github.event.head_commit.timestamp }}
+          
+          **Content:**
+          - 📄 PDF thesis available as release asset
+          - 🌐 HTML version deployed to GitHub Pages
           
           **Technical specs:**
           - Quarto ${{ env.QUARTO_VERSION }}
