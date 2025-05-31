@@ -121,12 +121,10 @@ format:
     link-citations: true
     
     # Additional debugging to see issues
-    keep-tex: true
-    
-    # LaTeX compilation settings
+    keep-tex: true    # LaTeX compilation settings
     quiet: false
     progress: true
-    latex-auto-install: true
+    latex-auto-install: true  # Keep enabled for local development and auto-detection of new packages
     latex-min-runs: 3
     latex-max-runs: 12
     latex-clean: true
