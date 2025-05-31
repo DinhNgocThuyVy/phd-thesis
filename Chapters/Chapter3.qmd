@@ -27,7 +27,6 @@ This chapter examines how PMF source apportionment results can be effectively in
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from IPython.display import Markdown
 
 impact_df = pd.DataFrame({
