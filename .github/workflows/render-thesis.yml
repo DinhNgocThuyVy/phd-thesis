@@ -94,15 +94,15 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.TinyTeX
-        key: tinytex-${{ runner.os }}-packages-v3-${{ hashFiles('**/render-thesis.yml') }}
+        key: tinytex-${{ runner.os }}-packages-v4-${{ hashFiles('**/render-thesis.yml') }}
         restore-keys: |
-          tinytex-${{ runner.os }}-packages-v3-
+          tinytex-${{ runner.os }}-packages-v4-
           tinytex-${{ runner.os }}-
 
-    # Install TinyTeX (only when PDF is needed)
+    # Install TinyTeX (only when PDF is needed and no cache hit)
     - name: Set up TinyTeX
-      if: steps.set_render_format.outputs.need_latex == 'true'
-      uses: r-lib/actions/setup-tinytex@v2    # Install comprehensive LaTeX packages (only when PDF is needed and no cache hit)
+      if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit != 'true'
+      uses: r-lib/actions/setup-tinytex@v2 # Install comprehensive LaTeX packages (only when PDF is needed and no cache hit)
     - name: Install LaTeX packages for thesis
       if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit != 'true'
       run: |
@@ -141,7 +141,6 @@ jobs:
           microtype \
           titlesec \
           enumitem \
-          scrlayer-scrpage \
           makecell \
           tcolorbox \
           tikzfill \
@@ -149,7 +148,8 @@ jobs:
           fontawesome5 \
           floatbytocbasic \
           pdflscape \
-          lscapeenhanced
+          lscapeenhanced \
+        || echo "Some packages may have failed to install, but continuing..."
           
         # Install comprehensive collections to cover most use cases
         echo "Installing LaTeX collections for comprehensive coverage..."
@@ -157,16 +157,19 @@ jobs:
           collection-fontsrecommended \
           collection-latexextra \
           collection-bibtexextra \
-          collection-mathscience
+          collection-mathscience \
+        || echo "Some collections may have failed to install, but continuing..."
           
         echo "LaTeX packages installation completed!"
         echo "Total packages installed: $(tlmgr list --only-installed | wc -l)"
-        
-    # Quick update for cached TinyTeX (only when PDF is needed and cache hit)
+          # Quick update for cached TinyTeX (only when PDF is needed and cache hit)
     - name: Update TinyTeX (cache hit)
       if: steps.set_render_format.outputs.need_latex == 'true' && steps.cache-tinytex.outputs.cache-hit == 'true'
       run: |
         echo "TinyTeX cache hit - packages already installed!"
+        echo "Adding TinyTeX to PATH..."
+        echo "$HOME/.TinyTeX/bin/x86_64-linux" >> $GITHUB_PATH
+        export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
         echo "Current installed packages: $(tlmgr list --only-installed | wc -l)"
         echo "Auto-install will handle any new packages during rendering..."
 
