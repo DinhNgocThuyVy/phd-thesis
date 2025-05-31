@@ -1,0 +1,230 @@
+name: Render Quarto Thesis (Production Ready)
+
+on:
+  # Trigger on push to main branch
+  push:
+    branches: [ main, master ]
+  
+  # Trigger on pull requests to test changes
+  pull_request:
+    branches: [ main, master ]
+  
+  # Allow manual triggering when needed
+  workflow_dispatch:
+    inputs:
+      render_format:
+        description: 'Choose what to render'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+        - html
+        - pdf
+        - both
+
+env:
+  QUARTO_VERSION: "1.4.555"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  render-thesis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Setup Python with caching
+    - name: Set up Python ${{ env.PYTHON_VERSION }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+        cache-dependency-path: requirements.txt
+
+    # Install Python dependencies
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip wheel setuptools
+        if [ -f requirements.txt ]; then
+          echo "Installing from requirements.txt..."
+          pip install -r requirements.txt
+        else
+          echo "Installing essential packages directly..."
+          pip install pandas matplotlib seaborn numpy scipy jupyter ipython plotly pyyaml kaleido
+        fi
+
+    # Cache Quarto installation
+    - name: Cache Quarto
+      uses: actions/cache@v4
+      with:
+        path: ~/quarto
+        key: quarto-${{ runner.os }}-${{ env.QUARTO_VERSION }}
+
+    # Install Quarto
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      with:
+        version: ${{ env.QUARTO_VERSION }}
+
+    # Cache TinyTeX installation
+    - name: Cache TinyTeX
+      uses: actions/cache@v4
+      with:
+        path: ~/.TinyTeX
+        key: tinytex-${{ runner.os }}-packages-v2
+        restore-keys: |
+          tinytex-${{ runner.os }}-
+
+    # Install TinyTeX
+    - name: Set up TinyTeX
+      uses: r-lib/actions/setup-tinytex@v2
+
+    # Install all required LaTeX packages
+    - name: Install LaTeX packages for thesis
+      run: |
+        echo "Installing comprehensive LaTeX packages for thesis..."
+        
+        # Update tlmgr
+        tlmgr update --self || echo "tlmgr update completed"
+        
+        # Install KOMA-Script and essential packages
+        tlmgr install \
+          koma-script \
+          etoolbox \
+          xparse \
+          babel \
+          parskip \
+          setspace \
+          longtable \
+          booktabs \
+          caption \
+          graphicx \
+          hyperref \
+          geometry \
+          amsmath \
+          amsfonts \
+          amssymb \
+          pdfpages \
+          scrlayer-scrpage \
+          hologo \
+          adjustbox \
+          array \
+          multirow \
+          float \
+          xcolor \
+          csquotes \
+          natbib \
+          biblatex \
+          microtype \
+          titlesec \
+          subcaption \
+          enumitem
+        
+        # Install collections for comprehensive coverage
+        tlmgr install \
+          collection-fontsrecommended \
+          collection-latexextra \
+          collection-bibtexextra
+        
+        echo "LaTeX packages installation completed!"
+
+    # Create output directories
+    - name: Create output directories
+      run: |
+        mkdir -p docs release_assets
+
+    # Render HTML version
+    - name: Render HTML version
+      if: ${{ github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      run: |
+        echo "Rendering HTML version..."
+        quarto render --to html
+        echo "HTML rendering completed!"
+
+    # Render PDF version with retry logic
+    - name: Render PDF version
+      if: ${{ github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      run: |
+        echo "Rendering PDF version..."
+        
+        # Try PDF rendering with retry
+        for attempt in 1 2 3; do
+          echo "PDF rendering attempt $attempt..."
+          if quarto render --to pdf; then
+            echo "PDF rendering successful!"
+            break
+          else
+            echo "PDF rendering failed on attempt $attempt"
+            if [ $attempt -eq 3 ]; then
+              echo "All attempts failed. Checking logs..."
+              find . -name "*.log" -exec tail -20 {} \; 2>/dev/null || echo "No log files found"
+              exit 1
+            fi
+            sleep 5
+          fi
+        done
+        
+        # Copy PDF files to release directory
+        mkdir -p release_assets
+        find docs -name "*.pdf" -exec cp {} release_assets/ \; 2>/dev/null || echo "No PDF in docs"
+        find . -maxdepth 1 -name "*.pdf" -exec cp {} release_assets/ \; 2>/dev/null || echo "No PDF in root"
+        
+        echo "PDF files prepared:"
+        ls -la release_assets/ || echo "No PDF files found"
+
+    # Upload artifacts
+    - name: Upload HTML artifacts
+      if: ${{ github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: thesis-html-${{ github.sha }}
+        path: docs/
+        retention-days: 30
+
+    - name: Upload PDF artifacts
+      if: ${{ github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: thesis-pdf-${{ github.sha }}
+        path: release_assets/
+        retention-days: 30
+
+    # Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      if: ${{ (github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '') && github.ref == 'refs/heads/main' && success() }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        force_orphan: true
+
+    # Create Release
+    - name: Create Release with PDF
+      if: ${{ (github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '') && github.ref == 'refs/heads/main' && success() }}
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: thesis-v${{ github.run_number }}
+        name: Thesis Release v${{ github.run_number }}
+        body: |
+          🎓 **Automated Thesis Release**
+          
+          Generated from commit: ${{ github.sha }}
+          Branch: ${{ github.ref_name }}
+          
+          📝 **Changes:** ${{ github.event.head_commit.message || 'Manual trigger' }}
+          📅 **Date:** ${{ github.event.head_commit.timestamp || github.run_started_at }}
+          
+          **Technical specs:**
+          - Quarto ${{ env.QUARTO_VERSION }}
+          - Python ${{ env.PYTHON_VERSION }}
+          - Custom MastersDoctoralThesis class
+          - Full LaTeX package support
+        files: release_assets/*.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

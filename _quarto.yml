@@ -75,7 +75,7 @@ execute:
   message: false   # Suppress all messages
   code-overflow: wrap
   # Use system Python kernel directly
-  kernel: system-python312
+  # kernel: system-python312
   python-startup: "scripts/suppress_warnings.py"  # Load this script before running any Python code
 
 format:
