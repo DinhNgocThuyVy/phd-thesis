@@ -70,6 +70,7 @@ jobs:
 
     # Cache TinyTeX installation
     - name: Cache TinyTeX
+      id: cache-tinytex
       uses: actions/cache@v4
       with:
         path: ~/.TinyTeX
@@ -81,17 +82,11 @@ jobs:
     - name: Set up TinyTeX
       uses: r-lib/actions/setup-tinytex@v2
 
-    # Install all required LaTeX packages
+    # Install all required LaTeX packages only if cache is missed
     - name: Install LaTeX packages for thesis
+      if: steps.cache-tinytex.outputs.cache-hit != 'true'
       run: |
-        echo "Installing comprehensive LaTeX packages for thesis..."
-        
-        # Update tlmgr
-        tlmgr update --self || echo "tlmgr update completed"
-        
-        # Install essential LaTeX packages (remove core/implicit packages)
-        # The following packages are NOT installable via tlmgr and should be omitted:
-        # amssymb, array, graphicx, longtable, scrlayer-scrpage, subcaption, xparse
+        echo "Installing comprehensive LaTeX packages for thesis (first run or cache miss)..."
         tlmgr install \
           koma-script \
           etoolbox \
@@ -116,13 +111,10 @@ jobs:
           microtype \
           titlesec \
           enumitem
-        
-        # Install collections for comprehensive coverage
         tlmgr install \
           collection-fontsrecommended \
           collection-latexextra \
           collection-bibtexextra
-        
         echo "LaTeX packages installation completed!"
 
     # Create output directories
@@ -130,17 +122,27 @@ jobs:
       run: |
         mkdir -p docs release_assets
 
-    # Render HTML version
+    # Determine render format based on commit message
+    - name: Set render format
+      id: set_render_format
+      run: |
+        if echo "${{ github.event.head_commit.message }}" | grep -iq '\[release\]'; then
+          echo "render_format=both" >> $GITHUB_OUTPUT
+        else
+          echo "render_format=html" >> $GITHUB_OUTPUT
+        fi
+
+    # Render HTML version (use Quarto cache for speed)
     - name: Render HTML version
-      if: ${{ github.event.inputs.render_format == 'html' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      if: steps.set_render_format.outputs.render_format == 'html' || steps.set_render_format.outputs.render_format == 'both'
       run: |
         echo "Rendering HTML version..."
-        quarto render --to html
+        quarto render --to html --cache
         echo "HTML rendering completed!"
 
     # Render PDF version with retry logic
     - name: Render PDF version
-      if: ${{ github.event.inputs.render_format == 'pdf' || github.event.inputs.render_format == 'both' || github.event.inputs.render_format == '' }}
+      if: steps.set_render_format.outputs.render_format == 'both'
       run: |
         echo "Rendering PDF version..."
         

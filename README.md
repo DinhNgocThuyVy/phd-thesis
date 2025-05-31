@@ -191,6 +191,58 @@ Bibliography files are configured in `_quarto.yml`.
    - Reference figures with `@fig-name` and tables with `@tbl-name`.
    - Example: "As seen in @fig-temporal-patterns, the data shows seasonal variation."
 
+## Automated GitHub Actions Workflow
+
+This template includes a robust GitHub Actions workflow for continuous integration and reproducible thesis builds:
+
+- **HTML Preview on Every Commit:**
+  - On every push or pull request to `main`/`master`, the workflow automatically renders and deploys the HTML version to GitHub Pages ([Read Online](https://dinhngocthuyvy.github.io/phd-thesis/)).
+  - This allows you to preview your thesis live after every update.
+
+- **PDF Release on Demand:**
+  - To save time, the PDF version is only rendered when you include `[release]` in your commit message (e.g., `Update results [release]`).
+  - This triggers a full build (HTML + PDF) and uploads the PDF as a GitHub Release ([Download PDF](https://github.com/DinhNgocThuyVy/phd-thesis/releases/latest)).
+  - All LaTeX dependencies are cached for fast subsequent builds.
+
+- **Manual and Custom Triggers:**
+  - You can also manually trigger the workflow from the GitHub Actions tab and select which format to render.
+
+- **Caching:**
+  - Python, Quarto, and LaTeX (TinyTeX) installations are cached to minimize build times.
+
+- **Artifacts:**
+  - Both HTML and PDF outputs are uploaded as workflow artifacts for download and archival.
+
+## ✨ Supported Features
+
+- **Customizable Cover Page:** Use a university-required PDF cover or auto-generate a French-style title page.
+- **Full French Thesis Metadata:** Supervisor, co-supervisors, committee, laboratory, doctoral school, thesis number, etc.
+- **Multiple Logos:** Support for university, laboratory, and partner logos (PDF/PNG/JPG).
+- **Advanced Cross-Referencing:**
+  - Reference figures, tables, equations, and sections using Quarto's cross-ref syntax (e.g., `@fig-name`, `@tbl-name`, `@eq-label`, `@sec-name`).
+- **Mathematical Equations:** Inline and display math with LaTeX syntax, including equation numbering and referencing.
+- **Python Code Integration:**
+  - Embed Jupyter-style Python code blocks for data analysis, figures, and tables.
+  - Automatic figure/table numbering and referencing.
+  - Hide code, warnings, and messages for clean output.
+- **Data-Driven Figures and Tables:**
+  - Use Pandas and Matplotlib for publication-quality graphics and tables.
+  - Render tables with `IPython.display.Markdown` for best compatibility.
+- **Bibliography and Citations:**
+  - Multi-file bibliography support (BibTeX), custom CSL styles, and citation cross-referencing.
+- **Appendices:**
+  - Add unlimited appendices with full cross-referencing and bibliography support.
+- **French and English Abstracts:**
+  - Support for both languages in the front matter.
+- **Committee Formatting:**
+  - French-style tabular committee member formatting with roles and affiliations.
+- **Flexible Structure:**
+  - Add, remove, or reorder chapters and appendices easily in `_quarto.yml`.
+- **Suppress Output Noise:**
+  - Hide code, warnings, and messages globally for a clean thesis.
+- **Reproducible Builds:**
+  - All dependencies are versioned and builds are reproducible on any machine or in the cloud.
+
 ## Python Code Blocks
 - [ ] All code blocks use proper Quarto syntax: ```{python}
 - [ ] All code blocks include appropriate YAML options:
